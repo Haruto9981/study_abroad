@@ -23,5 +23,19 @@ class DiarySeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);
+        DB::table('diaries')->insert([
+            'title' => 'Went shopping',
+            'content' => 'I went shopping. It was really nice.',
+            'photo' => 'shopping',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ]);
+        DB::table('diaries')->insert([
+            'title' => 'Went fishing',
+            'content' => 'I went fishing. It was really nice.',
+            'photo' => 'fishing',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime()
+        ]);
     }
 }
