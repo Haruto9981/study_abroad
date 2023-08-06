@@ -18,6 +18,9 @@
                 </div>
             @endforeach
         </div>
+        <a href="/diaries/create">
+            <button type="button">Create</button>
+        </a>
         <div class='paginate'>
             {{ $diaries->links() }}
         </div>

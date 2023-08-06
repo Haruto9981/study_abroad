@@ -19,5 +19,11 @@ Route::get('/', function () {
 
 Route::get('/', [DiaryController::class, 'index']);
 
+Route::get('/diaries/create', [DiaryController::class, 'create']);
+
 Route::get('/diaries/{diary}', [DiaryController::class, 'show']);
+
+Route::post('/diaries', [DiaryController::class, 'add']);
+
+
 

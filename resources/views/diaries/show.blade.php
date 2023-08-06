@@ -14,6 +14,8 @@
         <div class="content">
             <div class="content__post">
                 <p>{{ $diary->content }}</p> 
+            </div>
+            <div class="photo">
                 <p class='photo'>{{$diary->photo}}</p>
             </div>
         </div>
