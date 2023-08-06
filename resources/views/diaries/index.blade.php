@@ -14,6 +14,7 @@
                     <h2 class='title'>{{$diary->title}}</h2>
                     <p class='content'>{{$diary->content}}</p>
                     <p class='photo'>{{$diary->photo}}</p>
+                    <a href="/diaries/{{$diary->id}}">see more</a>
                 </div>
             @endforeach
         </div>
