@@ -19,6 +19,7 @@
                 <p class='photo'>{{$diary->photo}}</p>
             </div>
         </div>
+        <div class="edit"><a href="/diaries/{{ $diary->id }}/edit">Edit</a></div>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

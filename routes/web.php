@@ -23,6 +23,10 @@ Route::get('/diaries/create', [DiaryController::class, 'create']);
 
 Route::get('/diaries/{diary}', [DiaryController::class, 'show']);
 
+Route::get('/diaries/{diary}/edit', [DiaryController::class, 'edit']);
+
+Route::put('/diaries/{diary}', [DiaryController::class, 'update']);
+
 Route::post('/diaries', [DiaryController::class, 'add']);
 
 
