@@ -13,4 +13,11 @@ class Diary extends Model
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    
+    protected $fillable = [
+        'title',
+        'content',
+        'photo',
+        'is_private'
+    ];
 }

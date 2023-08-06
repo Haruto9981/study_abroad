@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Diary;
+use App\Http\Requests\DiaryRequest;
 
 class DiaryController extends Controller
 {
@@ -15,5 +16,17 @@ class DiaryController extends Controller
     public function show(Diary $diary)
     {
         return view('diaries.show')->with(['diary' => $diary]);
+    }
+    
+    public function create()
+    {
+        return view('diaries.create');
+    }
+    
+    public function add(DiaryRequest $request, Diary $diary)
+    {
+        $input = $request['diary'];
+        $diary->fill($input)->save();
+        return redirect('/');
     }
 }
