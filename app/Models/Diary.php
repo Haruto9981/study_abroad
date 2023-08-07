@@ -11,9 +11,14 @@ class Diary extends Model
     use HasFactory;
     use SoftDeletes;
     
-    public function getPaginateByLimit (int $limit_count = 2)
+    public function getPaginateByLimit (int $limit_count = 5)
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function users() 
+    {
+        return $this->belongsToMany(User::class);
     }
     
     protected $fillable = [
@@ -22,6 +27,7 @@ class Diary extends Model
         'photo',
         'is_private'
     ];
+    
     
     
 }

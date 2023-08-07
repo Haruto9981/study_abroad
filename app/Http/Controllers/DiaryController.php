@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Diary;
+use App\Models\User;
 use App\Http\Requests\DiaryRequest;
+use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {
+    public function home(Diary $diary, User $user)
+    {
+        return view('diaries.home')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user]);
+    }
+    
     public function index(Diary $diary) 
     {
         return view('diaries.index')->with(['diaries' => $diary->getPaginateByLimit()]);
@@ -31,7 +38,7 @@ class DiaryController extends Controller
         
         $input = $request['diary'];
         $diary->fill($input)->save();
-        return redirect('/');
+        return redirect('/diaries/index');
     }
     
     public function edit(Diary $diary)

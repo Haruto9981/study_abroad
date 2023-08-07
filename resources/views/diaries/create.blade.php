@@ -26,6 +26,12 @@
                 <div>
                     <input type="file" name="diary[photo]">
                 </div>
+                <div class="is_private">
+                    <select name="diary[is_private]">
+                        <option value="0">private</option>
+                        <option value="1">public</option>
+                    </select>
+                </div>
                 <input type="submit" value="Create"/>
             </form>
             <div class="footer">
