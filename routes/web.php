@@ -1,34 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DiaryController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::controller(DiaryController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::post('/diaries', 'store')->name('store');
+    Route::get('/diaries/create', 'create')->name('create');
+    Route::get('/diaries/{diary}', 'show')->name('show');
+    Route::put('/diaries/{diary}', 'update')->name('update');
+    Route::delete('/diaries/{diary}', 'delete')->name('delete');
+    Route::get('/diaries/{diary}/edit', 'edit')->name('edit');
 });
 
-Route::get('/', [DiaryController::class, 'index']);
+Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
 
-Route::get('/diaries/create', [DiaryController::class, 'create']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/diaries/{diary}', [DiaryController::class, 'show']);
-
-Route::get('/diaries/{diary}/edit', [DiaryController::class, 'edit']);
-
-Route::put('/diaries/{diary}', [DiaryController::class, 'update']);
-
-Route::post('/diaries', [DiaryController::class, 'add']);
-
-Route::delete('/diaries/{diary}', [DiaryController::class, 'delete']);
-
-
+require __DIR__.'/auth.php';
