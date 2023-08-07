@@ -13,7 +13,7 @@ Route::get('/dashboard', function () {
 
 Route::controller(DiaryController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'index')->name('index');
-    Route::post('/diaries', 'store')->name('store');
+    Route::post('/diaries', 'add')->name('add');
     Route::get('/diaries/create', 'create')->name('create');
     Route::get('/diaries/{diary}', 'show')->name('show');
     Route::put('/diaries/{diary}', 'update')->name('update');

@@ -18,7 +18,7 @@
                     <div class='diary'>
                         <h2 class='title'>{{$diary->title}}</h2>
                         <p class='content'>{{$diary->content}}</p>
-                        <p class='photo'>{{$diary->photo}}</p>
+                        <img src="{{ asset($diary->photo) }}" width="100px">
                         <a href="/diaries/{{$diary->id}}">see more</a>
                         <form action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
                             @csrf
