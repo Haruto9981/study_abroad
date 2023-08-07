@@ -23,6 +23,7 @@ class DiaryRequest extends FormRequest
         return [
             'diary.title' => 'required|string|max:100',
             'diary.content' => 'required|string|max:4000',
+            'diary.photo'
         ];
     }
 }

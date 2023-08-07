@@ -11,7 +11,7 @@
            </h2>
         </x-slot>
         <body>
-            <form action="/diaries" method="POST">
+            <form action="/diaries" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="title">
                     <h2>Title</h2>
@@ -22,6 +22,9 @@
                     <h2>Content</h2>
                     <textarea name="diary[content]" placeholder="What's your experience?"></textarea>
                      <p class="content__error" style="color:red">{{ $errors->first('diary.content') }}</p>
+                </div>
+                <div>
+                    <input type="file" name="diary[photo]">
                 </div>
                 <input type="submit" value="Create"/>
             </form>
