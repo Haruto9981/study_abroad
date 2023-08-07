@@ -17,6 +17,12 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+     
+    public function diaries() 
+    {
+        return $this->belongsToMany(Diary::class);
+    }
+    
     protected $fillable = [
         'name',
         'email',

@@ -5,14 +5,17 @@ use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
-
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(DiaryController::class)->middleware(['auth'])->group(function(){
-    Route::get('/', 'index')->name('index');
+    Route::get('/diaries/home', 'home')->name('home');
+    Route::get('/diaries/index', 'index')->name('index');
     Route::post('/diaries', 'add')->name('add');
     Route::get('/diaries/create', 'create')->name('create');
     Route::get('/diaries/{diary}', 'show')->name('show');
