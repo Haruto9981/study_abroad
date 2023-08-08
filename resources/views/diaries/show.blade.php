@@ -27,7 +27,7 @@
             </div>
             <div class="edit"><a href="/diaries/{{ $diary->id }}/edit">Edit</a></div>
             <div class="footer">
-                <a href="/">戻る</a>
+                <a href="/diaries/index">戻る</a>
             </div>
         </body>
      </x-app-layout>

@@ -12,12 +12,14 @@ class DiaryController extends Controller
 {
     public function home(Diary $diary, User $user)
     {
+        $user = Auth::user();
         return view('diaries.home')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user]);
     }
     
-    public function index(Diary $diary) 
+    public function index(Diary $diary, User $user) 
     {
-        return view('diaries.index')->with(['diaries' => $diary->getPaginateByLimit()]);
+        $user = Auth::user();
+        return view('diaries.index')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user]);
     }
     
     public function show(Diary $diary)
@@ -37,6 +39,7 @@ class DiaryController extends Controller
         $request->file('diary.photo')->storeAs('public/' . $dir, $file_name);
         
         $input = $request['diary'];
+        $diary->user_id = \Auth::id();
         $diary->fill($input)->save();
         return redirect('/diaries/index');
     }
