@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Diary;
+use App\Models\Expression;
 use App\Models\User;
 use App\Http\Requests\DiaryRequest;
 use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {
-    public function home(Diary $diary, User $user)
+    public function home(Diary $diary, Expression $expression, User $user)
     {
         $user = Auth::user();
-        return view('diaries.home')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user]);
+        return view('diaries.home')->with(['diaries' => $diary->getPaginateByLimit(), 'expressions' => $expression->getPaginateByLimit(), 'user' => $user]);
     }
     
     public function index(Diary $diary, User $user) 
