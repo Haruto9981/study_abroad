@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DiaryController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ExpressionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +23,17 @@ Route::controller(DiaryController::class)->middleware(['auth'])->group(function(
     Route::delete('/diaries/{diary}', 'delete')->name('delete');
     Route::get('/diaries/{diary}/edit', 'edit')->name('edit');
 });
+
+Route::controller(ExpressionController::class)->middleware(['auth'])->group(function(){
+    Route::get('/expressions/index', 'index')->name('index_2');
+    Route::post('/expressions', 'add')->name('add');
+    Route::get('/expressions/create', 'create')->name('create');
+    Route::get('/expressions/{expression}', 'show')->name('show');
+    Route::put('/expressions/{expression}', 'update')->name('update');
+    Route::delete('/expressions/{expression}', 'delete')->name('delete');
+    Route::get('/expressions/{expression}/edit', 'edit')->name('edit');
+});
+
 
 Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
 
