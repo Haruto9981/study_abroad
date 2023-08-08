@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+button {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 20px;
+}
+li {
+  font-size: 23px;
+}
+
+#expressions-content, #diaries-content {
+  display: none;
+}
+
+#expressions-button.active, #diaries-button.active{
+  color: blue;
+  background-color: orange;
+}
+
+#expressions-content.active, #diaries-content.active {
+  display: block;
+}

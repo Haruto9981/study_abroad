@@ -6,6 +6,7 @@
         <title>Diary</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{asset('css/style.css')}}" rel="stylesheet">
     </head>
     <x-app-layout>
         <x-slot name="header">
@@ -14,7 +15,9 @@
            </h2>
         </x-slot>
         <body>
-            <div　class="content">
+            <button id="diaries-button">Diaries</button>
+            <button id="expressions-button">Expressions</button>
+            <div id="diaries-content">
                 @foreach ($diaries as $diary)
                     @if ($diary->user_id !== $user->id)
                         @if ($diary->is_private === 1)
@@ -33,6 +36,54 @@
                     @endif
                 @endforeach
             </div>
+            <div id="expressions-content">
+                @foreach ($expressions as $expression)
+                    @if ($expression->user_id !== $user->id)
+                        @if ($expression->is_private === 1)
+                            <h1 class="vocabulary">
+                                {{ $expression->vocabulary }}
+                            </h1>
+                            <div class="explaination">
+                                <div class="content__post">
+                                    <p>{{ $expression->explaination }}</p> 
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+                @endforeach
+            </div>
+            
+            <script>
+                let $diaries_button = document.getElementById("diaries-button");
+                let $diaries_content = document.getElementById("diaries-content");
+                let $expressions_button = document.getElementById("expressions-button");
+                let $expressions_content = document.getElementById("expressions-content");
+              
+                
+                reset_styles = function() {
+                  $expressions_button.classList.remove("active");
+                  $diaries_button.classList.remove("active");
+                  $expressions_content.classList.remove("active");
+                  $diaries_content.classList.remove("active");
+                };
+                
+                $expressions_button.addEventListener("click", function() {
+                  reset_styles();
+                  if (this.classList.toggle("active")) {
+                    $expressions_content.classList.toggle("active");
+                  }
+                })
+                $diaries_button.addEventListener("click", function() {
+                  reset_styles();
+                  if (this.classList.toggle("active")) {
+                    $diaries_content.classList.toggle("active");
+                  }
+                });
+                
+                  // デフォルトで未完了のみ表示
+                $diaries_content.classList.toggle("active");
+                $diaries_button.classList.toggle("active")
+            </script>
         </body>
     </x-app-layout>
 </html>
