@@ -16,18 +16,20 @@
         <body>
             <div　class="content">
                 @foreach ($diaries as $diary)
-                    @if ($diary->is_private === 1)
-                        <h1 class="title">
-                            {{ $diary->title }}
-                        </h1>
-                        <div class="content">
-                            <div class="content__post">
-                                <p>{{ $diary->content }}</p> 
+                    @if ($diary->user_id !== $user->id)
+                        @if ($diary->is_private === 1)
+                            <h1 class="title">
+                                {{ $diary->title }}
+                            </h1>
+                            <div class="content">
+                                <div class="content__post">
+                                    <p>{{ $diary->content }}</p> 
+                                </div>
+                                <div class="photo">
+                                    <p class='photo'>{{$diary->photo}}</p>
+                                </div>
                             </div>
-                            <div class="photo">
-                                <p class='photo'>{{$diary->photo}}</p>
-                            </div>
-                        </div>
+                        @endif
                     @endif
                 @endforeach
             </div>

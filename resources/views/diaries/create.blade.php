@@ -35,7 +35,7 @@
                 <input type="submit" value="Create"/>
             </form>
             <div class="footer">
-                <a href="/">戻る</a>
+                <a href="/diaries/index">戻る</a>
             </div>
         </body>
     </x-app-layout>
