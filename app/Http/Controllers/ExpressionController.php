@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class ExpressionController extends Controller
 {
-    
-    public function index(Expression $expression, User $user) 
+    public function home_expression(Expression $expression)
     {
-        $user = Auth::user();
-        return view('expressions.index')->with(['expressions' => $expression->getPaginateByLimit(), 'user' => $user]);
+        return view('expressions.home_expression')->with(['expressions' => $expression->getPaginateBylimit()]);
+    }
+    
+    public function index(Expression $expression) 
+    {
+        $expression = Auth::user()->expressions()->orderBy('updated_at', 'DESC')->paginate(2);
+        return view('expressions.index')->with(['expressions' => $expression]);
     }
     
     public function show(Expression $expression)

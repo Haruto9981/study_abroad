@@ -15,19 +15,17 @@
         <body>
             <div class='diaries'>
                 @foreach ($diaries as $diary)
-                    @if($diary->user_id === $user->id)
-                        <div class='diary'>
-                            <h2 class='title'>{{$diary->title}}</h2>
-                            <p class='content'>{{$diary->content}}</p>
-                            <img src="{{ asset($diary->photo) }}" width="100px">
-                            <a href="/diaries/{{$diary->id}}">see more</a>
-                            <form action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="deleteDiary({{ $diary->id }})">Delete</button> 
-                            </form>
-                        </div>
-                    @endif
+                    <div class='diary'>
+                        <h2 class='title'>{{$diary->title}}</h2>
+                        <p class='content'>{{$diary->content}}</p>
+                        <img src="{{ asset($diary->photo) }}" width="100px">
+                        <a href="/diaries/{{$diary->id}}">see more</a>
+                        <form action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="deleteDiary({{ $diary->id }})">Delete</button> 
+                        </form>
+                    </div>
                 @endforeach
             </div>
             <a href="/diaries/create">

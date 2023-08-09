@@ -15,18 +15,16 @@
         <body>
             <div class='expressions'>
                 @foreach ($expressions as $expression)
-                    @if($expression->user_id === $user->id)
-                        <div class='expression'>
-                            <h2 class='vocabulary'>{{$expression->vocabulary}}</h2>
-                            <p class='explaination'>{{$expression->explaination}}</p>
-                            <a href="/expressions/{{$expression->id}}">see more</a>
-                            <form action="/expressions/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="deleteExpression({{ $expression->id }})">Delete</button> 
-                            </form>
-                        </div>
-                    @endif
+                    <div class='expression'>
+                        <h2 class='vocabulary'>{{$expression->vocabulary}}</h2>
+                        <p class='explaination'>{{$expression->explaination}}</p>
+                        <a href="/expressions/{{$expression->id}}">see more</a>
+                        <form action="/expressions/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="deleteExpression({{ $expression->id }})">Delete</button> 
+                        </form>
+                    </div>
                 @endforeach
             </div>
             <a href="/expressions/create">
