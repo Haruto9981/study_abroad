@@ -30,6 +30,24 @@
                             <p class='photo'>{{$diary->photo}}</p>
                         </div>
                     </div>
+                    @if($diary->users()->where('user_id', Auth::id())->exists())
+                    <div>
+                        <form action="{{route('diary_unlikes', $diary)}}" method="POST">
+                            @csrf
+                            <input type="submit" value="Remove Like">
+                        </form>
+                    </div>
+                    @else
+                    <div>
+                        <form action="{{route('diary_likes', $diary)}}" method="POST">
+                            @csrf
+                            <input type="submit" value="Like">
+                        </form>
+                    </div>
+                    @endif
+                    <div>
+                        <p>Number of Likes: {{$diary->users()->count()}} </p>
+                    </div>
                 @endforeach
                 <div class='paginate'>
                     {{ $diaries->links() }}
