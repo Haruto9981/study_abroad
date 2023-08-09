@@ -22,6 +22,17 @@ class User extends Authenticatable
         return $this->hasMany(Diary::class);
     }
     
+    public function diary_likes()
+    {
+        return $this->belongsToMany(Diary::class)->withTimestamps();
+    }
+    
+    public function expression_likes()
+    {
+        return $this->belongsToMany(Expression::class)->withTimestamps();
+    }
+    
+    
     public function expressions()
     {
         return $this->hasMany(Expression::class);

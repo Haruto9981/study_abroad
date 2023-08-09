@@ -27,6 +27,24 @@
                              <p>{{ $expression->explaination }}</p> 
                         </div>
                     </div>
+                    @if($expression->users()->where('user_id', Auth::id())->exists())
+                    <div>
+                        <form action="{{route('expression_unlikes', $expression)}}" method="POST">
+                            @csrf
+                            <input type="submit" value="Remove Like">
+                        </form>
+                    </div>
+                    @else
+                    <div>
+                        <form action="{{route('expression_likes', $expression)}}" method="POST">
+                            @csrf
+                            <input type="submit" value="Like">
+                        </form>
+                    </div>
+                    @endif
+                    <div>
+                        <p>Number of Likes: {{$expression->users()->count()}}</p>
+                    </div>
                 @endforeach
                 <div class='paginate'>
                     {{ $expressions->links() }}

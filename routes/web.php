@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\ExpressionController;
+use App\Http\Controllers\DiaryLikeController;
+use App\Http\Controllers\ExpressionLikeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -35,8 +37,16 @@ Route::controller(ExpressionController::class)->middleware(['auth'])->group(func
     Route::get('/expressions/{expression}/edit', 'edit')->name('edit');
 });
 
+Route::controller(DiaryLikeController::class)->middleware(['auth'])->group(function(){
+    Route::post('diaries/{diary}/likes', 'store')->name('diary_likes');
+    Route::post('diaries/{diary}/unlikes', 'destroy')->name('diary_unlikes');
+});
 
-Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
+Route::controller(ExpressionLikeController::class)->middleware(['auth'])->group(function(){
+    Route::post('expressions/{expression}/likes', 'store')->name('expression_likes');
+    Route::post('expressions/{expression}/unlikes', 'destroy')->name('expression_unlikes');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
