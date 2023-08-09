@@ -14,7 +14,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(DiaryController::class)->middleware(['auth'])->group(function(){
-    Route::get('/diaries/home', 'home')->name('home');
+    Route::get('/diaries/home_diary', 'home_diary')->name('home_diary');
     Route::get('/diaries/index', 'index')->name('index');
     Route::post('/diaries', 'add')->name('add');
     Route::get('/diaries/create', 'create')->name('create');
@@ -25,6 +25,7 @@ Route::controller(DiaryController::class)->middleware(['auth'])->group(function(
 });
 
 Route::controller(ExpressionController::class)->middleware(['auth'])->group(function(){
+    Route::get('/expressions/home_expression', 'home_expression')->name('home_expression');
     Route::get('/expressions/index', 'index')->name('index_2');
     Route::post('/expressions', 'add')->name('add');
     Route::get('/expressions/create', 'create')->name('create');

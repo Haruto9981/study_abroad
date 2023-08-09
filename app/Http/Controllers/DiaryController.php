@@ -11,16 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {
-    public function home(Diary $diary, Expression $expression, User $user)
+    public function home_diary(Diary $diary)
     {
-        $user = Auth::user();
-        return view('diaries.home')->with(['diaries' => $diary->getPaginateByLimit(), 'expressions' => $expression->getPaginateByLimit(), 'user' => $user]);
+        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit()]);
     }
     
-    public function index(Diary $diary, User $user) 
+    public function index(Diary $diary) 
     {
-        $user = Auth::user();
-        return view('diaries.index')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user]);
+        $diary = Auth::user()->diaries()->orderBy('updated_at', 'DESC')->paginate(2);
+        return view('diaries.index')->with(['diaries' => $diary]);
     }
     
     public function show(Diary $diary)
