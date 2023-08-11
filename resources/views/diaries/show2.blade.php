@@ -25,11 +25,16 @@
                     <p class='photo'>{{$diary->photo}}</p>
                 </div>
             </div>
-            <div class="edit"><a href="/diaries/{{ $diary->id }}/edit">Edit</a></div>
-            
+            <div>
+                @foreach ($diary->comments as $comment)
+                    <p>User: {{ $comment->user->name}}</p>
+                    <p>DateTime: {{$comment->created_at}}</p>
+                    <p>Content: {{$comment->body}}</p>
+                @endforeach
+            </div>
             
             <div class="footer">
-                <a href="/diaries/index">戻る</a>
+                <a href="/diaries/home_diary">戻る</a>
             </div>
         </body>
      </x-app-layout>

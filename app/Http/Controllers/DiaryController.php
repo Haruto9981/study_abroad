@@ -6,14 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Diary;
 use App\Models\Expression;
 use App\Models\User;
+use App\Models\DiaryComment;
 use App\Http\Requests\DiaryRequest;
 use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {
-    public function home_diary(Diary $diary)
+    public function home_diary(Diary $diary, DiaryComment $comment)
     {
-        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit()]);
+        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'comment' => $comment]);
     }
     
     public function index(Diary $diary) 
@@ -21,6 +22,7 @@ class DiaryController extends Controller
         $diary = Auth::user()->diaries()->orderBy('updated_at', 'DESC')->paginate(2);
         return view('diaries.index')->with(['diaries' => $diary]);
     }
+    
     
     public function show(Diary $diary)
     {
