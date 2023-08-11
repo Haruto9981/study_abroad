@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Diary::class)->withTimestamps();
     }
     
+    public function comments()
+    {
+        return $this->hasMany(DiaryComment::class);
+    }
+    
     public function expression_likes()
     {
         return $this->belongsToMany(Expression::class)->withTimestamps();

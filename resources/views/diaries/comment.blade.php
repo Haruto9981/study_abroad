@@ -25,11 +25,23 @@
                     <p class='photo'>{{$diary->photo}}</p>
                 </div>
             </div>
-            <div class="edit"><a href="/diaries/{{ $diary->id }}/edit">Edit</a></div>
-            
-            
+            <form action='/diaries/{{$diary->id}}/comment' method="POST">
+                @csrf
+                <input type="hidden" name="comment[diary_id]" value="{{ $diary->id}}"></input>
+                <input type="hidden" name="comment[user_id]" value="{{ $user->id}}"></input>
+                <div>
+                    <lavel>Comment</lavel>
+                    <div>
+                         <textarea name="comment[body]"></textarea>
+                    </div>
+                </div>
+                <button type="submit">Post Comment</button>
+            </form>
+            <div>
+                
+            </div>
             <div class="footer">
-                <a href="/diaries/index">戻る</a>
+                <a href="/diaries/home_diary">戻る</a>
             </div>
         </body>
      </x-app-layout>

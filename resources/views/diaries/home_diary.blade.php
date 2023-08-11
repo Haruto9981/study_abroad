@@ -48,6 +48,9 @@
                     <div>
                         <p>Number of Likes: {{$diary->users()->count()}} </p>
                     </div>
+                    <a href="/diaries/{{$diary->id}}/comment">
+                        <button id="comemnt-button">Comment</button>
+                    </a>
                 @endforeach
                 <div class='paginate'>
                     {{ $diaries->links() }}

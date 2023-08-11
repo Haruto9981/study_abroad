@@ -26,6 +26,11 @@ class Diary extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
     
+    public function comments()
+    {
+        return $this->hasMany(DiaryComment::class);
+    }
+    
     protected $fillable = [
         'title',
         'content',

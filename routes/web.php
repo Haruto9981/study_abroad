@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\ExpressionController;
 use App\Http\Controllers\DiaryLikeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpressionLikeController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,13 @@ Route::controller(ExpressionLikeController::class)->middleware(['auth'])->group(
     Route::post('expressions/{expression}/likes', 'store')->name('expression_likes');
     Route::post('expressions/{expression}/unlikes', 'destroy')->name('expression_unlikes');
 });
+
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::get('/diaries/{diary}/comment', 'comment')->name('comment');
+    Route::post('/diaries/{diary}/comment', 'store')->name('store');
+    Route::get('/diaries/{diary}/comment/show', 'show')->name('show');
+});
+
 
 
 Route::middleware('auth')->group(function () {
