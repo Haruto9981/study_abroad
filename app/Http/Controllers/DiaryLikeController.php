@@ -39,7 +39,7 @@ class DiaryLikeController extends Controller
     public function store(Diary $diary)
     {
         $diary->users()->attach(Auth::id());
-        return redirect('diaries/home_diary');
+        return redirect()->back();
     }
 
     /**
@@ -85,6 +85,6 @@ class DiaryLikeController extends Controller
     public function destroy(Diary $diary)
     {
         $diary->users()->detach(Auth::id());
-        return redirect('diaries/home_diary');
+        return redirect()->back();
     }
 }

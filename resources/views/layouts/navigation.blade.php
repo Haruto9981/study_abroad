@@ -21,9 +21,14 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('Diary') }}
                     </x-nav-link>
-                     <x-nav-link :href="route('index_2')" :active="request()->routeIs('index_2')">
+                    <x-nav-link :href="route('index_2')" :active="request()->routeIs('index_2')">
                         {{ __('Expression') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('follow')" :active="request()->routeIs('follow')">
+                        {{ __('Follow') }}
+                    </x-nav-link>
+                    
+                    
                 </div>
             </div>
 

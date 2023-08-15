@@ -27,6 +27,7 @@
                              <p>{{ $expression->explaination }}</p> 
                         </div>
                     </div>
+                    <a href="/expressions/{{$expression->id}}/show">see more</a>
                     @if($expression->users()->where('user_id', Auth::id())->exists())
                     <div>
                         <form action="{{route('expression_unlikes', $expression)}}" method="POST">

@@ -38,10 +38,14 @@
                 <button type="submit">Post Comment</button>
             </form>
             <div>
-                
+                @foreach ($diary->comments as $comment)
+                    <p>User: {{ $comment->user->name}}</p>
+                    <p>DateTime: {{$comment->created_at}}</p>
+                    <p>Content: {{$comment->body}}</p>
+                @endforeach
             </div>
             <div class="footer">
-                <a href="/diaries/home_diary">戻る</a>
+                <a href="/diaries/home_diary">Back</a>
             </div>
         </body>
      </x-app-layout>

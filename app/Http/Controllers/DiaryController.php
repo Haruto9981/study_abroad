@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {
-    public function home_diary(Diary $diary, DiaryComment $comment)
+    public function home_diary(Diary $diary, User $user, DiaryComment $comment)
     {
-        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'comment' => $comment]);
+        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'users' => $user, 'comment' => $comment]);
     }
     
     public function index(Diary $diary) 

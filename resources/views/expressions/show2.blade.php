@@ -10,26 +10,20 @@
     <x-app-layout>
         <x-slot name="header">
            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Diary') }}
+                {{ __('Expression') }}
            </h2>
         </x-slot>
         <body>
-            <h1 class="title">
-                {{ $diary->title }}
+            <h1 class="vocabulary">
+                {{ $expression->vocabulary }}
             </h1>
-            <div class="content">
+            <div class="explaination">
                 <div class="content__post">
-                    <p>{{ $diary->content }}</p> 
-                </div>
-                <div class="photo">
-                    <p class='photo'>{{$diary->photo}}</p>
+                    <p>{{ $expression->explaination }}</p> 
                 </div>
             </div>
-            <div class="edit"><a href="/diaries/{{ $diary->id }}/edit">Edit</a></div>
-            
-            
             <div class="footer">
-                <a href="/diaries/index">Back</a>
+                <a href="/expressions/home_expression">Back</a>
             </div>
         </body>
      </x-app-layout>
