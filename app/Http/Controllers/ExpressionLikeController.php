@@ -39,7 +39,7 @@ class ExpressionLikeController extends Controller
     public function store(Expression $expression)
     {
         $expression->users()->attach(Auth::id());
-        return redirect('expressions/home_expression');
+        return redirect()->back();
     }
 
     /**
@@ -85,6 +85,6 @@ class ExpressionLikeController extends Controller
     public function destroy(Expression $expression)
     {
         $expression->users()->detach(Auth::id());
-        return redirect('expressions/home_expression');
+        return redirect()->back;
     }
 }

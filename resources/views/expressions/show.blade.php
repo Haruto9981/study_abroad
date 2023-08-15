@@ -24,7 +24,7 @@
             </div>
             <div class="edit"><a href="/expressions/{{ $expression->id }}/edit">Edit</a></div>
             <div class="footer">
-                <a href="/expressions/index">戻る</a>
+                <a href="/expressions/index">Back</a>
             </div>
         </body>
      </x-app-layout>

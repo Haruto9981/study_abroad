@@ -6,6 +6,7 @@ use App\Http\Controllers\ExpressionController;
 use App\Http\Controllers\DiaryLikeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpressionLikeController;
+use App\Http\Controllers\FollowUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +34,7 @@ Route::controller(ExpressionController::class)->middleware(['auth'])->group(func
     Route::post('/expressions', 'add')->name('add');
     Route::get('/expressions/create', 'create')->name('create');
     Route::get('/expressions/{expression}', 'show')->name('show');
+    Route::get('expressions/{expression}/show', 'show2')->name('show2');
     Route::put('/expressions/{expression}', 'update')->name('update');
     Route::delete('/expressions/{expression}', 'delete')->name('delete');
     Route::get('/expressions/{expression}/edit', 'edit')->name('edit');
@@ -54,6 +56,12 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::get('/diaries/{diary}/comment/show', 'show')->name('show');
 });
 
+
+Route::controller(FollowUserController::class)->middleware(['auth'])->group(function(){
+    Route::get('/follows/index', 'index')->name('follow');
+    Route::post('/follows/{user}/following', 'store')->name('following');
+    Route::post('/follows/{user}/unfollowing', 'destroy')->name('unfollowing');
+});
 
 
 Route::middleware('auth')->group(function () {
