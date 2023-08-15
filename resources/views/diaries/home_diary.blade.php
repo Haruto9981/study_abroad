@@ -54,7 +54,7 @@
                         </a>
                         <p>{{$diary->user->name}}</p>
                         @if($diary->user->id !== Auth::id())
-                                @if($diary->user->followings()->where('user_id', Auth::id())->exists())
+                                @if($diary->user->followers()->where('user_id', Auth::id())->exists())
                                     <div>
                                         <form action="{{route('unfollowing', $diary->user->id)}}" method="POST">
                                             @csrf

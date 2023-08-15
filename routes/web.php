@@ -58,7 +58,8 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
 
 
 Route::controller(FollowUserController::class)->middleware(['auth'])->group(function(){
-    Route::get('/follows/index', 'index')->name('follow');
+    Route::get('/follows/index_following', 'index_following')->name('index_following');
+    Route::get('follows/index_follower', 'index_follower')->name('index_follower');
     Route::post('/follows/{user}/following', 'store')->name('following');
     Route::post('/follows/{user}/unfollowing', 'destroy')->name('unfollowing');
 });
