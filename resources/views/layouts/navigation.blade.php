@@ -24,7 +24,7 @@
                     <x-nav-link :href="route('index_2')" :active="request()->routeIs('index_2')">
                         {{ __('Expression') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('follow')" :active="request()->routeIs('follow')">
+                    <x-nav-link :href="route('index_following')" :active="request()->routeIs('index_following')">
                         {{ __('Follow') }}
                     </x-nav-link>
                     

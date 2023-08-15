@@ -10,22 +10,30 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowUserController extends Controller
 {
-    public function index(User $user) 
+    public function index_following(User $user) 
     {
-        $user = Auth::user()->get();
-        return view('/follows/index')->with(['users' => $user]);
+        $followings = Auth::user()->followings()->get();
+        $followers = Auth::user()->followers()->get();
+        return view('/follows/index_following')->with(['users' => $user, 'followings' => $followings, 'followers' => $followers]);
+    }
+    
+    public function index_follower(User $user) 
+    {
+        $followings = Auth::user()->followings()->get();
+        $followers = Auth::user()->followers()->get();
+        return view('/follows/index_follower')->with(['users' => $user, 'followings' => $followings, 'followers' => $followers]);
     }
     
      
     public function store(User $user)
     {
-        $user->followings()->attach(Auth::id());
+        $user->followers()->attach(Auth::id());
         return redirect()->back();
     }
     
     public function destroy(User $user)
     {
-        $user->followings()->detach(Auth::id());
+        $user->followers()->detach(Auth::id());
         return redirect()->back();
     }
 }

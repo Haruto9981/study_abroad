@@ -13,11 +13,15 @@
            </h2>
         </x-slot>
         <body>
-            @foreach($users as $user)
-                @foreach($user->followers as $following)
-                   <p>{{$following->name}}</p>
-                @endforeach
-            @endforeach
+            <h1>Follower</h1>
+            <a href="/follows/index_following">
+                <button id="expressions-button">To following</button>
+            </a>
+           @foreach ($followers as $follower)
+               <p>{{$follower->name}}</p>
+           @endforeach
+           <p>Number of Followers: {{$followers->count()}} </p>
+           
         </body>
     </x-app-layout>
 </html>
