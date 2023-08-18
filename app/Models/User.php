@@ -54,6 +54,10 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follow_user', 'follow_id', 'user_id')->withTimestamps();
     }
     
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
     
     
   
