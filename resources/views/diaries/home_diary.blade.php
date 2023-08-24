@@ -52,7 +52,10 @@
                         <a href="/diaries/{{$diary->id}}/comment">
                             <button id="comemnt-button">Comment</button>
                         </a>
-                        <p>{{$diary->user->name}}</p>
+                        <a href="/profile/{{$diary->user->id}}">
+                            <p>{{$diary->user->name}}</p>
+                        </a>
+                       
                         @if($diary->user->id !== Auth::id())
                                 @if($diary->user->followers()->where('user_id', Auth::id())->exists())
                                     <div>
