@@ -52,7 +52,7 @@
                 <option value="Taiwan">Taiwan</option>
                 <option value="China">China</option>
             </select>
-            <x-input-error :messages="$errors->get('region')" class="mt-2" />
+            <x-input-error :messages="$errors->get('country')" class="mt-2" />
         </div> 
         
         <div>

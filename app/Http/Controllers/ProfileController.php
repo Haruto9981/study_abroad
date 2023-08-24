@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -33,6 +35,10 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+        
+        $input_profile = $request['profile'];
+        $profile = $request->user()->profile;
+        $profile->fill($input_profile)->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
@@ -56,5 +62,10 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    
+    public function show(User $user)
+    {
+        return view("profile.show")->with(['user' => $user]);
     }
 }

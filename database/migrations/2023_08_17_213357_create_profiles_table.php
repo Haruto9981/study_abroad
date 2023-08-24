@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('gender');
             $table->text('profile_image')->nullable();
+            $table->string('region', 30);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->foreignId('user_id')->constrained();

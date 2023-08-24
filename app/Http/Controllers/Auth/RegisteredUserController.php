@@ -55,6 +55,7 @@ class RegisteredUserController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'profile_image' => $request->profile_image,
+            'region' => $request->region,
             'bio' => $request->bio,
             'user_id' => $user->id
         ]);

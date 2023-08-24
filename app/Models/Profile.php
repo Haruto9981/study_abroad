@@ -22,6 +22,7 @@ class Profile extends Model
         'start_date',
         'end_date',
         'profile_image',
+        'region',
         'bio',
         'user_id'
     ];
