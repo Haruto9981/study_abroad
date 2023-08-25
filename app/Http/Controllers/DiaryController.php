@@ -9,12 +9,17 @@ use App\Models\User;
 use App\Models\DiaryComment;
 use App\Http\Requests\DiaryRequest;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class DiaryController extends Controller
 {
-    public function home_diary(Diary $diary, User $user, DiaryComment $comment)
+    public function home_diary(Diary $diary, User $user)
     {
-        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'users' => $user, 'comment' => $comment]);
+        $user = Auth::user();
+        $datetime = new DateTime($user->profile->end_date);
+        $current  = new DateTime('now');
+        $diff     = $current->diff($datetime);
+        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user, 'diff' => $diff]);
     }
     
     public function index(Diary $diary) 
