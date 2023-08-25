@@ -1,6 +1,7 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
+        
         <div>
             <label for="name">{{ __('Name') }}</label>
             <input id="name" class="block mt-1 w-full" type="text" name="name" value="{{old('name')}}" required autofocus autocomplete="name" />
@@ -43,14 +44,15 @@
         <div>
             <label for="country">{{ __('Abroad to Study') }}</label>
             <select name="country">
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Australia">Australia</option>
-                <option value="NewZealand">NewZealand</option>
-                <option value="Germany">Germany</option>
-                <option value="France">France</option>
-                <option value="Taiwan">Taiwan</option>
-                <option value="China">China</option>
+                <option value="USA 🇺🇸">USA</option>
+                <option value="UK 🇬🇧">UK</option>
+                <option value="Australia 🇦🇺">Australia</option>
+                <option value="NewZealand 🇳🇿">NewZealand</option>
+                <option value="Canada 🇨🇦">Canada</option>
+                <option value="Germany 🇩🇪">Germany</option>
+                <option value="France 🇫🇷">France</option>
+                <option value="Taiwan 🇹🇼">Taiwan</option>
+                <option value="China 🇨🇳">China</option>
             </select>
             <x-input-error :messages="$errors->get('country')" class="mt-2" />
         </div> 

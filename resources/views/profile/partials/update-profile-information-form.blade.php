@@ -13,11 +13,23 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
         
         <input type="hidden" name="profile[user_id]" value="{{ $user->id}}"></input>
+        
+        
+        <div>
+            <label for="profile-image">{{ __('Profile Image')}}</label>
+            @if ($user->profile->profile_image === null)
+                <img class="rounded-circle" src="{{ asset('default.png') }}" alt="Upload your profile image" width="100" height="100">
+            @else
+                <img class="rounded-circle" src="{{ Storage::url($user->profile->profile_image) }}" alt="Change your profile image" width="100" height="100">
+            @endif
+            <input id="profile-image" name="profile[profile_image]" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
+            <x-input-error :messages="$errors->get('profile_image')" class="mt-2" />
+        </div>
 
         <div>
             <label for="name">{{ __('Name') }}</label>
@@ -29,11 +41,11 @@
             <label for="gender">{{ __('Gender') }}</label>
             <table>
                 <tr>
-                    <th><input id="gender-m" class="block mt-1" type="radio" name="profile[gender]" value="male"  @if("profile[gender]"=="male") echo 'checked' @endif required autofocus /></th>
+                    <th><input id="gender-m" class="block mt-1" type="radio" name="profile[gender]" value="male" {{ old('profile[gender]', $user->profile->gender) == 'male' ? 'checked' : ''}} required autofocus /></th>
                     <td><label for="gender-m">{{__('Male')}}</label></td>
-                    <th><input id="gender-f" class="block mt-1" type="radio" name="profile[gender]" value="female"  @if("profile[gender]"=="female") echo 'checked' @endif required autofocus /></th>
+                    <th><input id="gender-f" class="block mt-1" type="radio" name="profile[gender]" value="female" {{ old('profile[gender]', $user->profile->gender) == 'female' ? 'checked' : ''}} required autofocus /></th>
                     <td> <label for="gender-f">{{__('Female')}}</label></td>
-                    <th><input id="gender-o" class="block mt-1" type="radio" name="profile[gender]" value="other"  @if("profile[gender]"=="other") echo 'checked' @endif required autofocus /></th>
+                    <th><input id="gender-o" class="block mt-1" type="radio" name="profile[gender]" value="other" {{ old('profile[gender]', $user->profile->gender) == 'other' ? 'checked' : ''}} required autofocus /></th>
                     <td><label for="gender-o">{{__('Other')}}</label></td>
                 </tr>
             </table>
@@ -67,14 +79,15 @@
         <div>
             <label for="country">{{ __('Abroad to Study') }}</label>
             <select name="profile[country]">
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Australia">Australia</option>
-                <option value="NewZealand">NewZealand</option>
-                <option value="Germany">Germany</option>
-                <option value="France">France</option>
-                <option value="Taiwan">Taiwan</option>
-                <option value="China">China</option>
+                <option value="USA 🇺🇸" {{ old('profile[country]', $user->profile->country) == 'USA 🇺🇸' ? 'selected' : ''}}>USA</option>
+                <option value="UK 🇬🇧" {{ old('profile[country]', $user->profile->country) == 'UK 🇬🇧' ? 'selected' : ''}}>UK</option>
+                <option value="Australia 🇦🇺" {{ old('profile[country]', $user->profile->country) == 'Australia 🇦🇺' ? 'selected' : ''}}>Australia</option>
+                <option value="NewZealand 🇳🇿" {{ old('profile[country]', $user->profile->country) == 'NewZealand 🇳🇿' ? 'selected' : ''}}>NewZealand</option>
+                <option value="Canada 🇨🇦" {{ old('profile[country]', $user->profile->country) == 'Canada 🇨🇦' ? 'selected' : ''}}>Canada</option>
+                <option value="Germany 🇩🇪" {{ old('profile[country]', $user->profile->country) == 'Germany 🇩🇪' ? 'selected' : ''}}>Germany</option>
+                <option value="France 🇫🇷" {{ old('profile[country]', $user->profile->country) == 'France 🇫🇷' ? 'selected' : ''}}>France</option>
+                <option value="Taiwan 🇹🇼" {{ old('profile[country]', $user->profile->country) == 'Taiwan 🇹🇼' ? 'selected' : ''}}>Taiwan</option>
+                <option value="China 🇨🇳" {{ old('profile[country]', $user->profile->country) == 'China 🇨🇳' ? 'selected' : ''}}>China</option>
             </select>
             <x-input-error :messages="$errors->get('country')" class="mt-2" />
         </div>

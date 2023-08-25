@@ -38,6 +38,12 @@ class ProfileController extends Controller
         
         $input_profile = $request['profile'];
         $profile = $request->user()->profile;
+        
+        if($input_profile['profile_image'] != null) {
+            $profileImagePath = $input_profile['profile_image']->store('public/sample');
+            $profile['profile_image'] = $profileImagePath;
+        }
+       
         $profile->fill($input_profile)->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
