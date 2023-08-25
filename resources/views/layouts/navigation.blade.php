@@ -27,7 +27,9 @@
                     <x-nav-link :href="route('index_following')" :active="request()->routeIs('index_following')">
                         {{ __('Follow') }}
                     </x-nav-link>
-                    
+                    <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+                        {{ __('Calendar') }}
+                    </x-nav-link>
                     
                 </div>
             </div>

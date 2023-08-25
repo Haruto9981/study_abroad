@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpressionLikeController;
 use App\Http\Controllers\FollowUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ScheduleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,5 +72,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
 });
+
+Route::get('/calendar', [ScheduleController::class, 'show'])->name('calendar');
+Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
+Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
+
 
 require __DIR__.'/auth.php';

@@ -85,6 +85,6 @@ class ExpressionLikeController extends Controller
     public function destroy(Expression $expression)
     {
         $expression->users()->detach(Auth::id());
-        return redirect()->back;
+        return redirect()->back();
     }
 }

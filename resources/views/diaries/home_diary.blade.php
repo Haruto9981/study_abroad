@@ -6,17 +6,28 @@
         <title>Diary</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <x-app-layout>
         <x-slot name="header">
            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Posts') }}
+                {{ __('Home') }}
            </h2>
         </x-slot>
         <body>
+            <a href="/calendar">
+                <h1>{{$user->name}}'s Calendar</h1>
+            </a>
+            <div id='calendar'></div>
+            
+            @if($diff->d ===0)<h2>Your SA is already over!</h2>
+            @else<h2>{{ $diff->d }}days left to the end of your SA!</h2>
+            @endif
+            
             <a href="/expressions/home_expression">
                 <button id="expressions-button">To Expressions</button>
             </a>
+            
             <div id="diaries-content">
                 @foreach ($diaries as $diary)
                     <h1 class="title">
