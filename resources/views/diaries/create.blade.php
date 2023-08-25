@@ -24,7 +24,7 @@
                      <p class="content__error" style="color:red">{{ $errors->first('diary.content') }}</p>
                 </div>
                 <div>
-                    <input type="file" name="diary[photo]">
+                    <input type="file" name="diary[photo]"> 
                 </div>
                 <div class="is_private">
                     <select name="diary[is_private]">

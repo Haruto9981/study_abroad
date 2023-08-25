@@ -41,12 +41,13 @@ class DiaryController extends Controller
     
     public function add(DiaryRequest $request, Diary $diary)
     {
-        $dir = 'sample';
-        $file_name = $request->file('diary.photo')->getClientOriginalName();
-        $request->file('diary.photo')->storeAs('public/' . $dir, $file_name);
-        
         $input = $request['diary'];
         $diary->user_id = \Auth::id();
+        if(isset($input['photo'])) {
+           $diaryPhotoPath = $input['photo']->store('public/sample');
+           $diary['photo'] = $diaryPhotoPath;
+        }
+       
         $diary->fill($input)->save();
         return redirect('/diaries/index');
     }
