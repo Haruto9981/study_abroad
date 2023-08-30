@@ -18,6 +18,7 @@
             <a href="/calendar">
                 <h1>{{$user->name}}'s Calendar</h1>
             </a>
+            
             <div id='calendar'></div>
             
             @if($diff->d ===0)<h2>Your SA is already over!</h2>
