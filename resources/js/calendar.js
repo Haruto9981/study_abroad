@@ -31,9 +31,9 @@ let calendar = new Calendar(calendarEl, {
                     end_date: info.end.valueOf(),
                     event_name: eventName,
                 })
-                .then(() => {
-                    
+                .then((response) => {
                     calendar.addEvent({
+                        id: response.data.id,
                         title: eventName,
                         start: info.start,
                         end: info.end,
@@ -62,8 +62,25 @@ let calendar = new Calendar(calendarEl, {
             })
             .catch(() => {
                 
-                alert("登録に失敗しました");
+                alert("Failed to register");
             });
     },
+　　
+　　eventClick: function (info) {
+    
+    if (confirm("このイベントを削除しますか？")) {
+        const eventId = info.event.id;
+        axios
+            .delete("/schedule-delete/" + eventId)
+            .then(() => {
+                info.event.remove();
+            })
+            .catch(() => {
+                alert("Failed to delete");
+            });
+    }
+},
+    
+   
 });
 calendar.render();

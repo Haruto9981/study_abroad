@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
+use App\Models\User;
 
 class ScheduleController extends Controller
 {
@@ -34,12 +35,13 @@ class ScheduleController extends Controller
         $schedule->start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $schedule->end_date = date('Y-m-d', $request->input('end_date') / 1000);
         $schedule->event_name = $request->input('event_name');
+        $schedule->user_id = \Auth::id();
         $schedule->save();
 
-        return;
+        return $schedule;
     }
     
-    public function scheduleGet(Request $request)
+    public function scheduleGet(Request $request, Schedule $schedule)
     {
         
         $request->validate([
@@ -50,18 +52,27 @@ class ScheduleController extends Controller
         
         $start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $end_date = date('Y-m-d', $request->input('end_date') / 1000);
-
-       
-        return Schedule::query()
-            ->select(
-               
+      
+        $schedule = $schedule->getIndividualSchedule();
+        
+        return $schedule->select(
+                'id',
                 'start_date as start',
                 'end_date as end',
-                'event_name as title'
+                'event_name as title',
+                
             )
             
             ->where('end_date', '>', $start_date)
             ->where('start_date', '<', $end_date)
             ->get();
+    }
+    
+    public function scheduleDelete($id)
+    {
+        $schedule = Schedule::find($id);
+    
+        $schedule->delete();
+        return;
     }
 }

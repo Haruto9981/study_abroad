@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/calendar', [ScheduleController::class, 'show'])->name('calendar');
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
+Route::delete('/schedule-delete/{id}', [ScheduleController::class, 'scheduleDelete'])->name('schedule-delete');
 
 
 require __DIR__.'/auth.php';
