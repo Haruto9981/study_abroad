@@ -22,7 +22,8 @@ class ExpressionRequest extends FormRequest
     {
         return [
             'expression.vocabulary' => 'required|string|max:100',
-            'expression.explaination' => 'required|string|max:4000',
+            'expression.meaning' => 'required|string|max:4000',
+            'expression.example' => 'required|string|max:4000',
             'expression.is_private',
         ];
     }

@@ -13,7 +13,7 @@ class Diary extends Model
     
     public function getPaginateByLimit (int $limit_count = 4)
     {
-        return $this->where('is_private', 1)->orderBy('updated_at', 'DESC')->paginate($limit_count, ['*'], 'page1');
+        return $this->where('is_private', 'public')->orderBy('updated_at', 'DESC')->paginate($limit_count, ['*'], 'page1');
     }
     
     public function user()

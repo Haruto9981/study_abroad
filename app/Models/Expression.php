@@ -11,9 +11,9 @@ class Expression extends Model
     use HasFactory;
     use SoftDeletes;
     
-    public function getPaginateByLimit (int $limit_count = 2)
+    public function getPaginateByLimit (int $limit_count = 4)
     {
-        return $this->where('is_private', 1)->orderBy('updated_at', 'DESC')->paginate($limit_count, ['*'], 'page2');
+        return $this->where('is_private', 'public')->orderBy('updated_at', 'DESC')->paginate($limit_count, ['*'], 'page2');
     }
     
     public function user()
@@ -28,7 +28,8 @@ class Expression extends Model
     
     protected $fillable = [
         'vocabulary',
-        'explaination',
+        'meaning',
+        'example',
         'is_private',
     ];
 

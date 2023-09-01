@@ -28,8 +28,8 @@
                 </div>
                 <div class="is_private">
                     <select name="diary[is_private]">
-                        <option value="0">private</option>
-                        <option value="1">public</option>
+                        <option value="private">private</option>
+                        <option value="public">public</option>
                     </select>
                 </div>
                 <input type="submit" value="Create"/>
