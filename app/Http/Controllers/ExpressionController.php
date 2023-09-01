@@ -22,7 +22,7 @@ class ExpressionController extends Controller
     
     public function index(Expression $expression) 
     {
-        $expression = Auth::user()->expressions()->orderBy('updated_at', 'DESC')->paginate(2);
+        $expression = Auth::user()->expressions()->orderBy('updated_at', 'DESC')->paginate(4);
         return view('expressions.index')->with(['expressions' => $expression]);
     }
     

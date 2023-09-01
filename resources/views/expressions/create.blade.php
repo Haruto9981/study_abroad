@@ -18,15 +18,20 @@
                     <input type="text" name="expression[vocabulary]" placeholder="Vocabulary"/>
                     <p class="title__error" style="color:red">{{ $errors->first('expression.vocabulary') }}</p>
                 </div>
-                <div class="explaination">
-                    <h2>Explaination</h2>
-                    <textarea name="expression[explaination]" placeholder="Any Explaination?"></textarea>
-                     <p class="content__error" style="color:red">{{ $errors->first('expression.explaination') }}</p>
+                <div class="meaning">
+                    <h2>Meaning</h2>
+                    <textarea name="expression[meaning]" placeholder="Meaning?"></textarea>
+                     <p class="content__error" style="color:red">{{ $errors->first('expression.meaning') }}</p>
+                </div>
+                <div class="example">
+                    <h2>Example</h2>
+                    <textarea name="expression[example]" placeholder="Any example sentence?"></textarea>
+                     <p class="content__error" style="color:red">{{ $errors->first('expression.example') }}</p>
                 </div>
                 <div class="is_private">
                     <select name="expression[is_private]">
-                        <option value="0">private</option>
-                        <option value="1">public</option>
+                        <option value="private">private</option>
+                        <option value="public">public</option>
                     </select>
                 </div>
                 <input type="submit" value="Create"/>

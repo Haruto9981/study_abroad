@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('expressions', function (Blueprint $table) {
             $table->id();
             $table->string('vocabulary');
-            $table->text('explaination');
-            $table->boolean('is_private')->default(false);
+            $table->text('meaning');
+            $table->text('example');
+            $table->string('is_private')->default('private');
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('user_id')->constrained();

@@ -19,24 +19,41 @@
               <br>
               <h1  class="text-4xl pl-24">Posts</h1>
               <a class="flex justify-center pr-36" href="/diaries/home_diary">
-                <button id="diaries-button" class="rounded-lg bg-gray-300 px-4 py-2">Diaries</button>
+                <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Diaries</button>
               </a>
-              <div class="container px-5 py-7 mx-auto flex">
-                <div class="lg:w-1/2 w-full mb-10 lg:mb-0">
+              <div class="container px-5 pb-10 mx-auto flex">
+                <div class="lg:w-1/2 w-full mb-10 lg:mb-0" >
                     @foreach ($expressions as $expression)
-                        <div class="flex flex-wrap -m-12">
-                          <div class="p-12 flex flex-col items-start">
-                            <a href="/profile/{{$expression->user->id}}" class="inline-flex items-center">
-                              <img alt="blog" src="https://dummyimage.com/103x103" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
-                              <span class="flex-grow flex flex-col pl-4">
-                                <span class="title-font font-medium text-gray-900">{{$expression->user->name}}</span>
-                                <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$expression->updated_at}}</span>
-                              </span>
-                            </a>
-                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">{{$expression->vocabulary}}</h2>
-                            <p class="leading-relaxed mb-8">{{ $expression->explaination}}</p>
-                            <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-                              <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 ">
+                        <div class="flex flex-wrap my-16 border border-black rounded-3xl">
+                          <div class="p-6 flex flex-col items-start  w-full">
+                              <div class="flex border-b border-black pb-4  w-full">
+                                 <div>
+                                    <a href="/profile/{{$expression->user->id}}" class="inline-flex items-center">
+                                      <img alt="blog" src="https://dummyimage.com/103x103" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                                      <span class="flex-grow flex flex-col pl-4">
+                                        <span class="title-font font-medium text-gray-900">{{$expression->user->name}} </span>
+                                        <span class="title-font font-medium text-gray-900">[{{$expression->user->profile->country}}]</span>
+                                        <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$expression->updated_at}}</span>
+                                      </span>
+                                    </a>  
+                                  </div>
+                                  <div class="pl-52 pt-2">
+                                    <h2 class="border border-black rounded px-4 py-2">{{$expression->user->profile->region}}</h2>  
+                                  </div>  
+                              </div>
+                            <div>
+                                <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{{$expression->vocabulary}}</h2>
+                                <p class="leading-relaxed mb-4">Meaning: {{$expression->meaning}}</p>
+                                <p class="leading-relaxed mb-4">Example Sentence: {{$expression->example}}</p>
+                            </div>
+                            <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
+                              <a class="text-indigo-500 inline-flex items-center mt-4" href="/diaries/{{$expression->id}}">See More
+                                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M5 12h14"></path>
+                                  <path d="M12 5l7 7-7 7"></path>
+                                </svg>
+                              </a>
+                              <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4 ">
                                 <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     @if($expression->users()->where('user_id', Auth::id())->exists())
                                         <div>

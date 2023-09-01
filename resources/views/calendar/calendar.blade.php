@@ -15,9 +15,9 @@
            </h2>
         </x-slot>
         <body>
-           <div id='calendar'></div>
-            @if($diff->d ===0)<h2>Your SA is already over!</h2>
-            @else<h2>{{ $diff->d }}days left to the end of your SA!</h2>
+           <div class="px-36 py-6" id='calendar'></div>
+            @if($diff->d ===0)<h2 class="text-4xl text-center pb-28">>Your SA is already over!</h2>
+            @else<h2 class="text-4xl text-center pb-28">{{ $diff->d }}days left to the end of your SA!</h2>
             @endif
         </body>
      </x-app-layout>
