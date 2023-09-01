@@ -14,9 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(DiaryController::class)->middleware(['auth'])->group(function(){
     Route::get('/diaries/home_diary', 'home_diary')->name('home_diary');

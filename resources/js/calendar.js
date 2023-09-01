@@ -68,7 +68,7 @@ let calendar = new Calendar(calendarEl, {
 　　
 　　eventClick: function (info) {
     
-    if (confirm("このイベントを削除しますか？")) {
+    if (confirm("Do you want to delete this event?")) {
         const eventId = info.event.id;
         axios
             .delete("/schedule-delete/" + eventId)
