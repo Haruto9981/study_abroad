@@ -39,6 +39,24 @@
                 Bio: {{ $user->profile->bio}}
             </h1>
             
+            @if($user->id !== Auth::id())
+                @if($user->followers()->where('user_id', Auth::id())->exists())
+                    <div>
+                        <form action="{{route('unfollowing', $user->id)}}" method="POST">
+                            @csrf
+                            <input type="submit" value="Unfollow">
+                        </form>
+                    </div>
+                @else
+                    <div>
+                        <form action="{{route('following', $user->id)}}" method="POST">
+                            @csrf
+                            <input type="submit" value="Follow">
+                        </form>
+                    </div>
+                @endif
+            @endif
+            
             
             <div class="footer">
                 <a href="/diaries/home_diary">Back</a>

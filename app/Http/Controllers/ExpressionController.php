@@ -7,12 +7,17 @@ use App\Models\Expression;
 use App\Models\User;
 use App\Http\Requests\ExpressionRequest;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
 class ExpressionController extends Controller
 {
-    public function home_expression(Expression $expression)
+    public function home_expression(Expression $expression, User $user)
     {
-        return view('expressions.home_expression')->with(['expressions' => $expression->getPaginateBylimit()]);
+        $user = Auth::user();
+        $datetime = new DateTime($user->profile->end_date);
+        $current  = new DateTime('now');
+        $diff     = $current->diff($datetime);
+        return view('expressions.home_expression')->with(['expressions' => $expression->getPaginateBylimit(), 'user' => $user, 'diff' => $diff]);
     }
     
     public function index(Expression $expression) 

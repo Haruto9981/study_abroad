@@ -24,7 +24,7 @@ class DiaryController extends Controller
     
     public function index(Diary $diary) 
     {
-        $diary = Auth::user()->diaries()->orderBy('updated_at', 'DESC')->paginate(2);
+        $diary = Auth::user()->diaries()->orderBy('updated_at', 'DESC')->paginate(5);
         return view('diaries.index')->with(['diaries' => $diary]);
     }
     
@@ -67,7 +67,7 @@ class DiaryController extends Controller
     public function delete(Diary $diary)
     {
         $diary->delete();
-        return redirect('/');
+        return redirect('/diaries/home_diary');
     }
     
 }

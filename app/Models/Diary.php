@@ -11,7 +11,7 @@ class Diary extends Model
     use HasFactory;
     use SoftDeletes;
     
-    public function getPaginateByLimit (int $limit_count = 2)
+    public function getPaginateByLimit (int $limit_count = 4)
     {
         return $this->where('is_private', 1)->orderBy('updated_at', 'DESC')->paginate($limit_count, ['*'], 'page1');
     }
