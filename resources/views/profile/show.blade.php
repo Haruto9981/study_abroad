@@ -8,58 +8,46 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <x-app-layout>
-        <x-slot name="header">
-           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Diary') }}
-           </h2>
-        </x-slot>
         <body>
-            <h1 class="username">
-                UserName: {{ $user->name}}
-            </h1>
-            <h1 class="email">
-                Email: {{ $user->email}}
-            </h1>
-            <h1 class="gender">
-                Gender: {{ $user->profile->gender}}
-            </h1>
-            <h1 class="country">
-                Abroad to Study: {{ $user->profile->country}}
-            </h1>
-            <h1 class="region">
-                Region: {{ $user->profile->region}}
-            </h1>
-            <h1 class="start_date">
-                Start Date of SA: {{ $user->profile->start_date}}
-            </h1>
-            <h1 class="end_date">
-                End Date of SA: {{ $user->profile->end_date}}
-            </h1>
-            <h1 class="bio">
-                Bio: {{ $user->profile->bio}}
-            </h1>
-            
-            @if($user->id !== Auth::id())
-                @if($user->followers()->where('user_id', Auth::id())->exists())
-                    <div>
-                        <form action="{{route('unfollowing', $user->id)}}" method="POST">
-                            @csrf
-                            <input type="submit" value="Unfollow">
-                        </form>
-                    </div>
-                @else
-                    <div>
-                        <form action="{{route('following', $user->id)}}" method="POST">
-                            @csrf
-                            <input type="submit" value="Follow">
-                        </form>
+            <div class="mx-96 my-20 border border-black py-10 rounded-3xl">
+                <h1 class="text-4xl ml-10 my-4">Profile</h1>
+                <div class="flex justify-center">
+                    <img alt="blog" src="https://dummyimage.com/150x150" class="w-100 h-100 rounded-full  object-cover object-center">
+                </div>
+                @if($user->id !== Auth::id())
+                    <div class="border border-black ml-10 rounded flex justify-center px-6 py-2 w-28">
+                        @if($user->followers()->where('user_id', Auth::id())->exists())
+                            <div>
+                                <form action="{{route('unfollowing', $user->id)}}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="Unfollow">
+                                </form>
+                            </div>
+                        @else
+                            <div>
+                                <form action="{{route('following', $user->id)}}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="Follow">
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 @endif
-            @endif
-            
-            
-            <div class="footer">
-                <a href="/diaries/home_diary">Back</a>
+                <div class="border border-black mx-10 my-6 p-4 text-2xl">
+                    <p class="py-2">Name: {{ $user->name}}</p>
+                    <p class="py-2">Email: {{ $user->email}}<p>
+                    <p class="py-2">Gender: {{ $user->profile->gender}}<p>
+                    <p class="py-2">Abroad to Study: {{ $user->profile->country}}<p>
+                    <p class="py-2">Region: {{ $user->profile->region}}<p>
+                    <p class="py-2">Start Date of SA: {{ $user->profile->start_date}}<p>
+                    <p class="py-2">End Date of SA: {{ $user->profile->end_date}}<p>
+                    <p class="py-2">Bio: {{ $user->profile->bio}}<p>
+                </div>
+                <div class="flex justify-center">
+                    <div class="border border-black flex justify-center rounded px-4 py-2 w-20">
+                        <a href="/diaries/home_diary">Back</a>
+                    </div>
+                </div>
             </div>
         </body>
      </x-app-layout>

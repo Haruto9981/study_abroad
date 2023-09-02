@@ -9,11 +9,6 @@
         <script src="https://kit.fontawesome.com/f7b82fd301.js" crossorigin="anonymous"></script>
     </head>
     <x-app-layout>
-        <x-slot name="header">
-           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Expressions') }}
-           </h2>
-        </x-slot>
         <body>
           
            <div class="container px-64 pb-10 mx-auto">
