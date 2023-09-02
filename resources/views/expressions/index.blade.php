@@ -53,32 +53,34 @@
                                   <path d="M12 5l7 7-7 7"></path>
                                 </svg>
                               </a>
-                              <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4 ">
-                                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                    @if($expression->users()->where('user_id', Auth::id())->exists())
+                                @if($expression->is_private == 'public')
+                                  <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4 ">
+                                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                        @if($expression->users()->where('user_id', Auth::id())->exists())
+                                            <div>
+                                                <form action="{{route('expression_unlikes', $expression)}}" method="POST">
+                                                    @csrf
+                                                    <button type="submit">
+                                                        <i class="fa-solid fa-heart"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @else
+                                            <div>
+                                                <form action="{{route('expression_likes', $expression)}}" method="POST">
+                                                    @csrf
+                                                    <button type="submit">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endif
                                         <div>
-                                            <form action="{{route('expression_unlikes', $expression)}}" method="POST">
-                                                @csrf
-                                                <button type="submit">
-                                                    <i class="fa-solid fa-heart"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @else
-                                        <div>
-                                            <form action="{{route('expression_likes', $expression)}}" method="POST">
-                                                @csrf
-                                                <button type="submit">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    @endif
-                                    <div>
-                                        <p>{{$expression->users()->count()}} likes</p>
-                                    </div>  
-                                </svg>
-                              </span>
+                                            <p>{{$expression->users()->count()}} likes</p>
+                                        </div>  
+                                    </svg>
+                                  </span>
+                                @endif
                             </div>
                           </div>
                         </div>
