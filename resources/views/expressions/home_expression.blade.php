@@ -10,11 +10,6 @@
         <script src="https://kit.fontawesome.com/f7b82fd301.js" crossorigin="anonymous"></script>
     </head>
     <x-app-layout>
-        <x-slot name="header">
-           <h2 class="text-2xl text-gray-800 leading-tight">
-                {{ __('Home') }}
-           </h2>
-        </x-slot>
          <body>
               <br>
               <h1  class="text-4xl pl-24">Posts</h1>

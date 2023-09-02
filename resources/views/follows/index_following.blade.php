@@ -7,11 +7,6 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <x-app-layout>
-        <x-slot name="header">
-           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Follow') }}
-           </h2>
-        </x-slot>
         <body>
             <br>
             <h1  class="text-4xl pl-24">Following</h1>
@@ -45,10 +40,10 @@
                                           </span>
                                         </a>  
                                       </div>
-                                      <div class="px-8 pt-2">
+                                      <div class="px-8 pt-1">
                                         <h2 class="border border-black rounded px-4 py-2">{{$following->profile->region}}</h2>  
                                       </div>
-                                       <div class="px-8 pt-2">
+                                       <div class="px-8 pt-1">
                                            <form action="{{route('unfollowing', $following->id)}}" method="POST">
                                                 @csrf
                                                 <input class="border border-black rounded px-4 py-2" type="submit" value="Unfollow">

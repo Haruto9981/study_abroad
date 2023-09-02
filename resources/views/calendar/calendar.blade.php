@@ -9,11 +9,6 @@
          @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <x-app-layout>
-        <x-slot name="header">
-           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Calendar') }}
-           </h2>
-        </x-slot>
         <body>
            <div class="px-36 py-6" id='calendar'></div>
             @if($diff->d ===0)<h2 class="text-4xl text-center pb-28">>Your SA is already over!</h2>
