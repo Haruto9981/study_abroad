@@ -44,13 +44,13 @@
                             <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
                                 <div class="flex pt-4">
                                     <div>
-                                        <a href="/diaries/{{$expression->id}}/edit">
+                                        <a href="/expressions/{{$expression->id}}/edit">
                                             <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Edit</button>
                                         </a>
                                     </div>
                                     
                                     <div class="ml-4">
-                                        <form  class="rounded-lg bg-gray-300 px-4 py-2" action="/diaries/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
+                                        <form  class="rounded-lg bg-gray-300 px-4 py-2" action="/expressions/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" onclick="deleteDiary({{ $expression->id }})">Delete</button> 

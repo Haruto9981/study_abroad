@@ -40,7 +40,7 @@
                                 <p class="leading-relaxed mb-8">{{$diary->content}}</p>
                             </div>
                             <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
-                              <a class="text-indigo-500 inline-flex items-center mt-4" href="/diaries/{{$diary->id}}">See More
+                              <a class="text-indigo-500 inline-flex items-center mt-4" href="/diaries/index/{{$diary->id}}">See More
                                 <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                   <path d="M5 12h14"></path>
                                   <path d="M12 5l7 7-7 7"></path>
@@ -74,7 +74,7 @@
                                             </svg>
                                         </span>
                                         <span class="inline-flex items-center leading-none mt-4">
-                                           <a href="/diaries/{{$diary->id}}">
+                                           <a href="/diaries/index/{{$diary->id}}">
                                                 <button id="comemnt-button">
                                                     <i class="fa-regular fa-comment"></i>
                                                 </button>

@@ -13,21 +13,6 @@
             <div class="container px-64 pb-10 mx-auto">
                 <br>
                 <h1  class="text-4xl">Diary</h1>
-                    <div class="flex justify-end mt-4">
-                        <div>
-                            <a href="/diaries/{{$diary->id}}/edit">
-                                <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Edit</button>
-                            </a>
-                        </div>
-                        
-                        <div class="ml-4">
-                            <form  class="rounded-lg bg-gray-300 px-4 py-2" action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="deleteDiary({{ $diary->id }})">Delete</button> 
-                            </form>
-                        </div>
-                    </div>
                 <div class="w-full mb-10 lg:mb-0" >
                     <div class="flex flex-wrap my-8 border border-black rounded-3xl">
                         <div class="p-6 flex flex-col items-start  w-full">
@@ -83,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="flex justify-center" href="/diaries/index">
+                <a class="flex justify-center" href="/diaries/home_diary">
                     <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Back</button>
                 </a>
             </div>
@@ -128,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="flex justify-center  py-20">
-                                <button class="bg-gray-300 rounded px-4 py-2 w-20" type="submit">Post</button>
+                                <button class=" rounded px-4 py-2 w-20 bg-gray-300" type="submit">Post</button>
                             </div>
                         </form>
                     </div>
