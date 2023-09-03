@@ -45,7 +45,7 @@
                 </div>
                 <div class="flex justify-center">
                     <div class="border border-black flex justify-center rounded px-4 py-2 w-20">
-                        <a href="/diaries/home_diary">Back</a>
+                        <a onclick="history.back()">Back</a>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
                 <input type="submit" value="Save"/>
             </form>
             <div class="footer">
-                <a href="/diaries/index">戻る</a>
+                <a onclick="history.back()">Back</a>
             </div>
         </body>
     </x-app-layout>
