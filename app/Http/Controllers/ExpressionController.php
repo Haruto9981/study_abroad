@@ -49,13 +49,13 @@ class ExpressionController extends Controller
     {
         $input = $request['expression'];
         $expression->fill($input)->save();
-        return redirect('/expressions/' . $expression->id);
+        return redirect('/expressions/index');
     }
     
     public function delete(Expression $expression)
     {
         $expression->delete();
-        return redirect('/');
+        return redirect('/expressions/index');
     }
     
 }

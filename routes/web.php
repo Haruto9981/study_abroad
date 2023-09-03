@@ -20,7 +20,8 @@ Route::controller(DiaryController::class)->middleware(['auth'])->group(function(
     Route::get('/diaries/index', 'index')->name('index');
     Route::post('/diaries', 'add')->name('add');
     Route::get('/diaries/create', 'create')->name('create');
-    Route::get('/diaries/{diary}', 'show')->name('show');
+    Route::get('/diaries/index/{diary}', 'show')->name('show');
+    Route::get('/diaries/home_diary/{diary}', 'homeShow')->name('homeShow');
     Route::put('/diaries/{diary}', 'update')->name('update');
     Route::delete('/diaries/{diary}', 'delete')->name('delete');
     Route::get('/diaries/{diary}/edit', 'edit')->name('edit');

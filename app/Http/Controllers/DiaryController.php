@@ -35,6 +35,12 @@ class DiaryController extends Controller
         return view('diaries.show')->with(['diary' => $diary, 'user' => $user ]);
     }
     
+    public function homeShow(Diary $diary, User $user)
+    {
+        $user = Auth::user();
+        return view('diaries.home_show')->with(['diary' => $diary, 'user' => $user ]);
+    }
+    
     public function create(Diary $diary)
     {
         return view('diaries.create')->with(['diary' => $diary]);
@@ -62,13 +68,13 @@ class DiaryController extends Controller
     {
         $input = $request['diary'];
         $diary->fill($input)->save();
-        return redirect('/diaries/' . $diary->id);
+        return redirect('/diaries/index/' . $diary->id);
     }
     
     public function delete(Diary $diary)
     {
         $diary->delete();
-        return redirect('/diaries/home_diary');
+        return redirect('/diaries/index');
     }
     
 }

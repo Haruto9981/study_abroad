@@ -42,23 +42,6 @@
                                 <p class="leading-relaxed mb-4 text-xl">Example Sentence: {{$expression->example}}</p>
                             </div>
                             <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
-                              @if($expression->user == $user)
-                                  <div class="flex pt-4">
-                                        <div>
-                                            <a href="/diaries/{{$expression->id}}/edit">
-                                                <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Edit</button>
-                                            </a>
-                                        </div>
-                                        
-                                        <div class="ml-4">
-                                            <form  class="rounded-lg bg-gray-300 px-4 py-2" action="/diaries/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" onclick="deleteDiary({{ $expression->id }})">Delete</button> 
-                                            </form>
-                                        </div>
-                                    </div>
-                               @endif
                               <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4">
                                 <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     @if($expression->users()->where('user_id', Auth::id())->exists())
@@ -106,6 +89,15 @@
                     @endif
                 </div>
               </div>
+              <script>
+                function deleteDiary(id) {
+                    'use strict'
+            
+                    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                        document.getElementById(`form_${id}`).submit();
+                    }
+                }
+            </script>
         </body>
     </x-app-layout>
 </html>
