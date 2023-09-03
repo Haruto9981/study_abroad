@@ -74,7 +74,7 @@
                                 </svg>
                               </span>
                               <span class="inline-flex items-center leading-none mt-4">
-                                   <a href="/diaries/{{$diary->id}}/comment">
+                                   <a href="/diaries/{{$diary->id}}">
                                         <button id="comemnt-button">
                                             <i class="fa-regular fa-comment"></i>
                                         </button>

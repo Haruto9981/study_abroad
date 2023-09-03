@@ -29,9 +29,10 @@ class DiaryController extends Controller
     }
     
     
-    public function show(Diary $diary)
+    public function show(Diary $diary, User $user)
     {
-        return view('diaries.show')->with(['diary' => $diary]);
+        $user = Auth::user();
+        return view('diaries.show')->with(['diary' => $diary, 'user' => $user ]);
     }
     
     public function create(Diary $diary)

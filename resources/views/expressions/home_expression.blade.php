@@ -38,17 +38,28 @@
                               </div>
                             <div>
                                 <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{{$expression->vocabulary}}</h2>
-                                <p class="leading-relaxed mb-4">Meaning: {{$expression->meaning}}</p>
-                                <p class="leading-relaxed mb-4">Example Sentence: {{$expression->example}}</p>
+                                <p class="leading-relaxed mb-4 text-xl">Meaning: {{$expression->meaning}}</p>
+                                <p class="leading-relaxed mb-4 text-xl">Example Sentence: {{$expression->example}}</p>
                             </div>
                             <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
-                              <a class="text-indigo-500 inline-flex items-center mt-4" href="/diaries/{{$expression->id}}">See More
-                                <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                  <path d="M5 12h14"></path>
-                                  <path d="M12 5l7 7-7 7"></path>
-                                </svg>
-                              </a>
-                              <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4 ">
+                              @if($expression->user == $user)
+                                  <div class="flex pt-4">
+                                        <div>
+                                            <a href="/diaries/{{$expression->id}}/edit">
+                                                <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Edit</button>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="ml-4">
+                                            <form  class="rounded-lg bg-gray-300 px-4 py-2" action="/diaries/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" onclick="deleteDiary({{ $expression->id }})">Delete</button> 
+                                            </form>
+                                        </div>
+                                    </div>
+                               @endif
+                              <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4">
                                 <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                                     @if($expression->users()->where('user_id', Auth::id())->exists())
                                         <div>

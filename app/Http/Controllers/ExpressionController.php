@@ -26,15 +26,6 @@ class ExpressionController extends Controller
         return view('expressions.index')->with(['expressions' => $expression]);
     }
     
-    public function show(Expression $expression)
-    {
-        return view('expressions.show')->with(['expression' => $expression]);
-    }
-    
-    public function show2(Expression $expression)
-    {
-        return view('expressions.show2')->with(['expression' => $expression]);
-    }
     
     public function create(Expression $expression)
     {

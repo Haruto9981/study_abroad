@@ -31,8 +31,6 @@ Route::controller(ExpressionController::class)->middleware(['auth'])->group(func
     Route::get('/expressions/index', 'index')->name('index_2');
     Route::post('/expressions', 'add')->name('add');
     Route::get('/expressions/create', 'create')->name('create');
-    Route::get('/expressions/{expression}', 'show')->name('show');
-    Route::get('expressions/{expression}/show', 'show2')->name('show2');
     Route::put('/expressions/{expression}', 'update')->name('update');
     Route::delete('/expressions/{expression}', 'delete')->name('delete');
     Route::get('/expressions/{expression}/edit', 'edit')->name('edit');
@@ -49,9 +47,7 @@ Route::controller(ExpressionLikeController::class)->middleware(['auth'])->group(
 });
 
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
-    Route::get('/diaries/{diary}/comment', 'comment')->name('comment');
     Route::post('/diaries/{diary}/comment', 'store')->name('store');
-    Route::get('/diaries/{diary}/comment/show', 'show')->name('show');
 });
 
 

@@ -41,7 +41,7 @@ class CommentController extends Controller
     {
         $input_comment = $request['comment'];
         $comment->fill($input_comment)->save();
-        return redirect('diaries/'. $comment->diary_id .'/comment/show');
+        return redirect()->back();
      
     }
 
