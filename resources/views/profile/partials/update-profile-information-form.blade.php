@@ -21,14 +21,11 @@
         
         
         <div>
-            <label for="profile-image">{{ __('Profile Image')}}</label>
-            @if ($user->profile->profile_image === null)
-                <img class="rounded-circle" src="{{ asset('default.png') }}" alt="Upload your profile image" width="100" height="100">
-            @else
-                <img class="rounded-circle" src="{{ Storage::url($user->profile->profile_image) }}" alt="Change your profile image" width="100" height="100">
-            @endif
-            <input id="profile-image" name="profile[profile_image]" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
-            <x-input-error :messages="$errors->get('profile_image')" class="mt-2" />
+            <label for="profile-image">
+                <img alt="Profile image" src="{{ asset('storage/profiles/'. $user->profile->profile_image) }}" class="w-32 h-32 rounded-full  object-cover object-center">
+                <input id="profile-image" name="profile[profile_image]" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
+                <x-input-error :messages="$errors->get('profile_image')" class="mt-2" />
+            </label>
         </div>
 
         <div>
