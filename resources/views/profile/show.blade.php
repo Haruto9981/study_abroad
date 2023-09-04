@@ -12,7 +12,7 @@
             <div class="mx-96 my-20 border border-black py-10 rounded-3xl">
                 <h1 class="text-4xl ml-10 my-4">Profile</h1>
                 <div class="flex justify-center">
-                    <img alt="blog" src="https://dummyimage.com/150x150" class="w-100 h-100 rounded-full  object-cover object-center">
+                    <img alt="Profile image" src="{{ asset('storage/profiles/'. $user->profile->profile_image) }}" class="w-32 h-32 rounded-full  object-cover object-center">
                 </div>
                 @if($user->id !== Auth::id())
                     <div class="border border-black ml-10 rounded flex justify-center px-6 py-2 w-28">

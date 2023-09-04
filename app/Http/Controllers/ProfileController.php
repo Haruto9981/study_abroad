@@ -39,10 +39,12 @@ class ProfileController extends Controller
         $input_profile = $request['profile'];
         $profile = $request->user()->profile;
         
-        if($input_profile['profile_image'] != null) {
-            $profileImagePath = $input_profile['profile_image']->store('public/sample');
-            $profile['profile_image'] = $profileImagePath;
+        if(isset($input_profile['profile_image'])) {
+           $file_name = $input_profile['profile_image']->getClientOriginalName();
+           $input_profile['profile_image']->storeAs('public/profiles', $file_name);
+           $input_profile['profile_image'] = $file_name;
         }
+       
        
         $profile->fill($input_profile)->save();
 

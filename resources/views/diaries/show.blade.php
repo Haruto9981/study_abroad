@@ -34,7 +34,7 @@
                           <div class="flex border-b border-black pb-4  w-full">
                              <div>
                                 <a href="/profile/{{$diary->user->id}}" class="inline-flex items-center">
-                                  <img alt="blog" src="https://dummyimage.com/103x103" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                                  <img alt="blog" src="{{ asset('storage/profiles/'. $diary->user->profile->profile_image) }}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                                   <span class="flex-grow flex flex-col pl-4">
                                     <span class="title-font font-medium text-gray-900">{{$diary->user->name}} </span>
                                     <span class="title-font font-medium text-gray-900">[{{$diary->user->profile->country}}]</span>
@@ -100,7 +100,7 @@
                                         <div class="flex  w-full">
                                             <div>
                                                 <a href="/profile/{{$diary->user->id}}" class="inline-flex items-center">
-                                                  <img alt="blog" src="https://dummyimage.com/103x103" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                                                  <img alt="blog" src="{{ asset('storage/profiles/'. $comment->user->profile->profile_image) }}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                                                   <span class="flex-grow flex flex-col pl-4">
                                                     <span class="title-font font-medium text-gray-900">{{ $comment->user->name}} [{{$comment->user->profile->country}}] </span>
                                                     <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$comment->created_at}}</span>
