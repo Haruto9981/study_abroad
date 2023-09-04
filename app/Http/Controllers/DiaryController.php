@@ -50,9 +50,11 @@ class DiaryController extends Controller
     {
         $input = $request['diary'];
         $diary->user_id = \Auth::id();
+        
         if(isset($input['photo'])) {
-           $diaryPhotoPath = $input['photo']->store('public/sample');
-           $diary['photo'] = $diaryPhotoPath;
+           $file_name = $input['photo']->getClientOriginalName();
+           $input['photo']->storeAs('public/photos', $file_name);
+           $input['photo'] = $file_name;
         }
        
         $diary->fill($input)->save();
@@ -67,6 +69,13 @@ class DiaryController extends Controller
     public function update(DiaryRequest $request, Diary $diary)
     {
         $input = $request['diary'];
+         
+        if(isset($input['photo'])) {
+           $file_name = $input['photo']->getClientOriginalName();
+           $input['photo']->storeAs('public/photos', $file_name);
+           $input['photo'] = $file_name;
+        }
+        
         $diary->fill($input)->save();
         return redirect('/diaries/index/' . $diary->id);
     }
