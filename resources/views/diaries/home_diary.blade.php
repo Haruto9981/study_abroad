@@ -102,8 +102,12 @@
                     <br>
                     <div id='calendar'></div>
                     <br>
-                    @if($diff->d ===0)<h2 class="text-4xl text-center">Your SA is already over!</h2>
-                    @else<h2 class="text-4xl text-center">{{ $diff->d }}days left to the end of your SA!</h2>
+                    @if ($diff2->invert === 0)
+                    <h2 class="text-4xl text-center">{{ $diff2->format('%a') + 1 }}days to the start of your SA!</h2>
+                    @elseif ($diff1->invert === 1)
+                    <h2 class="text-4xl text-center">Your SA is already over!</h2>
+                    @else
+                    <h2 class="text-4xl text-center">{{ $diff1->format('%a') + 1 }}days left to the end of your SA!</h2>
                     @endif
                 </div>
               </div>

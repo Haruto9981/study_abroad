@@ -16,10 +16,12 @@ class DiaryController extends Controller
     public function home_diary(Diary $diary, User $user)
     {
         $user = Auth::user();
-        $datetime = new DateTime($user->profile->end_date);
+        $end_date = new DateTime($user->profile->end_date);
+        $start_date = new DateTime($user->profile->start_date);
         $current  = new DateTime('now');
-        $diff     = $current->diff($datetime);
-        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user, 'diff' => $diff]);
+        $diff1 = $current->diff($end_date);
+        $diff2 = $current->diff($start_date);
+        return view('diaries.home_diary')->with(['diaries' => $diary->getPaginateByLimit(), 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2]);
     }
     
     public function index(Diary $diary) 
