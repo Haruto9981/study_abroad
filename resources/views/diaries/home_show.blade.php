@@ -103,6 +103,7 @@
                             <lavel class="text-2xl">Add a comment</lavel>
                             <div class="py-5">
                                  <textarea class="w-full  rounded-lg" name="comment[body]"></textarea>
+                                 <p style="color:red">{{ $errors->first('comment.body') }}</p>
                             </div>
                         </div>
                         <div class="flex justify-center  py-20">

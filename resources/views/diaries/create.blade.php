@@ -12,12 +12,12 @@
                     <div class="my-4">
                         <h2 class="text-3xl mb-2">Title</h2>
                         <input class="w-full" type="text" name="diary[title]" placeholder="Title"/>
-                        <p class="title__error" style="color:red">{{ $errors->first('diary.title') }}</p>
+                        <p  style="color:red">{{ $errors->first('diary.title') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Content</h2>
                         <textarea class="w-full h-60" name="diary[content]" placeholder="What's your experience?"></textarea>
-                         <p class="content__error" style="color:red">{{ $errors->first('diary.content') }}</p>
+                         <p  style="color:red">{{ $errors->first('diary.content') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Picture</h2>

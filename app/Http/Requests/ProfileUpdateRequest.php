@@ -18,6 +18,21 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'profile.region' => ['required', 'string', 'max:30'],
+            'profile.start_date' => ['required','date'],
+            'profile.end_date' => ['required','date', 'after:profile.start_date'],
+            'profile.bio' => ['string', 'max:1000']
+        ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'name.required' => 'You are required to put something',
+            'email.required' => 'You are required to put something',
+            'profile.region.required' => 'You are required to put something',
+            'profile.start_date.required' => 'You are required to put something',
+            'profile.end_date.required' => 'You are required to put something',
         ];
     }
 }

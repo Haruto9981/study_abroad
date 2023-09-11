@@ -12,17 +12,17 @@
                     <div class="my-4">
                         <h2 class="text-3xl mb-2">Vocabulary</h2>
                         <input class="w-full" type="text" name="expression[vocabulary]" placeholder="Vocabulary"/>
-                        <p class="title__error" style="color:red">{{ $errors->first('expression.vocabulary') }}</p>
+                        <p style="color:red">{{ $errors->first('expression.vocabulary') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Meaning</h2>
                         <textarea class="w-full" name="expression[meaning]" placeholder="What does it mean?"></textarea>
-                         <p class="content__error" style="color:red">{{ $errors->first('expression.meaning') }}</p>
+                         <p style="color:red">{{ $errors->first('expression.meaning') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Example</h2>
                         <textarea class="w-full" name="expression[example]" placeholder="What's the example sentence?"></textarea>
-                         <p class="content__error" style="color:red">{{ $errors->first('expression.example') }}</p>
+                         <p  style="color:red">{{ $errors->first('expression.example') }}</p>
                     </div>
 
                     <div  class="my-4">

@@ -21,10 +21,20 @@ class ExpressionRequest extends FormRequest
     public function rules()
     {
         return [
-            'expression.vocabulary' => 'required|string|max:100',
-            'expression.meaning' => 'required|string|max:4000',
-            'expression.example' => 'required|string|max:4000',
+            'expression.vocabulary' => 'required|string|max:200',
+            'expression.meaning' => 'required|string|max:1000',
+            'expression.example' => 'required|string|max:1000',
             'expression.is_private',
         ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'expression.vocabulary.required' => 'You are required to put something',
+            'expression.meaning.required' => 'You are required to put something',
+            'expression.example.required' => 'You are required to put something'
+        ];
+    
     }
 }

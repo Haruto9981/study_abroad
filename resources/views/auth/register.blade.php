@@ -27,15 +27,15 @@
             <label for="gender">{{ __('Gender') }}</label>
             <table>
                 <tr>
-                    <th class="px-1"><input id="gender-m" class="block mt-1" type="radio" name="gender" value="male" required autofocus /></th>
+                    <th class="px-1"><input id="gender-m" class="block mt-1" type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : ''}}  required autofocus /></th>
                     <td><label for="gender-m">{{__('Male')}}</label></td>
-                    <th class="px-1"><input id="gender-f" class="block mt-1" type="radio" name="gender" value="female" required autofocus /></th>
+                    <th class="px-1"><input id="gender-f" class="block mt-1" type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : ''}}  required autofocus /></th>
                     <td> <label for="gender-f">{{__('Female')}}</label></td>
-                    <th class="px-1"><input id="gender-o" class="block mt-1" type="radio" name="gender" value="other" required autofocus /></th>
+                    <th class="px-1"><input id="gender-o" class="block mt-1" type="radio" name="gender" value="other" {{ old('gender') == 'other' ? 'checked' : ''}}  required autofocus /></th>
                     <td> <label for="gender-o">{{__('Other')}}</label></td>
                 </tr>
             </table>
-            <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
         </div>
 
         <div class="my-4">
@@ -61,15 +61,15 @@
                 <label for="country">{{ __('Abroad to Study') }}</label>
             </div>
             <select name="country" class="rounded-lg">
-                <option value="USA 🇺🇸">USA</option>
-                <option value="UK 🇬🇧">UK</option>
-                <option value="Australia 🇦🇺">Australia</option>
-                <option value="NewZealand 🇳🇿">NewZealand</option>
-                <option value="Canada 🇨🇦">Canada</option>
-                <option value="Germany 🇩🇪">Germany</option>
-                <option value="France 🇫🇷">France</option>
-                <option value="Taiwan 🇹🇼">Taiwan</option>
-                <option value="China 🇨🇳">China</option>
+                <option value="USA 🇺🇸" {{ old('country') == 'USA 🇺🇸' ? 'selected' : ''}}>USA</option>
+                <option value="UK 🇬🇧" {{ old('country') == 'UK 🇬🇧' ? 'selected' : ''}}>UK</option>
+                <option value="Australia 🇦🇺" {{ old('country') == 'Australia 🇦🇺' ? 'selected' : ''}}>Australia</option>
+                <option value="NewZealand 🇳🇿" {{ old('country') == 'NewZealand 🇳🇿' ? 'selected' : ''}}>NewZealand</option>
+                <option value="Canada 🇨🇦" {{ old('country') == 'Canada 🇨🇦' ? 'selected' : ''}}>Canada</option>
+                <option value="Germany 🇩🇪" {{ old('country') == 'Germany 🇩🇪' ? 'selected' : ''}}>Germany</option>
+                <option value="France 🇫🇷" {{ old('country') == 'France 🇫🇷' ? 'selected' : ''}}>France</option>
+                <option value="Taiwan 🇹🇼" {{ old('country') == 'Taiwan 🇹🇼' ? 'selected' : ''}}>Taiwan</option>
+                <option value="China 🇨🇳" {{ old('country') == 'China 🇨🇳' ? 'selected' : ''}}>China</option>
             </select>
             <x-input-error :messages="$errors->get('country')" class="mt-2" />
         </div> 

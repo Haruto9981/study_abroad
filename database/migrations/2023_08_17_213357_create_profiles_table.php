@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('bio', 1000)->nullable();
+            $table->text('bio', 1000)->nullable();
             $table->string('country');
             $table->string('gender');
-            $table->text('profile_image')->default('default.png');
+            $table->string('profile_image')->default('default.png');
             $table->string('region', 30);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();

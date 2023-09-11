@@ -27,4 +27,11 @@ class DiaryRequest extends FormRequest
             'diary.is_private'
         ];
     }
+    
+    public function messages() {
+        return [
+            'diary.title.required' => 'You are required to put something',
+            'diary.content.required' => 'You are required to put something'
+        ];
+    }
 }
