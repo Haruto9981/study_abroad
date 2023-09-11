@@ -6,6 +6,7 @@
         <title>Diary</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/f7b82fd301.js" crossorigin="anonymous"></script>
     </head>
     <x-app-layout>
         <body>
@@ -15,23 +16,21 @@
                     <img alt="Profile image" src="{{ asset('storage/profiles/'. $user->profile->profile_image) }}" class="w-32 h-32 rounded-full  object-cover object-center">
                 </div>
                 @if($user->id !== Auth::id())
-                    <div class="border border-black ml-10 rounded flex justify-center px-6 py-2 w-28">
-                        @if($user->followers()->where('user_id', Auth::id())->exists())
-                            <div>
-                                <form action="{{route('unfollowing', $user->id)}}" method="POST">
-                                    @csrf
-                                    <input type="submit" value="Unfollow">
-                                </form>
-                            </div>
-                        @else
-                            <div>
-                                <form action="{{route('following', $user->id)}}" method="POST">
-                                    @csrf
-                                    <input type="submit" value="Follow">
-                                </form>
-                            </div>
-                        @endif
-                    </div>
+                    @if($user->followers()->where('user_id', Auth::id())->exists())
+                        <div class="rounded-lg text-white font-bold bg-orange-300 ml-10 rounded flex justify-center px-6 py-2 w-28">
+                            <form action="{{route('unfollowing', $user->id)}}" method="POST">
+                                @csrf
+                                <input type="submit" value="Unfollow">
+                            </form>
+                        </div>
+                    @else
+                        <div class="rounded-lg text-white font-bold bg-orange-400 ml-10 rounded flex justify-center px-6 py-2 w-28">
+                            <form action="{{route('following', $user->id)}}" method="POST">
+                                @csrf
+                                <input type="submit" value="Follow">
+                            </form>
+                        </div>
+                    @endif
                 @endif
                 <div class="border border-black mx-10 my-6 p-4 text-2xl">
                     <p class="py-2">Name: {{ $user->name}}</p>

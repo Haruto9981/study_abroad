@@ -14,7 +14,7 @@
                 <br>
                 <h1  class="text-4xl">My Diaries</h1>
                 <a class="flex justify-end" href="/diaries/create">
-                    <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Create</button>
+                    <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Create</button>
                 </a>
                 <div class="w-full mb-10 lg:mb-0" >
                     @foreach ($diaries as $diary)
@@ -25,14 +25,14 @@
                                     <a href="/profile/{{$diary->user->id}}" class="inline-flex items-center">
                                       <img alt="blog" src="{{ asset('storage/profiles/'. $diary->user->profile->profile_image) }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
                                       <span class="flex-grow flex flex-col pl-4">
-                                        <span class="title-font font-medium text-gray-900">{{$diary->user->name}} </span>
+                                        <span class="title-font text-lg text-gray-900">{{$diary->user->name}} </span>
                                         <span class="title-font font-medium text-gray-900">[{{$diary->user->profile->country}}]</span>
-                                        <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$diary->updated_at}}</span>
+                                        <span class="text-blue-600  text-xs tracking-widest mt-0.5">{{$diary->updated_at}}</span>
                                       </span>
                                     </a>  
                                   </div>
                                   <div class="pl-96 pt-2">
-                                    <h2 class="border border-black rounded px-4 py-2">{{$diary->is_private}}</h2>  
+                                    <h2 class="rounded-lg text-white font-bold  bg-orange-400 px-4 py-2">{{$diary->is_private}}</h2>  
                                   </div>  
                               </div>
                             <div>
@@ -57,7 +57,7 @@
                                                         <form action="{{route('diary_unlikes', $diary)}}" method="POST">
                                                             @csrf
                                                             <button type="submit">
-                                                                <i class="fa-solid fa-heart"></i>
+                                                                <i class="fa-solid fa-heart fa-lg fa-xl" style="color: #ff3300;"></i>
                                                             </button>
                                                         </form>
                                                     </div>
@@ -66,12 +66,12 @@
                                                         <form action="{{route('diary_likes', $diary)}}" method="POST">
                                                             @csrf
                                                             <button type="submit">
-                                                                <i class="fa-regular fa-heart"></i>
+                                                                 <i class="fa-regular fa-heart fa-lg fa-xl" style="color: #ff3300;"></i>
                                                             </button>
                                                         </form>
                                                     </div>
                                                 @endif
-                                                <div>
+                                                <div class="pl-2">
                                                     <p>{{$diary->users()->count()}} likes</p>
                                                 </div>  
                                             </svg>
@@ -79,10 +79,10 @@
                                         <span class="inline-flex items-center leading-none mt-4">
                                            <a href="/diaries/index/{{$diary->id}}">
                                                 <button id="comemnt-button">
-                                                    <i class="fa-regular fa-comment"></i>
+                                                    <i class="fa-regular fa-comment fa-flip-horizontal fa-xl" style="color: #3878e5;"></i>
                                                 </button>
                                             </a>
-                                            <div>
+                                            <div class="pl-2">
                                                 <p>{{$diary->comments()->count()}} comments</p>
                                             </div>
                                         </span>

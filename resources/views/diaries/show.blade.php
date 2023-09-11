@@ -16,12 +16,12 @@
                     <div class="flex justify-end mt-4">
                         <div>
                             <a href="/diaries/{{$diary->id}}/edit">
-                                <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Edit</button>
+                                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2">Edit</button>
                             </a>
                         </div>
                         
                         <div class="ml-4">
-                            <form  class="rounded-lg bg-gray-300 px-4 py-2" action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
+                            <form  class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2" action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" onclick="deleteDiary({{ $diary->id }})">Delete</button> 
@@ -36,14 +36,14 @@
                                 <a href="/profile/{{$diary->user->id}}" class="inline-flex items-center">
                                   <img alt="blog" src="{{ asset('storage/profiles/'. $diary->user->profile->profile_image) }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
                                   <span class="flex-grow flex flex-col pl-4">
-                                    <span class="title-font font-medium text-gray-900">{{$diary->user->name}} </span>
+                                    <span class="title-font text-lg  text-gray-900">{{$diary->user->name}} </span>
                                     <span class="title-font font-medium text-gray-900">[{{$diary->user->profile->country}}]</span>
-                                    <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$diary->updated_at}}</span>
+                                    <span class="text-blue-600 text-xs tracking-widest mt-0.5">{{$diary->updated_at}}</span>
                                   </span>
                                 </a>  
                               </div>
                               <div class="pl-96 pt-2">
-                                <h2 class="border border-black rounded px-4 py-2">{{$diary->is_private}}</h2>  
+                                <h2 class="rounded-lg text-white font-bold bg-orange-400 px-4 py-2">{{$diary->is_private}}</h2>  
                               </div>  
                           </div>
                           <div>
@@ -62,7 +62,7 @@
                                                     <form action="{{route('diary_unlikes', $diary)}}" method="POST">
                                                         @csrf
                                                         <button type="submit">
-                                                            <i class="fa-solid fa-heart"></i>
+                                                             <i class="fa-solid fa-heart fa-lg fa-xl" style="color: #ff3300;"></i>
                                                         </button>
                                                     </form>
                                                 </div>
@@ -71,12 +71,12 @@
                                                     <form action="{{route('diary_likes', $diary)}}" method="POST">
                                                         @csrf
                                                         <button type="submit">
-                                                            <i class="fa-regular fa-heart"></i>
+                                                            <i class="fa-regular fa-heart fa-lg fa-xl" style="color: #ff3300;"></i>
                                                         </button>
                                                     </form>
                                                 </div>
                                             @endif
-                                            <div>
+                                            <div class="pl-2">
                                                 <p>{{$diary->users()->count()}} likes</p>
                                             </div>  
                                         </svg>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <a class="flex justify-center" href="/diaries/index">
-                    <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Back</button>
+                    <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2">Back</button>
                 </a>
             </div>
             
@@ -127,11 +127,11 @@
                             <div>
                                 <lavel class="text-2xl">Add a comment</lavel>
                                 <div class="py-5">
-                                     <textarea class="w-full" name="comment[body]"></textarea>
+                                     <textarea class="w-full rounded-lg" name="comment[body]"></textarea>
                                 </div>
                             </div>
                             <div class="flex justify-center  py-20">
-                                <button class="bg-gray-300 rounded px-4 py-2 w-20" type="submit">Post</button>
+                                <button class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2 w-20" type="submit">Post</button>
                             </div>
                         </form>
                     </div>
@@ -142,7 +142,7 @@
                 function deleteDiary(id) {
                     'use strict'
             
-                    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    if (confirm('Do you really want to delete it?')) {
                         document.getElementById(`form_${id}`).submit();
                     }
                 }

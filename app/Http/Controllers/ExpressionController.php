@@ -14,10 +14,12 @@ class ExpressionController extends Controller
     public function home_expression(Expression $expression, User $user)
     {
         $user = Auth::user();
-        $datetime = new DateTime($user->profile->end_date);
+        $end_date = new DateTime($user->profile->end_date);
+        $start_date = new DateTime($user->profile->start_date);
         $current  = new DateTime('now');
-        $diff     = $current->diff($datetime);
-        return view('expressions.home_expression')->with(['expressions' => $expression->getPaginateBylimit(), 'user' => $user, 'diff' => $diff]);
+        $diff1 = $current->diff($end_date);
+        $diff2 = $current->diff($start_date);
+        return view('expressions.home_expression')->with(['user' => $user, 'expressions' => $expression->getPaginateBylimit(), 'diff1' => $diff1, 'diff2' => $diff2]);
     }
     
     public function index(Expression $expression) 
