@@ -1,12 +1,8 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-2xl text-gray-900">
             {{ __('Profile Information') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
@@ -20,7 +16,7 @@
         <input type="hidden" name="profile[user_id]" value="{{ $user->id}}"></input>
         
         
-        <div>
+        <div class="flex justify-center">
             <label for="profile-image">
                 <img alt="Profile image" src="{{ asset('storage/profiles/'. $user->profile->profile_image) }}" class="w-32 h-32 rounded-full  object-cover object-center">
                 <input id="profile-image" name="profile[profile_image]" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
@@ -30,7 +26,7 @@
 
         <div>
             <label for="name">{{ __('Name') }}</label>
-            <input id="name" class="block mt-1 w-full" type="text" name="name" value="{{old('name', $user->name)}}" required autofocus autocomplete="name" />
+            <input id="name" class="block mt-1 w-full rounded-lg" type="text" name="name" value="{{old('name', $user->name)}}" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
         
@@ -38,11 +34,11 @@
             <label for="gender">{{ __('Gender') }}</label>
             <table>
                 <tr>
-                    <th><input id="gender-m" class="block mt-1" type="radio" name="profile[gender]" value="male" {{ old('profile[gender]', $user->profile->gender) == 'male' ? 'checked' : ''}} required autofocus /></th>
+                    <th class="px-1"><input id="gender-m" class="block mt-1" type="radio" name="profile[gender]" value="male" {{ old('profile[gender]', $user->profile->gender) == 'male' ? 'checked' : ''}} required autofocus /></th>
                     <td><label for="gender-m">{{__('Male')}}</label></td>
-                    <th><input id="gender-f" class="block mt-1" type="radio" name="profile[gender]" value="female" {{ old('profile[gender]', $user->profile->gender) == 'female' ? 'checked' : ''}} required autofocus /></th>
+                    <th class="px-1"><input id="gender-f" class="block mt-1" type="radio" name="profile[gender]" value="female" {{ old('profile[gender]', $user->profile->gender) == 'female' ? 'checked' : ''}} required autofocus /></th>
                     <td> <label for="gender-f">{{__('Female')}}</label></td>
-                    <th><input id="gender-o" class="block mt-1" type="radio" name="profile[gender]" value="other" {{ old('profile[gender]', $user->profile->gender) == 'other' ? 'checked' : ''}} required autofocus /></th>
+                    <th class="px-1"><input id="gender-o" class="block mt-1" type="radio" name="profile[gender]" value="other" {{ old('profile[gender]', $user->profile->gender) == 'other' ? 'checked' : ''}} required autofocus /></th>
                     <td><label for="gender-o">{{__('Other')}}</label></td>
                 </tr>
             </table>
@@ -51,7 +47,7 @@
 
         <div>
             <label for="email">{{ __('Email') }}</label>
-            <input id="email" class="block mt-1 w-full" type="email" name="email" value="{{old('email', $user->email)}}" required autofocus autocomplete="username" />
+            <input id="email" class="block mt-1 w-full rounded-lg" type="email" name="email" value="{{old('email', $user->email)}}" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
@@ -74,8 +70,10 @@
         </div>
         
         <div>
-            <label for="country">{{ __('Abroad to Study') }}</label>
-            <select name="profile[country]">
+            <div class="mb-1">
+              <label for="country">{{ __('Abroad to Study') }}</label>  
+            </div>
+            <select name="profile[country]" class="rounded-lg">
                 <option value="USA 🇺🇸" {{ old('profile[country]', $user->profile->country) == 'USA 🇺🇸' ? 'selected' : ''}}>USA</option>
                 <option value="UK 🇬🇧" {{ old('profile[country]', $user->profile->country) == 'UK 🇬🇧' ? 'selected' : ''}}>UK</option>
                 <option value="Australia 🇦🇺" {{ old('profile[country]', $user->profile->country) == 'Australia 🇦🇺' ? 'selected' : ''}}>Australia</option>
@@ -91,25 +89,25 @@
         
         <div>
             <label for="region">{{ __('Region') }}</label>
-            <input id="region" class="block mt-1 w-full" type="text" name="profile[region]" value="{{old('region', $user->profile->region)}}" required autofocus />
+            <input id="region" class="block mt-1 w-full rounded-lg" type="text" name="profile[region]" value="{{old('region', $user->profile->region)}}" required autofocus />
             <x-input-error :messages="$errors->get('region')" class="mt-2" />
         </div> 
         
         <div>
             <label for="start_date">{{ __('Start Date of Your Study Abroad') }}</label>
-            <input id="start_date" class="block mt-1 w-full" type="date" name="profile[start_date]" value="{{old('start_date', $user->profile->start_date)}}" required autofocus />
+            <input id="start_date" class="block mt-1 w-full rounded-lg" type="date" name="profile[start_date]" value="{{old('start_date', $user->profile->start_date)}}" required autofocus />
             <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
         </div>
         
         <div>
             <label for="end_date">{{ __('End Date of Your Study Abroad') }}</label>
-            <input id="end_date" class="block mt-1 w-full" type="date" name="profile[end_date]" value="{{old('end_date', $user->profile->end_date)}}" required autofocus />
+            <input id="end_date" class="block mt-1 w-full rounded-lg" type="date" name="profile[end_date]" value="{{old('end_date', $user->profile->end_date)}}" required autofocus />
             <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
         </div> 
         
         <div>
             <label for="bio">{{ __('Bio') }}</label>
-            <input id="bio" class="block mt-1 w-full" type="text" name="profile[bio]" value="{{old('bio', $user->profile->bio)}}" required autofocus />
+            <input id="bio" class="block mt-1 w-full rounded-lg" type="text" name="profile[bio]" value="{{old('bio', $user->profile->bio)}}" required autofocus />
             <x-input-error :messages="$errors->get('bio')" class="mt-2" />
         </div> 
 
