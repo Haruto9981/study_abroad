@@ -5,7 +5,9 @@ import axios from 'axios';
 
 var calendarEl = document.getElementById("calendar");
 
-let calendar = new Calendar(calendarEl, {
+
+if(calendarEl != null) {
+    let calendar = new Calendar(calendarEl, {
     plugins: [interactionPlugin, dayGridPlugin],
     initialView: "dayGridMonth",
     headerToolbar: {
@@ -81,9 +83,9 @@ let calendar = new Calendar(calendarEl, {
             .catch(() => {
                 alert("Failed to delete");
             });
-    }
-},
-    
-   
-});
-calendar.render();
+        }
+    },
+  });
+  calendar.render();
+}
+
