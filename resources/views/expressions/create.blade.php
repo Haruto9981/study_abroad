@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Expression</title>
+        <script src="https://kit.fontawesome.com/f7b82fd301.js" crossorigin="anonymous"></script>
     </head>
     <x-app-layout>
         <body>
@@ -10,7 +11,7 @@
                 <br>
                 <h1  class="text-4xl">Add</h1>
                 <a class="flex justify-end" href="/expressions/index">
-                    <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Back</button>
+                    <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Back</button>
                 </a>
                 <div class="my-10 lg:mb-0 border border-black px-10 pt-4 pb-10 rounded-3xl">
                     <form action="/expressions" method="POST" enctype="multipart/form-data">
@@ -26,7 +27,7 @@
                              <p class="content__error" style="color:red">{{ $errors->first('expression.meaning') }}</p>
                         </div>
                         <div  class="my-4">
-                            <h2 class="text-3xl  mb-2">Example Sentence</h2>
+                            <h2 class="text-3xl  mb-2">Example</h2>
                             <textarea class="w-full" name="expression[example]" placeholder="What's the example sentence?"></textarea>
                              <p class="content__error" style="color:red">{{ $errors->first('expression.example') }}</p>
                         </div>
@@ -38,7 +39,7 @@
                             </select>
                         </div>
                         <div class="flex justify-center">
-                            <button type="submit" class="rounded-lg bg-gray-300 px-4 py-2">Add</button>
+                            <button type="submit" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Add</button>
                         </div>
                     </form>
                 </div>

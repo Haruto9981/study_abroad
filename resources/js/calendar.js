@@ -11,9 +11,12 @@ let calendar = new Calendar(calendarEl, {
     headerToolbar: {
         left: "prev,next today",
         center: "title",
-        right: "dayGridMonth,timeGridWeek,listWeek",
+        right: "dayGridMonth",
     },
     height: 'auto',
+    
+    
+    
     
    
 

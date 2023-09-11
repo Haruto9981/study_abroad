@@ -14,7 +14,7 @@
               <br>
               <h1  class="text-4xl pl-24">Posts</h1>
               <a class="flex justify-center pr-36" href="/diaries/home_diary">
-                <button id="expressions-button" class="rounded-lg bg-gray-300 px-4 py-2">Diaries</button>
+                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Diaries</button>
               </a>
               <div class="container px-5 pb-10 mx-auto flex">
                 <div class="lg:w-1/2 w-full mb-10 lg:mb-0" >
@@ -26,20 +26,20 @@
                                     <a href="/profile/{{$expression->user->id}}" class="inline-flex items-center">
                                       <img alt="blog" src="{{ asset('storage/profiles/'. $expression->user->profile->profile_image) }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
                                       <span class="flex-grow flex flex-col pl-4">
-                                        <span class="title-font font-medium text-gray-900">{{$expression->user->name}} </span>
+                                        <span class="title-font text-lg text-gray-900">{{$expression->user->name}} </span>
                                         <span class="title-font font-medium text-gray-900">[{{$expression->user->profile->country}}]</span>
-                                        <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$expression->updated_at}}</span>
+                                        <span class="text-blue-600 text-xs tracking-widest mt-0.5">{{$expression->updated_at}}</span>
                                       </span>
                                     </a>  
                                   </div>
                                   <div class="pl-52 pt-2">
-                                    <h2 class="border border-black rounded px-4 py-2">{{$expression->user->profile->region}}</h2>  
+                                    <h2 class="bg-orange-400 text-white font-bold rounded px-4 py-2">{{$expression->user->profile->region}}</h2>  
                                   </div>  
                               </div>
                             <div>
                                 <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{{$expression->vocabulary}}</h2>
-                                <p class="leading-relaxed mb-4 text-xl">Meaning: {{$expression->meaning}}</p>
-                                <p class="leading-relaxed mb-4 text-xl">Example Sentence: {{$expression->example}}</p>
+                                <p class="leading-relaxed mb-4 text-xl">Meaning: <span class="font-bold">{{$expression->meaning}}</span></p>
+                                <p class="leading-relaxed mb-4 text-xl">Example: {{$expression->example}}</p>
                             </div>
                             <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
                               <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4">
@@ -49,7 +49,7 @@
                                             <form action="{{route('expression_unlikes', $expression)}}" method="POST">
                                                 @csrf
                                                 <button type="submit">
-                                                    <i class="fa-solid fa-heart"></i>
+                                                     <i class="fa-solid fa-heart fa-lg fa-xl" style="color: #ff3300;"></i>
                                                 </button>
                                             </form>
                                         </div>
@@ -58,12 +58,12 @@
                                             <form action="{{route('expression_likes', $expression)}}" method="POST">
                                                 @csrf
                                                 <button type="submit">
-                                                    <i class="fa-regular fa-heart"></i>
+                                                   <i class="fa-regular fa-heart fa-lg fa-xl" style="color: #ff3300;"></i>
                                                 </button>
                                             </form>
                                         </div>
                                     @endif
-                                    <div>
+                                    <div class="pl-2">
                                         <p>{{$expression->users()->count()}} likes</p>
                                     </div>  
                                 </svg>
@@ -78,22 +78,28 @@
                 </div>
                 <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12">
                     <a  href="/calendar">
-                        <h1 class="text-4xl text-center">{{$user->name}}'s Calendar</h1>
+                        <h1 class="text-3xl text-center">{{$user->name}}'s Calendar</h1>
                     </a>
                     <br>
+                    <div class="text-4xl text-center">
+                        @if ($diff2->invert === 0)
+                        <h2><span class="text-red-500 font-bold">{{ $diff2->format('%a') + 1 }}days</span> to the start of your SA!</h2>
+                        @elseif ($diff1->invert === 1)
+                        <h2 class="text-red-500 font-bold">Your SA is already over!</h2>
+                        @else
+                        <h2><span class="text-red-500 font-bold">{{ $diff1->format('%a') + 1 }}days</span> left to the end of your SA!</h2>
+                        @endif
+                    </div>
                     <br>
                     <div id='calendar'></div>
                     <br>
-                    @if($diff->d ===0)<h2 class="text-4xl">Your SA is already over!</h2>
-                    @else<h2 class="text-4xl text-center">{{ $diff->d }}days left to the end of your SA!</h2>
-                    @endif
                 </div>
               </div>
               <script>
                 function deleteDiary(id) {
                     'use strict'
             
-                    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    if (confirm('Do you really want to delete it?')) {
                         document.getElementById(`form_${id}`).submit();
                     }
                 }

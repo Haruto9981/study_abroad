@@ -19,7 +19,7 @@ class ScheduleController extends Controller
         $current  = new DateTime('now');
         $diff1 = $current->diff($end_date);
         $diff2 = $current->diff($start_date);
-        return view('calendar.calendar')->with(['diff1' => $diff1, 'diff2' => $diff2]);
+        return view('calendar.calendar')->with(['diff1' => $diff1, 'diff2' => $diff2, 'user' => $user]);
     }
 
     

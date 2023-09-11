@@ -1,10 +1,10 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-300 ">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-300">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-24">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 -m-5 flex items-center">
+                <div class="shrink-0 -m-5 flex items-center mix-blend-multiply">
                     <a class="block w-24" href="{{ route('home_diary') }}">
                         <img src="/storage/logo.jpg" alt="logo">
                     </a>
@@ -13,28 +13,34 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home_diary')" :active="request()->routeIs('home_diary')">
+                        <i class="fa-solid fa-house pr-1"></i>
                         {{ __('Home') }}
                     </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                        <i class="fa-solid fa-book pr-1"></i>
                         {{ __('Diary') }}
                     </x-nav-link>
                     <x-nav-link :href="route('index_2')" :active="request()->routeIs('index_2')">
+                       <i class="fa-regular fa-note-sticky pr-1"></i>
                         {{ __('Expression') }}
                     </x-nav-link>
                     <x-nav-link :href="route('index_following')" :active="request()->routeIs('index_following')">
+                        <i class="fa-solid fa-users pr-1"></i>
                         {{ __('Follow') }}
                     </x-nav-link>
                     <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+                        <i class="fa-regular fa-calendar pr-1"></i>
                         {{ __('Calendar') }}
                     </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center sm:ml-6" >
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md text-gray-900  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <img alt="blog" src="{{ asset('storage/profiles/'. Auth::user()->profile->profile_image) }}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center mr-4">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
