@@ -20,14 +20,14 @@
             <label for="profile-image">
                 <img alt="Profile image" src="{{ asset('storage/profiles/'. $user->profile->profile_image) }}" class="w-32 h-32 rounded-full  object-cover object-center">
                 <input id="profile-image" name="profile[profile_image]" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
-                <x-input-error :messages="$errors->get('profile_image')" class="mt-2" />
+                <p  style="color:red">{{ $errors->first('profile.profile_image') }}</p>
             </label>
         </div>
 
         <div>
             <label for="name">{{ __('Name') }}</label>
             <input id="name" class="block mt-1 w-full rounded-lg" type="text" name="name" value="{{old('name', $user->name)}}" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+             <p  style="color:red">{{ $errors->first('name') }}</p>
         </div>
         
         <div>
@@ -42,13 +42,13 @@
                     <td><label for="gender-o">{{__('Other')}}</label></td>
                 </tr>
             </table>
-            <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+            <p  style="color:red">{{ $errors->first('profile.gender') }}</p>
         </div>
 
         <div>
             <label for="email">{{ __('Email') }}</label>
             <input id="email" class="block mt-1 w-full rounded-lg" type="email" name="email" value="{{old('email', $user->email)}}" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <p  style="color:red">{{ $errors->first('email') }}</p>
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
@@ -84,31 +84,31 @@
                 <option value="Taiwan 🇹🇼" {{ old('profile[country]', $user->profile->country) == 'Taiwan 🇹🇼' ? 'selected' : ''}}>Taiwan</option>
                 <option value="China 🇨🇳" {{ old('profile[country]', $user->profile->country) == 'China 🇨🇳' ? 'selected' : ''}}>China</option>
             </select>
-            <x-input-error :messages="$errors->get('country')" class="mt-2" />
+            <p  style="color:red">{{ $errors->first('profile.country') }}</p>
         </div>
         
         <div>
             <label for="region">{{ __('Region') }}</label>
             <input id="region" class="block mt-1 w-full rounded-lg" type="text" name="profile[region]" value="{{old('region', $user->profile->region)}}" required autofocus />
-            <x-input-error :messages="$errors->get('region')" class="mt-2" />
+           <p  style="color:red">{{ $errors->first('profile.region') }}</p>
         </div> 
         
         <div>
             <label for="start_date">{{ __('Start Date of Your Study Abroad') }}</label>
             <input id="start_date" class="block mt-1 w-full rounded-lg" type="date" name="profile[start_date]" value="{{old('start_date', $user->profile->start_date)}}" required autofocus />
-            <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
+            <p  style="color:red">{{ $errors->first('profile.start_date') }}</p>
         </div>
         
         <div>
             <label for="end_date">{{ __('End Date of Your Study Abroad') }}</label>
             <input id="end_date" class="block mt-1 w-full rounded-lg" type="date" name="profile[end_date]" value="{{old('end_date', $user->profile->end_date)}}" required autofocus />
-            <x-input-error :messages="$errors->get('end_date')" class="mt-2" />
+            <p  style="color:red">{{ $errors->first('profile.end_date') }}</p>
         </div> 
         
         <div>
             <label for="bio">{{ __('Bio') }}</label>
-            <input id="bio" class="block mt-1 w-full rounded-lg" type="text" name="profile[bio]" value="{{old('bio', $user->profile->bio)}}" required autofocus />
-            <x-input-error :messages="$errors->get('bio')" class="mt-2" />
+            <input id="bio" class="block mt-1 w-full rounded-lg" type="text" name="profile[bio]" value="{{old('bio', $user->profile->bio)}}" />
+             <p  style="color:red">{{ $errors->first('profile.bio') }}</p>
         </div> 
 
         <div class="flex items-center gap-4">

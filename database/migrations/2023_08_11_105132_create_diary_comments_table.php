@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('diary_id')->constrained('diaries');  
             $table->foreignId('user_id')->constrained('users');
-            $table->string('body');
+            $table->text('body');
             $table->timestamps();
         });
     }

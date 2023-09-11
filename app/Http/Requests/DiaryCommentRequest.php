@@ -21,7 +21,7 @@ class DiaryCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment.body' => 'required',
+            'comment.body' => 'required|string|max:2000',
         ];
     }
     
