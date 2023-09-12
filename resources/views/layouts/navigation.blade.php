@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 -m-5 flex items-center mix-blend-multiply">
                     <a class="block w-24" href="{{ route('home_diary') }}">
-                        <img src="/storage/logo.jpg" alt="logo">
+                        <img src="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1694504297/iyfnp36solrghvygndv8.jpg" alt="logo">
                     </a>
                 </div>
 
@@ -40,7 +40,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-base leading-4 font-medium rounded-md text-gray-900  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <img alt="blog" src="{{ asset('storage/profiles/'. Auth::user()->profile->profile_image) }}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center mr-4">
+                            <img alt="blog" src="{{ Auth::user()->profile->profile_image_url }}"class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center mr-4">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">

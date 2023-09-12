@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use Cloudinary;
 
 class ProfileController extends Controller
 {
@@ -39,10 +40,10 @@ class ProfileController extends Controller
         $input_profile = $request['profile'];
         $profile = $request->user()->profile;
         
-        if(isset($input_profile['profile_image'])) {
-           $file_name = $input_profile['profile_image']->getClientOriginalName();
-           $input_profile['profile_image']->storeAs('public/profiles', $file_name);
-           $input_profile['profile_image'] = $file_name;
+        if($request->file('profile_image')) {
+            
+             $profile_image_url = Cloudinary::upload($request->file('profile_image')->getRealPath())->getSecurePath();
+             $input_profile += ['profile_image_url' => $profile_image_url];
         }
        
        

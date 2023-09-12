@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-white">
             <div  class="mix-blend-multiply">
                 <a class="block w-32 h-32" href="/">
-                    <img src="/storage/logo.jpg" alt="logo">
+                    <img src="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1694504297/iyfnp36solrghvygndv8.jpg" alt="logo">
                 </a>
             </div>
             <div class="w-full sm:max-w-md  px-6 py-4 mb-10 bg-white border border-black shadow-md overflow-hidden sm:rounded-lg">

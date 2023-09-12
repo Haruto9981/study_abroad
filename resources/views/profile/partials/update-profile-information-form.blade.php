@@ -18,9 +18,9 @@
         
         <div class="flex justify-center">
             <label for="profile-image">
-                <img alt="Profile image" src="{{ asset('storage/profiles/'. $user->profile->profile_image) }}" class="w-32 h-32 rounded-full  object-cover object-center">
-                <input id="profile-image" name="profile[profile_image]" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
-                <p  style="color:red">{{ $errors->first('profile.profile_image') }}</p>
+                <img alt="Profile image" src="{{ $user->profile->profile_image_url }}" class="w-32 h-32 rounded-full  object-cover object-center">
+                <input id="profile-image" name="profile_image" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
+                <p  style="color:red">{{ $errors->first('profile.profile_image_url') }}</p>
             </label>
         </div>
 

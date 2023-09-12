@@ -4,19 +4,6 @@
         
         <h2 class="text-xl">Fill in your Profile</h2>
         
-        <div class="flex justify-center">
-            <label for="profile-image">
-                <img alt="Profile image" src="storage/profiles/default.png" class="w-20 h-20 rounded-full  object-cover object-center">
-                <input id="profile-image" name="profile_image" type="file" class="form-control @error('profile-image') is-invalid @enderror" style="display:none;" value="" accept="image/png, image/jpeg">
-                <x-input-error :messages="$errors->get('profile_image')" class="mt-2" />
-            </label>
-        </div>
-        <div class="flex justify-center mt-2">
-            <h2 class="text-sm">Choose your profile image!</h2>
-        </div>
-        
-       
-        
         <div class="mt-2 mb-4">
             <label for="name">{{ __('Name') }}</label>
             <input id="name" class="block mt-1 w-full rounded-lg" type="text" name="name" value="{{old('name')}}" required autofocus autocomplete="name" />

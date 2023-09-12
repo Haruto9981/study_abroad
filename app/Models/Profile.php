@@ -21,7 +21,7 @@ class Profile extends Model
         'gender',
         'start_date',
         'end_date',
-        'profile_image',
+        'profile_image_url',
         'region',
         'bio',
         'user_id'

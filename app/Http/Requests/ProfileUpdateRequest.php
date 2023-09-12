@@ -21,7 +21,7 @@ class ProfileUpdateRequest extends FormRequest
             'profile.region' => ['required', 'string', 'max:30'],
             'profile.start_date' => ['required','date'],
             'profile.end_date' => ['required','date', 'after:profile.start_date'],
-            'profile.bio' => ['string', 'max:1000']
+            'profile.bio'
         ];
     }
     

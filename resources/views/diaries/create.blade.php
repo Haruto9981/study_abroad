@@ -21,7 +21,7 @@
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Picture</h2>
-                        <input type="file" name="diary[photo]"> 
+                        <input type="file" name="photo"> 
                     </div>
                     <div  class="my-4">
                         <select name="diary[is_private]">
