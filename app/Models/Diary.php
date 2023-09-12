@@ -34,7 +34,7 @@ class Diary extends Model
     protected $fillable = [
         'title',
         'content',
-        'photo',
+        'photo_url',
         'is_private'
     ];
     

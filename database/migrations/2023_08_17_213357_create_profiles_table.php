@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('bio', 1000)->nullable();
             $table->string('country');
             $table->string('gender');
-            $table->string('profile_image')->default('default.png');
+            $table->string('profile_image_url')->default('https://res.cloudinary.com/dkkvbt5jl/image/upload/v1694503179/vzorevtyjmsvhsgvpwky.png');
             $table->string('region', 30);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();

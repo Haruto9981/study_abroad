@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->text('photo')->nullable();
+            $table->string('photo_url')->nullable();
             $table->string('is_private')->default('private');
             $table->timestamps();
             $table->softDeletes();

@@ -10,6 +10,7 @@ use App\Models\DiaryComment;
 use App\Http\Requests\DiaryRequest;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
+use Cloudinary;
 
 class DiaryController extends Controller
 {
@@ -53,15 +54,17 @@ class DiaryController extends Controller
         $input = $request['diary'];
         $diary->user_id = \Auth::id();
         
-        if(isset($input['photo'])) {
-           $file_name = $input['photo']->getClientOriginalName();
-           $input['photo']->storeAs('public/photos', $file_name);
-           $input['photo'] = $file_name;
+        if($request->file('photo')) {
+            
+             $photo_url = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+             $input += ['photo_url' => $photo_url]; 
         }
-       
+        
         $diary->fill($input)->save();
         return redirect('/diaries/index');
     }
+    
+     
     
     public function edit(Diary $diary)
     {
@@ -72,10 +75,10 @@ class DiaryController extends Controller
     {
         $input = $request['diary'];
          
-        if(isset($input['photo'])) {
-           $file_name = $input['photo']->getClientOriginalName();
-           $input['photo']->storeAs('public/photos', $file_name);
-           $input['photo'] = $file_name;
+        if($request->file('photo')) {
+            
+             $photo_url = Cloudinary::upload($request->file('photo')->getRealPath())->getSecurePath();
+             $input += ['photo_url' => $photo_url]; 
         }
         
         $diary->fill($input)->save();

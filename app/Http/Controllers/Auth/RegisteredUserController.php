@@ -58,6 +58,8 @@ class RegisteredUserController extends Controller
             'bio' => $request->bio,
             'user_id' => $user->id
         ]);
+        
+        
 
         event(new Registered($user));
 

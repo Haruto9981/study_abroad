@@ -23,7 +23,7 @@
                               <div class="flex justify-between">
                                  <div>
                                     <a href="/profile/{{$following->id}}" class="inline-flex">
-                                      <img alt="blog" src="{{ asset('storage/profiles/'. $following->profile->profile_image) }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
+                                      <img alt="blog"  src="{{ $following->profile->profile_image_url }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
                                       <span class="flex-grow flex flex-col pl-4 pt-2">
                                         <span class="title-font text-lg text-gray-900">{{$following->name}}</span>
                                         <span class="title-font font-medium text-gray-900">[{{$following->profile->country}}]</span>

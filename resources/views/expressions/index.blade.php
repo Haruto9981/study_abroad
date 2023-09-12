@@ -13,7 +13,7 @@
                           <div class="flex border-b border-black pb-4  w-full">
                              <div>
                                 <a href="/profile/{{$expression->user->id}}" class="inline-flex items-center">
-                                  <img alt="blog" src="{{ asset('storage/profiles/'. $expression->user->profile->profile_image) }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
+                                  <img alt="blog"  src="{{ $expression->user->profile->profile_image_url }}" class="w-16 h-16 rounded-full flex-shrink-0 object-cover object-center">
                                   <span class="flex-grow flex flex-col pl-4">
                                     <span class="title-font  text-lg text-gray-900">{{$expression->user->name}} </span>
                                     <span class="title-font font-medium text-gray-900">[{{$expression->user->profile->country}}]</span>
