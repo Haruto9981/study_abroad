@@ -32,7 +32,7 @@ class ProfileUpdateRequest extends FormRequest
             'email.required' => 'You are required to put something',
             'profile.region.required' => 'You are required to put something',
             'profile.start_date.required' => 'You are required to put something',
-            'profile.end_date.required' => 'You are required to put something',
+            'profile.end_date.required' => 'You are required to put something'
         ];
     }
 }
