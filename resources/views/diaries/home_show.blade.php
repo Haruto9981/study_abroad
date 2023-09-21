@@ -24,8 +24,8 @@
                       <div>
                           <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{{$diary->title}}</h2>
                           <p class="leading-relaxed mb-8">{{$diary->content}}</p>
-                          @if($diary->photo != null)
-                             <img alt="blog" src="{{ $diary->profile->profile_image_url }}" class="mb-8 w-auto h-96">
+                          @if($diary->photo_url != null)
+                             <img alt="blog" src="{{$diary->photo_url}}" class="mb-8 w-auto h-96">
                           @endif
                       </div>
                       @if($diary->is_private == 'public')
