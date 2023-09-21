@@ -96,7 +96,7 @@
                                               <img alt="blog" src="{{ $comment->user->profile->profile_image_url }}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
                                               <span class="flex-grow flex flex-col pl-4">
                                                 <span class="title-font font-medium text-gray-900">{{ $comment->user->name}} [{{$comment->user->profile->country}}] </span>
-                                                <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{$comment->created_at}}</span>
+                                                <span class="text-blue-600 text-xs tracking-widest mt-0.5">{{$comment->created_at}}</span>
                                               </span>
                                             </a>  
                                         </div>
