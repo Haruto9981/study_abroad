@@ -2,10 +2,11 @@
 
 <h1 align="center">Abroad＋</h1>
 
-<img align="center" src="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1694504297/iyfnp36solrghvygndv8.jpg">
+<div align="center">
+    <a href="https://www.abroad-plus.com"><img src="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1694504297/iyfnp36solrghvygndv8.jpg"></a>
+</div>
 
-<a href="https://www.abroad-plus.com" target="_blank">アプリURL:https://www.abroad-plus.com</a>
-
+アプリURL:https://www.abroad-plus.com
 
 ## 制作背景
 
