@@ -9,11 +9,10 @@
       
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://kit.fontawesome.com/f7b82fd301.js" crossorigin="anonymous"></script>
-        <link rel="shortcut icon" href="{{ asset('/favicon/favicon.ico')}}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/storage/favicons/apple-touch-icon.png')}}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/storage/favicons/favicon-32x32.png')}}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/storage/favicons/favicon-16x16.png')}}">
-        <link rel="mask-icon" href="{{ asset('/storage/favicons/safari-pinned-tab.svg" color="#5bbad5')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904207/apple-touch-icon_gg5xce.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904294/favicon-32x32_jhsn7u.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904334/favicon-16x16_g15wzf.png">
+        <link rel="mask-icon" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904413/safari-pinned-tab_ja75ta.svg">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
