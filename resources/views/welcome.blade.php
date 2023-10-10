@@ -37,7 +37,7 @@
       </header>
       <div class="relative">
         <div>
-           <img class="absolute w-auto h-max px-20 pt-2 pb-20" src="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696775639/Pixel%20Map.png">
+           <img class="absolute w-max h-auto px-20 pt-2 pb-20" src="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696775639/Pixel%20Map.png">
         </div>
         <section class="text-gray-600 body-font absolute mx-20">
           <div class="container px-5 py-20 mx-auto">
