@@ -22,7 +22,9 @@
                             </a>  
                           </div>
                           <div class="pl-52 pt-2">
-                            <h2 class="bg-orange-400 text-white font-bold rounded px-4 py-2">{{$diary->user->profile->region}}</h2>  
+                            <a href="/profile/{{$diary->user->id}}/map/?region={{$diary->user->profile->region}}&country={{$diary->user->profile->country}}">
+                                <h2 class="bg-orange-400 text-white font-bold rounded px-4 py-2">{{$diary->user->profile->region}}</h2>
+                            </a>
                           </div>  
                       </div>
                     <div>

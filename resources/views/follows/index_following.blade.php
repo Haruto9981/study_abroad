@@ -31,7 +31,9 @@
                                     </a>  
                                   </div>
                                   <div class="pt-3">
-                                    <h2 class="bg-orange-400 rounded text-white font-bold px-4 py-2">{{$following->profile->region}}</h2>  
+                                    <a href="/profile/{{$following->id}}/map/?region={{$following->profile->region}}&country={{$following->profile->region}}">
+                                        <h2 class="bg-orange-400 rounded text-white font-bold px-4 py-2">{{$following->profile->region}}</h2> 
+                                    </a>
                                   </div>
                                    <div class="px-8 pt-3">
                                        <form action="{{route('unfollowing', $following->id)}}" method="POST">

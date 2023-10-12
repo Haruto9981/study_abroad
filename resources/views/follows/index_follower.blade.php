@@ -33,7 +33,9 @@
                                     </a>  
                                   </div>
                                   <div class="pt-3">
-                                    <h2 class="bg-orange-400 rounded text-white font-bold px-4 py-2">{{$follower->profile->region}}</h2>  
+                                    <a href="/profile/{{$follower->id}}/map/?region={{$follower->profile->region}}&country={{$follower->profile->region}}">
+                                        <h2 class="bg-orange-400 rounded text-white font-bold px-4 py-2">{{$follower->profile->region}}</h2> 
+                                    </a>
                                   </div>
                                        @if($follower->followers()->where('user_id', Auth::id())->exists())
                                            <div class="px-8 pt-3">
