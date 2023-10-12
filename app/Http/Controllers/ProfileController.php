@@ -77,4 +77,9 @@ class ProfileController extends Controller
     {
         return view("profile.show")->with(['user' => $user]);
     }
+    
+    public function map(User $user)
+    {
+        return view("profile.map")->with(['user' => $user]);
+    }
 }

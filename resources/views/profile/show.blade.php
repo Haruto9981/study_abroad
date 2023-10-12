@@ -33,7 +33,7 @@
                 <p class="py-2">Bio: {{ $user->profile->bio}}<p>
             </div>
             <div class="flex justify-center">
-                <div class="border border-black flex justify-center rounded px-4 py-2 w-20">
+                <div class="rounded-lg text-white font-bold bg-orange-300 flex justify-center rounded px-4 py-2 w-20">
                     <a onclick="history.back()">Back</a>
                 </div>
             </div>

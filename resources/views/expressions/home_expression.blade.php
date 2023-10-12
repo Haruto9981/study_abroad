@@ -22,7 +22,9 @@
                                 </a>  
                               </div>
                               <div class="pl-52 pt-2">
-                                <h2 class="bg-orange-400 text-white font-bold rounded px-4 py-2">{{$expression->user->profile->region}}</h2>  
+                                <a href="/profile/{{$expression->user->id}}/map/?region={{$expression->user->profile->region}}&country={{$expression->user->profile->country}}">
+                                    <h2 class="bg-orange-400 text-white font-bold rounded px-4 py-2">{{$expression->user->profile->region}}</h2>
+                                </a>
                               </div>  
                           </div>
                         <div>

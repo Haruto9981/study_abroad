@@ -65,12 +65,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/{user}/map', [ProfileController::class, 'map'])->name('profile.map');
 });
 
 Route::get('/calendar', [ScheduleController::class, 'show'])->name('calendar');
 Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
 Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
 Route::delete('/schedule-delete/{id}', [ScheduleController::class, 'scheduleDelete'])->name('schedule-delete');
+
+
 
 
 require __DIR__.'/auth.php';
