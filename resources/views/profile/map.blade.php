@@ -23,7 +23,7 @@
           for more information.
           -->
         <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGDyT4f8aLqnuYOE6XmGJq-yTd7ERliWE&callback=initAutocomplete&libraries=places&v=weekly"
+          src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-map.apikey') }}&callback=initAutocomplete&libraries=places&v=weekly"
           defer
         ></script>
     </body>
