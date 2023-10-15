@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('is_private')->default('private');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 

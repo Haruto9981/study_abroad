@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('region', 30);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
