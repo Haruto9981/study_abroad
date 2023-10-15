@@ -7,14 +7,14 @@
             </div>
             @if($user->id !== Auth::user()->id)
                 @if($user->followers()->where('user_id', Auth::user()->id)->exists())
-                    <div class="rounded-lg text-white font-bold bg-orange-300 ml-10 rounded flex justify-center px-6 py-2 w-28">
+                    <div class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 ml-10 rounded flex justify-center px-6 py-2 w-28">
                         <form action="{{route('unfollowing', $user->id)}}" method="POST">
                             @csrf
                             <input type="submit" value="Unfollow">
                         </form>
                     </div>
                 @else
-                    <div class="rounded-lg text-white font-bold bg-orange-400 ml-10 rounded flex justify-center px-6 py-2 w-28">
+                    <div class="rounded-lg text-white font-bold bg-orange-400 hover:bg-orange-300 ml-10 rounded flex justify-center px-6 py-2 w-28">
                         <form action="{{route('following', $user->id)}}" method="POST">
                             @csrf
                             <input type="submit" value="Follow">
@@ -33,7 +33,7 @@
                 <p class="py-2">Bio: {{ $user->profile->bio}}<p>
             </div>
             <div class="flex justify-center">
-                <div class="rounded-lg text-white font-bold bg-orange-300 flex justify-center rounded px-4 py-2 w-20">
+                <div class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 flex justify-center rounded px-4 py-2 w-20">
                     <a onclick="history.back()">Back</a>
                 </div>
             </div>

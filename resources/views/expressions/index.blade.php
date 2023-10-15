@@ -4,7 +4,7 @@
             <br>
             <h1  class="text-4xl">My Expressions</h1>
             <a class="flex justify-end" href="/expressions/create">
-                <button id="expressions-button" class="rounded-lg bg-orange-300 text-white font-bold px-4 py-2">Add</button>
+                <button id="expressions-button" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Add</button>
             </a>
             <div class="w-full mb-10 lg:mb-0" >
                 @foreach ($expressions as $expression)
@@ -34,12 +34,12 @@
                             <div class="flex pt-4">
                                 <div>
                                     <a href="/expressions/{{$expression->id}}/edit">
-                                        <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Edit</button>
+                                        <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Edit</button>
                                     </a>
                                 </div>
                                 
                                 <div class="ml-4">
-                                    <form  class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2" action="/expressions/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
+                                    <form  class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2" action="/expressions/{{ $expression->id }}" id="form_{{ $expression->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" onclick="deleteDiary({{ $expression->id }})">Delete</button> 
