@@ -6,12 +6,12 @@
                 <div class="flex justify-end mt-4">
                     <div>
                         <a href="/diaries/{{$diary->id}}/edit">
-                            <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2">Edit</button>
+                            <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400  px-4 py-2">Edit</button>
                         </a>
                     </div>
                     
                     <div class="ml-4">
-                        <form  class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2" action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
+                        <form  class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2" action="/diaries/{{ $diary->id }}" id="form_{{ $diary->id }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="button" onclick="deleteDiary({{ $diary->id }})">Delete</button> 
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <a class="flex justify-center" href="/diaries/index">
-                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2">Back</button>
+                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400  px-4 py-2">Back</button>
             </a>
         </div>
         
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class="flex justify-center  py-20">
-                            <button class="rounded-lg text-white font-bold bg-orange-300  px-4 py-2 w-20" type="submit">Post</button>
+                            <button class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400  px-4 py-2 w-20" type="submit">Post</button>
                         </div>
                     </form>
                 </div>

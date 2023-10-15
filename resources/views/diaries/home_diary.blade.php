@@ -3,7 +3,7 @@
       <br>
       <h1  class="text-4xl pl-24">Posts</h1>
       <a class="flex justify-center pr-36" href="/expressions/home_expression">
-        <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Expressions</button>
+        <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Expressions</button>
       </a>
       <div class="container px-5 pb-10 mx-auto flex">
         <div class="lg:w-1/2 w-full mb-10 lg:mb-0" >
@@ -23,7 +23,7 @@
                           </div>
                           <div class="pl-52 pt-2">
                             <a href="/profile/{{$diary->user->id}}/map/?region={{$diary->user->profile->region}}&country={{$diary->user->profile->country}}">
-                                <h2 class="bg-orange-400 text-white font-bold rounded px-4 py-2">{{$diary->user->profile->region}}</h2>
+                                <h2 class="bg-orange-400 hover:bg-orange-300 text-white font-bold rounded px-4 py-2">{{$diary->user->profile->region}}</h2>
                             </a>
                           </div>  
                       </div>

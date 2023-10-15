@@ -8,7 +8,7 @@
                     <p class="pl-7">{{$followings->count()}} </p>
                     <h2>Following</h2>
                 </div>
-                <div class="mt-4 p-4 bg-orange-400 text-white font-bold rounded-3xl">
+                <div class="mt-4 p-4 bg-orange-400 hover:bg-orange-300 text-white font-bold rounded-3xl">
                     <p class="pl-7">{{$followers->count()}}</p>
                     <a href="/follows/index_follower">
                     <button id="expressions-button">Followers</button>
@@ -32,13 +32,13 @@
                                   </div>
                                   <div class="pt-3">
                                     <a href="/profile/{{$following->id}}/map/?region={{$following->profile->region}}&country={{$following->profile->region}}">
-                                        <h2 class="bg-orange-400 rounded text-white font-bold px-4 py-2">{{$following->profile->region}}</h2> 
+                                        <h2 class="bg-orange-400 hover:bg-orange-300 rounded text-white font-bold px-4 py-2">{{$following->profile->region}}</h2> 
                                     </a>
                                   </div>
                                    <div class="px-8 pt-3">
                                        <form action="{{route('unfollowing', $following->id)}}" method="POST">
                                             @csrf
-                                            <input class="bg-orange-300 rounded text-white font-bold px-4 py-2" type="submit" value="Unfollow">
+                                            <input class="bg-orange-300 hover:bg-orange-400 rounded text-white font-bold px-4 py-2" type="submit" value="Unfollow">
                                         </form>
                                   </div>
                               </div>

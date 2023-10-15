@@ -62,7 +62,7 @@
                 </div>
             </div>
             <a class="flex justify-center" href="/diaries/home_diary">
-                <button id="expressions-button" class="rounded-lg bg-orange-300 text-white font-bold px-4 py-2">Back</button>
+                <button id="expressions-button" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Back</button>
             </a>
         </div>
         
@@ -107,7 +107,7 @@
                             </div>
                         </div>
                         <div class="flex justify-center  py-20">
-                            <button class=" rounded-lg px-4 py-2 w-20 bg-orange-300 text-white font-bold" type="submit">Post</button>
+                            <button class=" rounded-lg px-4 py-2 w-20 bg-orange-300 hover:bg-orange-400 text-white font-bold" type="submit">Post</button>
                         </div>
                     </form>
                 </div>

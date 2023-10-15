@@ -4,7 +4,7 @@
             <br>
             <h1  class="text-4xl">My Diaries</h1>
             <a class="flex justify-end" href="/diaries/create">
-                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 px-4 py-2">Create</button>
+                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Create</button>
             </a>
             <div class="w-full mb-10 lg:mb-0" >
                 @foreach ($diaries as $diary)

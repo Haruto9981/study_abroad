@@ -4,7 +4,7 @@
             <br>
             <h1  class="text-4xl">Edit</h1>
             <a class="flex justify-end" href="/diaries/index/{{$diary->id}}">
-                <button class="rounded-lg bg-orange-300 text-white font-bold px-4 py-2">Back</button>
+                <button class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Back</button>
             </a>
             <div class="my-10 lg:mb-0 border border-black px-10 pt-4 pb-10 rounded-3xl">
                 <form  action="/diaries/{{ $diary->id }}" method="POST" enctype="multipart/form-data">
@@ -31,7 +31,7 @@
                         </select>
                     </div>
                     <div class="flex justify-center">
-                        <button type="submit" class="rounded-lg bg-orange-300 text-white font-bold px-4 py-2">Save</button>
+                        <button type="submit" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Save</button>
                     </div>
                 </form>
             </div>
