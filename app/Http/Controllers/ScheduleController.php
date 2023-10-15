@@ -31,13 +31,12 @@ class ScheduleController extends Controller
             'end_date' => 'required|integer',
             'event_name' => 'required|max:50',
         ]);
-
        
         $schedule = new Schedule;
         $schedule->start_date = date('Y-m-d', $request->input('start_date') / 1000);
         $schedule->end_date = date('Y-m-d', $request->input('end_date') / 1000);
         $schedule->event_name = $request->input('event_name');
-        $schedule->user_id = \Auth::id();
+        $schedule->user_id = Auth::user()->id;
         $schedule->save();
 
         return $schedule;

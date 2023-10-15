@@ -14,7 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::controller(DiaryController::class)->middleware(['auth'])->group(function(){
     Route::get('/diaries/home_diary', 'home_diary')->name('home_diary');
     Route::get('/diaries/index', 'index')->name('index');
@@ -51,7 +50,6 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::post('/diaries/{diary}/comment', 'store')->name('store');
 });
 
-
 Route::controller(FollowUserController::class)->middleware(['auth'])->group(function(){
     Route::get('/follows/index_following', 'index_following')->name('index_following');
     Route::get('follows/index_follower', 'index_follower')->name('index_follower');
@@ -59,21 +57,19 @@ Route::controller(FollowUserController::class)->middleware(['auth'])->group(func
     Route::post('/follows/{user}/unfollowing', 'destroy')->name('unfollowing');
 });
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/profile/{user}/map', [ProfileController::class, 'map'])->name('profile.map');
+Route::controller(ProfileController::class)->middleware('auth')->group(function () {
+    Route::get('/profile', 'edit')->name('profile.edit');
+    Route::patch('/profile', 'update')->name('profile.update');
+    Route::delete('/profile', 'destroy')->name('profile.destroy');
+    Route::get('/profile/{user}', 'show')->name('profile.show');
+    Route::get('/profile/{user}/map', 'map')->name('profile.map');
 });
 
-Route::get('/calendar', [ScheduleController::class, 'show'])->name('calendar');
-Route::post('/schedule-add', [ScheduleController::class, 'scheduleAdd'])->name('schedule-add');
-Route::post('/schedule-get', [ScheduleController::class, 'scheduleGet'])->name('schedule-get');
-Route::delete('/schedule-delete/{id}', [ScheduleController::class, 'scheduleDelete'])->name('schedule-delete');
-
-
-
+Route::controller(ScheduleController::class)->middleware('auth')->group(function() {
+    Route::get('/calendar', 'show')->name('calendar');
+    Route::post('/schedule-add', 'scheduleAdd')->name('schedule-add');
+    Route::post('/schedule-get', 'scheduleGet')->name('schedule-get');
+    Route::delete('/schedule-delete/{id}', 'scheduleDelete')->name('schedule-delete');
+});
 
 require __DIR__.'/auth.php';

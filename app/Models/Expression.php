@@ -5,15 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Expression extends Model
 {
     use HasFactory;
     use SoftDeletes;
     
-    public function getPaginateByLimit (int $limit_count = 4)
+    public function getPublicExpression(int $limit_count = 5)
     {
-        return $this->where('is_private', 'public')->orderBy('updated_at', 'DESC')->paginate($limit_count, ['*'], 'page2');
+        return $this->where('is_private', 'public')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
+    public function getAuthUserExpression(int $limit_count = 5)
+    {
+        return $this->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
     public function user()

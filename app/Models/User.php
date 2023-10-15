@@ -12,11 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     public function diaries()
     {
         return $this->hasMany(Diary::class);
@@ -50,7 +45,6 @@ class User extends Authenticatable
     
     public function followers()
     {
-        
         return $this->belongsToMany(User::class, 'follow_user', 'follow_id', 'user_id')->withTimestamps();
     }
     
@@ -63,8 +57,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Schedule::class);
     }
-    
-  
     
     
     protected $fillable = [

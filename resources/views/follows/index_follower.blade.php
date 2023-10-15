@@ -37,7 +37,7 @@
                                         <h2 class="bg-orange-400 rounded text-white font-bold px-4 py-2">{{$follower->profile->region}}</h2> 
                                     </a>
                                   </div>
-                                       @if($follower->followers()->where('user_id', Auth::id())->exists())
+                                       @if($follower->followers()->where('user_id', Auth::user()->id)->exists())
                                            <div class="px-8 pt-3">
                                                <form action="{{route('unfollowing', $follower->id)}}" method="POST">
                                                     @csrf

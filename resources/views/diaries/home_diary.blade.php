@@ -43,7 +43,7 @@
                       </a>
                       <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4 ">
                         <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                            @if($diary->users()->where('user_id', Auth::id())->exists())
+                            @if($diary->users()->where('user_id', Auth::user()->id)->exists())
                                 <div>
                                     <form action="{{route('diary_unlikes', $diary)}}" method="POST">
                                         @csrf
@@ -64,7 +64,7 @@
                             @endif
                             <div class="pl-2">
                                 <p>{{$diary->users()->count()}} likes</p>
-                            </div>  
+                            </div>
                         </svg>
                       </span>
                       <span class="inline-flex items-center leading-none mt-4">
@@ -91,12 +91,17 @@
             </a>
             <br>
             <div class="text-4xl text-center">
+                <!-- 留学開始日が現在よりも未来である場合 -->
                 @if ($diff2->invert === 0)
-                <h2><span class="text-red-500 font-bold">{{ $diff2->format('%a') + 1 }}days</span> to the start of your SA!</h2>
+                    <h2><span class="text-red-500 font-bold">{{ $diff2->format('%a') + 1 }}days</span> to the start of your SA!</h2>
+                    
+                <!-- 留学終了日が現在よりも過去である場合 -->
                 @elseif ($diff1->invert === 1)
-                <h2 class="text-red-500 font-bold">Your SA is already over!</h2>
+                    <h2 class="text-red-500 font-bold">Your SA is already over!</h2>
+                    
+                <!-- 上記以外 -->
                 @else
-                <h2><span class="text-red-500 font-bold">{{ $diff1->format('%a') + 1 }}days</span> left to the end of your SA!</h2>
+                    <h2><span class="text-red-500 font-bold">{{ $diff1->format('%a') + 1 }}days</span> left to the end of your SA!</h2>
                 @endif
             </div>
             <br>

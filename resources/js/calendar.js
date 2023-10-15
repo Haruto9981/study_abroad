@@ -17,12 +17,6 @@ if(calendarEl != null) {
     },
     height: 'auto',
     
-    
-    
-    
-   
-
-    
     selectable: true,
     select: function (info) {
        

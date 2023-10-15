@@ -10,11 +10,6 @@ class Schedule extends Model
 {
     use HasFactory;
     
-    protected $fillable = [
-        'start_date', 'end_date', 'event_name', 'user_id'
-    ];
-    
- 
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -22,6 +17,10 @@ class Schedule extends Model
     
     public function getIndividualSchedule()
     {
-        return $this->where('user_id', Auth::id());
+        return $this->where('user_id', Auth::user()->id);
     }
+    
+    protected $fillable = [
+        'start_date', 'end_date', 'event_name', 'user_id'
+    ];
 }
