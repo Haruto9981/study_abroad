@@ -11,24 +11,24 @@
                     @csrf
                     <div class="my-4">
                         <h2 class="text-3xl mb-2">Vocabulary</h2>
-                        <input class="w-full" type="text" name="expression[vocabulary]" placeholder="Vocabulary"/>
+                        <input class="w-full" type="text" name="expression[vocabulary]" placeholder="Vocabulary" value="{{ old('expression.vocabulary') }}"/>
                         <p style="color:red">{{ $errors->first('expression.vocabulary') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Meaning</h2>
-                        <textarea class="w-full" name="expression[meaning]" placeholder="What does it mean?"></textarea>
+                        <textarea class="w-full" name="expression[meaning]" placeholder="What does it mean?">{{ old('expression.meaning') }}</textarea>
                          <p style="color:red">{{ $errors->first('expression.meaning') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Example</h2>
-                        <textarea class="w-full" name="expression[example]" placeholder="What's the example sentence?"></textarea>
+                        <textarea class="w-full" name="expression[example]" placeholder="What's the example sentence?">{{ old('expression.example') }}</textarea>
                          <p  style="color:red">{{ $errors->first('expression.example') }}</p>
                     </div>
 
                     <div  class="my-4">
                         <select name="expression[is_private]">
-                            <option value="private">private</option>
-                            <option value="public">public</option>
+                            <option value="private" {{ old('expression[is_private]', 'private') == 'private' ? 'selected' : ''}}>private</option>
+                            <option value="public" {{ old('expression.is_private') == 'public' ? 'selected' : ''}}>public</option>
                         </select>
                     </div>
                     <div class="flex justify-center">

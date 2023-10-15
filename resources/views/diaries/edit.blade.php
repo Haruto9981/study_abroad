@@ -26,8 +26,8 @@
                     </div>
                     <div  class="my-4">
                         <select name="diary[is_private]">
-                            <option value="private">private</option>
-                            <option value="public">public</option>
+                            <option value="private" {{ old('diary[is_private]', $diary->is_private) == 'private' ? 'selected' : ''}} >private</option>
+                            <option value="public" {{ old('diary[is_private]', $diary->is_private) == 'public' ? 'selected' : ''}} >public</option>
                         </select>
                     </div>
                     <div class="flex justify-center">
