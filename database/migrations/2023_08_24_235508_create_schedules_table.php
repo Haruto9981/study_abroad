@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->string('event_name');
             $table->timestamps();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 

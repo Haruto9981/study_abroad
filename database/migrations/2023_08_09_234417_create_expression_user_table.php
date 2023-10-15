@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('expression_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expression_id')->constrained('expressions');  
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('expression_id')->constrained('expressions')->cascadeOnDelete();  
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
             $table->unique(['expression_id', 'user_id']);
         });
