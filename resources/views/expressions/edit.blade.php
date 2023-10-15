@@ -27,8 +27,8 @@
                     </div>
                     <div  class="my-4">
                         <select name="expression[is_private]">
-                            <option value="private">private</option>
-                            <option value="public">public</option>
+                            <option value="private" {{ old('expression[is_private]', $expression->is_private) == 'private' ? 'selected' : ''}}>private</option>
+                            <option value="public" {{ old('expression[is_private]',$expression->is_private) == 'public' ? 'selected' : ''}}>public</option>
                         </select>
                     </div>
                     <div class="flex justify-center">

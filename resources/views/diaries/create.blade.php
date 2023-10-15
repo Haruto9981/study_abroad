@@ -11,12 +11,12 @@
                     @csrf
                     <div class="my-4">
                         <h2 class="text-3xl mb-2">Title</h2>
-                        <input class="w-full" type="text" name="diary[title]" placeholder="Title"/>
+                        <input class="w-full" type="text" name="diary[title]" placeholder="Title" value="{{ old('diary.title') }}"/>
                         <p  style="color:red">{{ $errors->first('diary.title') }}</p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Content</h2>
-                        <textarea class="w-full h-60" name="diary[content]" placeholder="What's your experience?"></textarea>
+                        <textarea class="w-full h-60" name="diary[content]" placeholder="What's your experience?">{{ old('diary.content') }}</textarea>
                          <p  style="color:red">{{ $errors->first('diary.content') }}</p>
                     </div>
                     <div  class="my-4">
@@ -25,8 +25,8 @@
                     </div>
                     <div  class="my-4">
                         <select name="diary[is_private]">
-                            <option value="private">private</option>
-                            <option value="public">public</option>
+                            <option value="private" {{ old('diary[is_private]', 'private') == 'private' ? 'selected' : ''}}>private</option>
+                            <option value="public" {{ old('diary.is_private') == 'public' ? 'selected' : ''}}>public</option>
                         </select>
                     </div>
                     <div class="flex justify-center">
