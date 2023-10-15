@@ -11,21 +11,21 @@ use DateTime;
 
 class ExpressionController extends Controller
 {
-    public function home_expression(Expression $expression, User $user)
+    public function home_expression(Expression $expression)
     {
         $user = Auth::user();
         $end_date = new DateTime($user->profile->end_date);
         $start_date = new DateTime($user->profile->start_date);
-        $current  = new DateTime('now');
+        $current  = new DateTime();
         $diff1 = $current->diff($end_date);
         $diff2 = $current->diff($start_date);
-        return view('expressions.home_expression')->with(['user' => $user, 'expressions' => $expression->getPaginateBylimit(), 'diff1' => $diff1, 'diff2' => $diff2]);
+        return view('expressions.home_expression')->with(['expressions' => $expression->getPublicExpression(), 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2]);
     }
+    
     
     public function index(Expression $expression) 
     {
-        $expression = Auth::user()->expressions()->orderBy('updated_at', 'DESC')->paginate(4);
-        return view('expressions.index')->with(['expressions' => $expression]);
+        return view('expressions.index')->with(['expressions' => $expression->getAuthUserExpression()]);
     }
     
     
@@ -34,18 +34,21 @@ class ExpressionController extends Controller
         return view('expressions.create')->with(['expression' => $expression]);
     }
     
+    
     public function add(ExpressionRequest $request, Expression $expression)
     {
         $input = $request['expression'];
-        $expression->user_id = \Auth::id();
+        $expression->user_id = Auth::user()->id;
         $expression->fill($input)->save();
         return redirect('/expressions/index');
     }
+    
     
     public function edit(Expression $expression)
     {
         return view('expressions.edit')->with(['expression' => $expression]);
     }
+    
     
     public function update(ExpressionRequest $request, Expression $expression)
     {
@@ -53,6 +56,7 @@ class ExpressionController extends Controller
         $expression->fill($input)->save();
         return redirect('/expressions/index');
     }
+    
     
     public function delete(Expression $expression)
     {

@@ -5,8 +5,8 @@
             <div class="flex justify-center">
                 <img alt="Profile image"  src="{{ $user->profile->profile_image_url }}" class="w-32 h-32 rounded-full  object-cover object-center">
             </div>
-            @if($user->id !== Auth::id())
-                @if($user->followers()->where('user_id', Auth::id())->exists())
+            @if($user->id !== Auth::user()->id)
+                @if($user->followers()->where('user_id', Auth::user()->id)->exists())
                     <div class="rounded-lg text-white font-bold bg-orange-300 ml-10 rounded flex justify-center px-6 py-2 w-28">
                         <form action="{{route('unfollowing', $user->id)}}" method="POST">
                             @csrf

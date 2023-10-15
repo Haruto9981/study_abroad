@@ -35,7 +35,7 @@
                         <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
                           <span class=" inline-flex items-center ml-auto leading-none pr-3 py-1 mt-4">
                             <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                                @if($expression->users()->where('user_id', Auth::id())->exists())
+                                @if($expression->users()->where('user_id', Auth::user()->id)->exists())
                                     <div>
                                         <form action="{{route('expression_unlikes', $expression)}}" method="POST">
                                             @csrf
