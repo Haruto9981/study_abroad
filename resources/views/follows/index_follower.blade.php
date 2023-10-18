@@ -37,24 +37,23 @@
                                         <h2 class="bg-orange-400 hover:bg-orange-300 rounded text-white font-bold px-4 py-2">{{$follower->profile->region}}</h2> 
                                     </a>
                                   </div>
-                                       @if($follower->followers()->where('user_id', Auth::user()->id)->exists())
-                                           <div class="px-8 pt-3">
-                                               <form action="{{route('unfollowing', $follower->id)}}" method="POST">
-                                                    @csrf
-                                                    <input class="bg-orange-300 hover:bg-orange-400 rounded text-white font-bold rounded px-4 py-2" type="submit" value="Unfollow">
-                                                </form>
-                                          </div>
-                                       @else
-                                          <div class="px-8 pt-3">
+                                    @if($follower->followers()->where('user_id', Auth::user()->id)->exists())
+                                        <div class="px-8 pt-3">
+                                            <form action="{{route('unfollowing', $follower->id)}}" method="POST">
+                                                @csrf
+                                                <input class="bg-orange-300 hover:bg-orange-400 rounded text-white font-bold rounded px-4 py-2" type="submit" value="Unfollow">
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="px-8 pt-3">
                                             <form action="{{route('following', $follower->id)}}" method="POST">
                                                 @csrf
                                                 <input class="bg-orange-400 hover:bg-orange-300 rounded text-white font-bold px-4 py-2" type="submit" value="Follow">
                                             </form>
-                                          </div>
-                                      @endif
+                                        </div>
+                                    @endif
                                 </div>  
-                              </div>
-                          </div>
+                            </div>
                         </div>
                     @endforeach
                 </div>
