@@ -21,6 +21,24 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
         
+        <script> 
+            function countWords(words) { 
+              
+                let count = 0; 
+              
+                let split = words.split(' '); 
+              
+                for (let i = 0; i < split.length; i++) { 
+                    if (split[i] != "") { 
+                        count += 1; 
+                    } 
+                } 
+              
+                document.getElementById("inputlength") 
+                    .innerHTML = count;
+            } 
+        </script>
+        
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white">

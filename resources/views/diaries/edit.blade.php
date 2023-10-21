@@ -17,8 +17,9 @@
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Content</h2>
-                        <textarea class="w-full h-60" name="diary[content]" type="text">{{ $diary->content }}</textarea>
+                        <textarea class="w-full h-60" name="diary[content]" type="text" oninput="countWords(value);">{{ $diary->content }}</textarea>
                          <p style="color:red">{{ $errors->first('diary.content') }}</p>
+                         <p>Word Count: <span  id="inputlength">{{ $diary->word_count }}</span></p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Picture</h2>

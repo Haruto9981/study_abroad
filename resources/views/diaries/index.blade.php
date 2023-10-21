@@ -26,8 +26,9 @@
                               </div>  
                           </div>
                         <div>
-                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{{$diary->title}}</h2>
-                            <p class="leading-relaxed mb-8">{{$diary->content}}</p>
+                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-1">{{$diary->title}}</h2>
+                            <p class="mb-4">(Word Count: {{$diary->word_count}})</p>
+                            <p class="leading-relaxed mb-2">{{$diary->content}}</p>
                             @if($diary->photo_url != null)
                                 <img alt="blog" src="{{ $diary->photo_url }}" class="mb-8 w-auto h-96">
                             @endif

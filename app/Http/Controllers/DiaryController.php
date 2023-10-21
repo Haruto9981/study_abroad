@@ -56,6 +56,7 @@ class DiaryController extends Controller
     {
         $input = $request['diary'];
         $diary->user_id = Auth::user()->id;
+        $diary->word_count = str_word_count($input['content']);
         
         if($request->file('photo')) {
             
@@ -78,6 +79,7 @@ class DiaryController extends Controller
     public function update(DiaryRequest $request, Diary $diary)
     {
         $input = $request['diary'];
+        $diary->word_count = str_word_count($input['content']);
          
         if($request->file('photo')) {
             

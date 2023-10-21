@@ -41,7 +41,8 @@ class Diary extends Model
         'title',
         'content',
         'photo_url',
-        'is_private'
+        'is_private',
+        'word_count'
     ];
     
     
