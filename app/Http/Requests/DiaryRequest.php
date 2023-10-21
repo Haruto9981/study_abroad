@@ -24,7 +24,8 @@ class DiaryRequest extends FormRequest
             'diary.title' => 'required|string|max:100',
             'diary.content' => 'required|string|max:4000',
             'diary.photo_url',
-            'diary.is_private'
+            'diary.is_private',
+            'diary.word_count'
         ];
     }
     

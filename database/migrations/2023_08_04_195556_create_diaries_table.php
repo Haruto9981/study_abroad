@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('photo_url')->nullable();
             $table->string('is_private')->default('private');
+            $table->string('word_count');
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

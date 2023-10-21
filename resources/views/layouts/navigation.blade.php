@@ -85,8 +85,25 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home_diary')" :active="request()->routeIs('home_diarys')">
+            <x-responsive-nav-link :href="route('home_diary')" :active="request()->routeIs('home_diary')">
+                <i class="fa-solid fa-house pr-1"></i>
                 {{ __('Home') }}
+            </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                <i class="fa-solid fa-book pr-1"></i>
+                {{ __('Diary') }}
+            </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('index_2')" :active="request()->routeIs('index_2')">
+                <i class="fa-regular fa-note-sticky pr-1"></i>
+                {{ __('Expression') }}
+            </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('index_following')" :active="request()->routeIs('index_following')">
+                <i class="fa-solid fa-users pr-1"></i>
+                {{ __('Follow') }}
+            </x-responsive-nav-link>
+             <x-responsive-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
+                <i class="fa-regular fa-calendar pr-1"></i>
+                {{ __('Calendar') }}
             </x-responsive-nav-link>
         </div>
 

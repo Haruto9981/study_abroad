@@ -16,8 +16,9 @@
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Content</h2>
-                        <textarea class="w-full h-60" name="diary[content]" placeholder="What's your experience?">{{ old('diary.content') }}</textarea>
-                         <p  style="color:red">{{ $errors->first('diary.content') }}</p>
+                        <textarea class="w-full h-60" name="diary[content]" oninput="countWords(value);" placeholder="What's your experience?">{{ old('diary.content') }}</textarea>
+                        <p  style="color:red">{{ $errors->first('diary.content') }}</p>
+                        <p>Word Count: <span  id="inputlength">0</span></p>
                     </div>
                     <div  class="my-4">
                         <h2 class="text-3xl  mb-2">Picture</h2>
@@ -30,7 +31,7 @@
                         </select>
                     </div>
                     <div class="flex justify-center">
-                        <button type="submit" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Create</button>
+                        <button type="submit"  class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Create</button>
                     </div>
                 </form>
             </div>
