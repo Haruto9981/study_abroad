@@ -40,6 +40,15 @@
                           <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-1">{{$diary->title}}</h2>
                           <p class="mb-4">(Word Count: {{$diary->word_count}})</p>
                           <p class="leading-relaxed mb-2">{{$diary->content}}</p>
+                          <p class="leading-relaxed mb-2">{{ session('translated_text') }}</p>
+                          @if(session('translated_text') == null)
+                            <div class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-2 py-1 w-20 mb-4">
+                                <form action="/diaries/index/{{ $diary->id }}/translation" id="translation_{{ $diary->id }}" method="post">
+                                    @csrf
+                                    <button type="button" onclick="tlanslateDiary({{ $diary->id }})">Tlanslate</button>
+                                </form>
+                            </div>
+                          @endif
                           @if($diary->photo_url != null)
                                 <img alt="blog" src="{{$diary->photo_url }}" class="mb-8 w-auto h-96">
                           @endif
@@ -138,6 +147,15 @@
                     document.getElementById(`form_${id}`).submit();
                 }
             }
+            
+            function tlanslateDiary(id) {
+                'use strict'
+        
+                if (confirm('Do you want to translate this text?')) {
+                    document.getElementById(`translation_${id}`).submit();
+                }
+            }
+        
         </script>
     </body>
  </x-app-layout>
