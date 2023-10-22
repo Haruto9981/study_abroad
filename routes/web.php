@@ -9,6 +9,7 @@ use App\Http\Controllers\ExpressionLikeController;
 use App\Http\Controllers\FollowUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TranslationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +26,9 @@ Route::controller(DiaryController::class)->middleware(['auth'])->group(function(
     Route::delete('/diaries/{diary}', 'delete')->name('delete');
     Route::get('/diaries/{diary}/edit', 'edit')->name('edit');
 });
+
+Route::post('diaries/home_diary/{diary}/translation', [TranslationController::class, 'home_translation'])->name('home_translation');
+Route::post('diaries/index/{diary}/translation', [TranslationController::class, 'index_translation'])->name('index_translation');
 
 Route::controller(ExpressionController::class)->middleware(['auth'])->group(function(){
     Route::get('/expressions/home_expression', 'home_expression')->name('home_expression');
