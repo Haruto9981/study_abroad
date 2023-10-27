@@ -2,9 +2,9 @@
      <body>
           <br>
           <h1  class="text-4xl pl-24">Posts</h1>
-          <a class="flex justify-center pr-36" href="/diaries/home_diary">
-            <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Diaries</button>
-          </a>
+          <div class="flex justify-center pr-36">
+            <button onclick="location.href='/diaries/home_diary'" id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Diaries</button>
+          </div>
           <div class="container px-5 pb-10 mx-auto flex">
             <div class="lg:w-1/2 w-full mb-10 lg:mb-0" >
                 @foreach ($expressions as $expression)

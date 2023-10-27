@@ -10,6 +10,7 @@ use App\Http\Controllers\FollowUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TranslationController;
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return view('welcome');
