@@ -84,9 +84,12 @@ class DiaryController extends Controller
         
         $diaries = $query->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->Paginate(5);
         
+        
         if($year_month == null) {
-            $latest_diary = $diaries->first();
-            $year_month = $latest_diary->updated_at->format('Y-m');
+            if(count($diaries) != 0) {
+                $latest_diary = $diaries->first();
+                $year_month = $latest_diary->updated_at->format('Y-m');
+            }
         }
         
         
