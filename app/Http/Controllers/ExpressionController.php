@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Expression;
 use App\Models\User;
+use App\Models\Profile;
 use App\Http\Requests\ExpressionRequest;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
 
 class ExpressionController extends Controller
 {
-    public function home_expression(Expression $expression)
+    public function home_expression(Request $request, Expression $expression, Profile $profile)
     {
         $user = Auth::user();
         $end_date = new DateTime($user->profile->end_date);
@@ -19,7 +20,34 @@ class ExpressionController extends Controller
         $current  = new DateTime();
         $diff1 = $current->diff($end_date);
         $diff2 = $current->diff($start_date);
-        return view('expressions.home_expression')->with(['expressions' => $expression->getPublicExpression(), 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2]);
+        
+         /* キーワードから検索処理 */
+        $country = $request->input('country');
+        $region = $request->input('region');
+        
+        $expressions = $expression->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+        
+        if($country) {
+            $profiles = $profile->where('country', $country)->get();
+            if(count($profiles) != 0) {
+                foreach($profiles as $profile) {
+                $users = $profile->user()->get();
+                    foreach($users as $user) {
+                        $expressions = $user->expressions()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+                    }
+                }
+            } else {
+                $expressions = [];
+            }
+        }
+        
+        if($region) {
+            foreach($expressions as $expression) {
+                $query = $expression->user()->profile()->where('region', 'LIKE', "%{$region}%"); 
+            }
+        }
+        
+        return view('expressions.home_expression')->with(['expressions' => $expressions, 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2, 'country' => $country, 'region' => $region]);
     }
     
     
@@ -53,11 +81,14 @@ class ExpressionController extends Controller
         
         $expressions = $query->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->Paginate(5);
         
-        if($year_month == null) {
-            $latest_expression = $expressions->first();
-            $year_month = $latest_expression->updated_at->format('Y-m');
-        }
         
+        if($year_month == null) {
+            if(count($expressions) != 0) {
+                $latest_expression = $expressions->first();
+                $year_month = $latest_expression->updated_at->format('Y-m');
+            }
+        }
+     
         if($keywords) {
             foreach($expressions as $expression) {
                 $keywords = explode(",", $request->keywords);

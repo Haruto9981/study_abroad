@@ -2,6 +2,32 @@
      <body>
           <br>
           <h1  class="text-4xl pl-24">Posts</h1>
+           <div class="my-10">
+                <form class="inline-block pl-24" method="GET" action="{{ route('home_expression') }}">
+                    @csrf
+                    
+                    <select name="country" class="rounded-3xl mr-2">
+                        <option value="">Choose country</option>
+                        <option value="USA 🇺🇸" {{ old('country', $country) == 'USA 🇺🇸' ? 'selected' : ''}}>USA</option>
+                        <option value="UK 🇬🇧" {{ old('country', $country) == 'UK 🇬🇧' ? 'selected' : ''}}>UK</option>
+                        <option value="Australia 🇦🇺" {{ old('country', $country) == 'Australia 🇦🇺' ? 'selected' : ''}}>Australia</option>
+                        <option value="NewZealand 🇳🇿" {{ old('country', $country) == 'NewZealand 🇳🇿' ? 'selected' : ''}}>NewZealand</option>
+                        <option value="Canada 🇨🇦" {{ old('country', $country) == 'Canada 🇨🇦' ? 'selected' : ''}}>Canada</option>
+                        <option value="Germany 🇩🇪" {{ old('country', $country) == 'Germany 🇩🇪' ? 'selected' : ''}}>Germany</option>
+                        <option value="Francse 🇫🇷" {{ old('country', $country) == 'France 🇫🇷' ? 'selected' : ''}}>France</option>
+                        <option value="Taiwan 🇹🇼" {{ old('country', $country) == 'Taiwan 🇹🇼' ? 'selected' : ''}}>Taiwan</option>
+                        <option value="China 🇨🇳" {{ old('country', $country) == 'China 🇨🇳' ? 'selected' : ''}}>China</option>
+                    </select>
+                   
+                    <input class="rounded-xl mr-2" type="search" name="region" placeholder="Region" value="@if (isset($region)) {{ $region }} @endif">
+                    
+                    <input class="rounded-lg text-white font-bold  bg-orange-300 hover:bg-orange-400 px-4 py-2" type="submit" value="search">
+                </form>
+                
+                <div class="inline-block ml-2">
+                    <button onclick="location.href='/diaries/home_diary'" class="rounded-2xl text-white font-bold bg-gray-300 hover:bg-gray-400 px-2 py-1">Clear</button>
+                </div>
+            </div>
           <div class="flex justify-center pr-36">
             <button onclick="location.href='/diaries/home_diary'" id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Diaries</button>
           </div>
@@ -63,9 +89,11 @@
                       </div>
                     </div>
                 @endforeach
-                <div class='paginate'>
-                    {{ $expressions->links() }}
-                </div>
+                @if($expressions != false)
+                    <div class='paginate'>
+                        {{ $expressions->links() }}
+                    </div>
+                @endif
             </div>
             <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12">
                 <a  href="/calendar">
