@@ -23,11 +23,71 @@ class ExpressionController extends Controller
     }
     
     
-    public function index(Expression $expression) 
+    public function index(Request $request, Expression $expression) 
     {
-        return view('expressions.index')->with(['expressions' => $expression->getAuthUserExpression()]);
+        /* キーワードから検索処理 */
+        $keywords = $request->input('keywords');
+        $is_private = $request->input('is_private');
+        $year_month = $request->input('year_month');
+        
+        $query = Expression::query();
+        
+        if($is_private) {
+            if($is_private == 'public') {
+                $query->where('is_private', '=', 'public');
+            } elseif ($is_private == 'private') {
+                $query->where('is_private', '=', 'private');
+            }
+        }
+        
+        if($year_month) {
+            $year = date('Y', strtotime($year_month));
+            $month = date('m', strtotime($year_month));
+            $query->whereYear("updated_at", $year)->WhereMonth('updated_at', $month);
+        }
+        
+        if($keywords) {
+            $query->where('vocabulary', 'LIKE', "%{$keywords}%")->orWhere('meaning', 'LIKE', "%{$keywords}%")->orWhere('example', 'LIKE', "%{$keywords}%");
+        }
+        
+        
+        $expressions = $query->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->Paginate(5);
+        
+        if($year_month == null) {
+            $latest_expression = $expressions->first();
+            $year_month = $latest_expression->updated_at->format('Y-m');
+        }
+        
+        if($keywords) {
+            foreach($expressions as $expression) {
+                $keywords = explode(",", $request->keywords);
+                $expression->vocabulary = $this->search_text_highlight($keywords, $expression->vocabulary);
+                $expression->meaning = $this->search_text_highlight($keywords, $expression->meaning);
+                $expression->example = $this->search_text_highlight($keywords, $expression->example);
+                $keywords = implode(",", $keywords);
+            }
+        }
+        return view('expressions.index')->with(['expressions' => $expressions, 'keywords' => $keywords, 'is_private' => $is_private, 'year_month' => $year_month]);
     }
     
+    public function search_text_highlight($keywords, $target_string)
+    {
+        // 検索対象文字列が空であれば、文字列をそのまま返す
+        if(empty($keywords)){
+            return $target_string;
+        }
+
+        foreach($keywords as $keyword){
+            // 検索文字列がヒットしたらハイライトして返す
+            if( ($pos = mb_strpos($target_string, $keyword, 0, 'UTF-8')) !== false ){
+                // 対象文字列から、検索文字列を取得する
+                $str = mb_substr($target_string, $pos, mb_strlen($keyword, 'UTF-8'), 'UTF-8');
+                // 対象文字列から検索文字列をハイライトする
+                $target_string = str_replace($str, "<span style='background-color:yellow'>{$str}</span>", $target_string);
+            }
+        }
+        return $target_string;
+    }
     
     public function create(Expression $expression)
     {

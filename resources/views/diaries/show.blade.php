@@ -33,7 +33,7 @@
                             </a>  
                           </div>
                           <div class="pl-96 pt-2">
-                            <h2 class="rounded-lg text-white font-bold bg-orange-400 px-4 py-2">{{$diary->is_private}}</h2>  
+                            <h2 class="rounded text-white font-bold bg-orange-400 px-4 py-2">{{$diary->is_private}}</h2>  
                           </div>  
                       </div>
                       <div>
@@ -86,9 +86,9 @@
                     </div>
                 </div>
             </div>
-            <a class="flex justify-center" href="/diaries/index">
-                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400  px-4 py-2">Back</button>
-            </a>
+            <div class="flex justify-center">
+                <button onclick="location.href='/diaries/index'" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Back</button>
+            </div>
         </div>
         
         

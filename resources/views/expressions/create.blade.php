@@ -3,9 +3,9 @@
         <div class="container px-64 pb-10 mx-auto">
             <br>
             <h1  class="text-4xl">Add</h1>
-            <a class="flex justify-end" href="/expressions/index">
-                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Back</button>
-            </a>
+            <div class="flex justify-end">
+                <button onclick="location.href='/expressions/index'" id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Back</button>
+            </div>
             <div class="my-10 lg:mb-0 border border-black px-10 pt-4 pb-10 rounded-3xl">
                 <form action="/expressions" method="POST" enctype="multipart/form-data">
                     @csrf

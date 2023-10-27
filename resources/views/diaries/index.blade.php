@@ -3,9 +3,33 @@
         <div class="container px-64 pb-10 mx-auto">
             <br>
             <h1  class="text-4xl">My Diaries</h1>
-            <a class="flex justify-end" href="/diaries/create">
-                <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Create</button>
-            </a>
+            
+            <div class="my-10">
+                <form class="inline-block" method="GET" action="{{ route('index') }}">
+                    @csrf
+                    
+                    <input class="rounded-3xl mr-2" type="month" name="year_month" min="2000-1" max="2050-12" value="{{old('year_month', $year_month)}}">
+                    
+                    <select class="rounded-3xl mr-2" name='is_private'>
+                        <option value='all' {{ old('is_private', $is_private) == 'both' ? 'selected' : ''}}>all</option>
+                        <option value='public' {{ old('is_private', $is_private) == 'public' ? 'selected' : ''}}>only public</option>
+                        <option value='private' {{ old('is_private', $is_private) == 'private' ? 'selected' : ''}}>only private</option>
+                    </select>
+                   
+                    <input class="rounded-xl mr-2" type="search" name="keywords" placeholder="Keyword" value="@if (isset($keywords)) {{ $keywords }} @endif">
+                    
+                    <input class="rounded-lg text-white font-bold  bg-orange-300 hover:bg-orange-400 px-4 py-2" type="submit" value="search">
+                </form>
+                <div class="inline-block ml-2">
+                    <button onclick="location.href='/diaries/index'" class="rounded-2xl text-white font-bold bg-gray-300 hover:bg-gray-400 px-2 py-1">Clear</button>
+                </div>
+            </div>
+            
+            <div class="flex justify-end">
+                <button onclick="location.href='/diaries/create'" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Create</button>
+            </div>
+               
+           
             <div class="w-full mb-10 lg:mb-0" >
                 @foreach ($diaries as $diary)
                     <div class="flex flex-wrap my-16 border border-black rounded-3xl">
@@ -22,13 +46,13 @@
                                 </a>  
                               </div>
                               <div class="pl-96 pt-2">
-                                <h2 class="rounded-lg text-white font-bold  bg-orange-400 px-4 py-2">{{$diary->is_private}}</h2>  
+                                <h2 class="rounded text-white font-bold  bg-orange-400 px-4 py-2">{{$diary->is_private}}</h2>  
                               </div>  
                           </div>
                         <div>
-                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-1">{{$diary->title}}</h2>
+                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-1">{!! $diary->title !!}</h2>
                             <p class="mb-4">(Word Count: {{$diary->word_count}})</p>
-                            <p class="leading-relaxed mb-2">{{$diary->content}}</p>
+                            <p class="leading-relaxed mb-2">{!! $diary->content !!}</p>
                             @if($diary->photo_url != null)
                                 <img alt="blog" src="{{ $diary->photo_url }}" class="mb-8 w-auto h-96">
                             @endif

@@ -3,9 +3,32 @@
        <div class="container px-64 pb-10 mx-auto">
             <br>
             <h1  class="text-4xl">My Expressions</h1>
-            <a class="flex justify-end" href="/expressions/create">
-                <button id="expressions-button" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Add</button>
-            </a>
+            
+            <div class="my-10">
+                <form class="inline-block" method="GET" action="{{ route('index_2') }}">
+                    @csrf
+                    
+                    <input class="rounded-3xl mr-2" type="month" name="year_month" min="2000-1" max="2050-12" value="{{old('year_month', $year_month)}}">
+                    
+                    <select class="rounded-3xl mr-2" name='is_private'>
+                        <option value='all' {{ old('is_private', $is_private) == 'both' ? 'selected' : ''}}>all</option>
+                        <option value='public' {{ old('is_private', $is_private) == 'public' ? 'selected' : ''}}>only public</option>
+                        <option value='private' {{ old('is_private', $is_private) == 'private' ? 'selected' : ''}}>only private</option>
+                    </select>
+                    
+                    <input class="rounded-xl mr-2" type="search" name="keywords" placeholder="Keyword" value="@if (isset($keywords)) {{ $keywords }} @endif">
+                    
+                    <input class="rounded-lg text-white font-bold  bg-orange-300 hover:bg-orange-400 px-4 py-2" type="submit" value="search">
+                </form>
+                <div class="inline-block ml-2">
+                    <button onclick="location.href='/expressions/index'" class="rounded-2xl text-white font-bold bg-gray-300 hover:bg-gray-400 px-2 py-1">Clear</button>
+                </div>
+            </div>
+            
+            <div class="flex justify-end">
+                <button onclick="location.href='/expressions/create'" id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Add</button>
+            </div>
+            
             <div class="w-full mb-10 lg:mb-0" >
                 @foreach ($expressions as $expression)
                     <div class="flex flex-wrap my-16 border border-black rounded-3xl">
@@ -26,9 +49,9 @@
                               </div>  
                           </div>
                         <div>
-                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{{$expression->vocabulary}}</h2>
-                            <p class="leading-relaxed text-xl mb-3">Meaning: <span class="font-bold">{{$expression->meaning}}</span></p>
-                            <p class="leading-relaxed text-xl mb-3">Example: {{$expression->example}}</p>
+                            <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-2 mb-4">{!! $expression->vocabulary !!}</h2>
+                            <p class="leading-relaxed text-xl mb-3">Meaning: <span class="font-bold">{!! $expression->meaning !!}</span></p>
+                            <p class="leading-relaxed text-xl mb-3">Example: {!! $expression->example !!}</p>
                         </div>
                         <div class="flex items-center flex-wrap border-t border-black mt-auto w-full">
                             <div class="flex pt-4">

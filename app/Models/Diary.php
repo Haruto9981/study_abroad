@@ -12,15 +12,19 @@ class Diary extends Model
     use HasFactory;
     use SoftDeletes;
     
+    /*
     public function getPublicDiary(int $limit_count = 5)
     {
         return $this->where('is_private', 'public')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    */
     
+    /*
     public function getAuthUserDiary(int $limit_count = 5)
     {
         return $this->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    */
     
     public function user()
     {

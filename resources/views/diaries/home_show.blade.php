@@ -71,9 +71,9 @@
                     </div>
                 </div>
             </div>
-            <a class="flex justify-center" href="/diaries/home_diary">
-                <button id="expressions-button" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Back</button>
-            </a>
+            <div class="flex justify-center">
+                <button onclick="location.href='/diaries/home_diary'" class="rounded-lg bg-orange-300 hover:bg-orange-400 text-white font-bold px-4 py-2">Back</button>
+            </div>
         </div>
         
         
