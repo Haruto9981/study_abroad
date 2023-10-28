@@ -46,8 +46,22 @@ class DiaryController extends Controller
         }
         
         if($region) {
-            foreach($diaries as $diary) {
-                $query = $diary->user()->profile()->where('region', 'LIKE', "%{$region}%"); 
+            
+            if($country) {
+                $profiles = $profile->where('country', $country)->where('region', 'LIKE', "%{$region}%")->get();
+            } else {
+                $profiles = $profile->where('region', 'LIKE', "%{$region}%")->get();
+            }
+            
+            if(count($profiles) != 0) {
+                foreach($profiles as $profile) {
+                $users = $profile->user()->get();
+                    foreach($users as $user) {
+                        $diaries = $user->diaries()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+                    }
+                }
+            } else {
+                $diaries = [];
             }
         }
         

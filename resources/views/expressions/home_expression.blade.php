@@ -25,7 +25,7 @@
                 </form>
                 
                 <div class="inline-block ml-2">
-                    <button onclick="location.href='/diaries/home_diary'" class="rounded-2xl text-white font-bold bg-gray-300 hover:bg-gray-400 px-2 py-1">Clear</button>
+                    <button onclick="location.href='/expressions/home_expression'" class="rounded-2xl text-white font-bold bg-gray-300 hover:bg-gray-400 px-2 py-1">Clear</button>
                 </div>
             </div>
           <div class="flex justify-center pr-36">
