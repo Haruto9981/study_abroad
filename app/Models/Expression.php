@@ -11,18 +11,18 @@ class Expression extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
+    /*
     public function getPublicExpression(int $limit_count = 5)
     {
         return $this->where('is_private', 'public')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
-    
-    /*
-    public function getAuthUserExpression(int $limit_count = 5)
-    {
-        return $this->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
     */
+    
+    public function getAuthUserExpression()
+    {
+        return $this->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->get();
+    }
+    
     
     
     public function user()

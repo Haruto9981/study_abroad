@@ -2,7 +2,7 @@
     <body>
        <div class="container px-64 pb-10 mx-auto">
             <br>
-            <h1  class="text-4xl">My Expressions</h1>
+            <h1  class="text-4xl font-medium">My Expressions</h1>
             
             <div class="my-10">
                 <form class="inline-block" method="GET" action="{{ route('index_2') }}">

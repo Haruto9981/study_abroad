@@ -2,7 +2,7 @@
     <body>
         <div class="container px-64 pb-10 mx-auto">
             <br>
-            <h1  class="text-4xl">Create</h1>
+            <h1  class="text-4xl font-medium">Create</h1>
             <div class="flex justify-end" href="/diaries/index">
                 <button onclick="location.href='/diaries/index'" id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Back</button>
             </div>

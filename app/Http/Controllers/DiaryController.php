@@ -29,7 +29,7 @@ class DiaryController extends Controller
         $country = $request->input('country');
         $region = $request->input('region');
         
-        $diaries = $diary->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+        $public_diaries = $diary->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
         
         if($country) {
             $profiles = $profile->where('country', $country)->get();
@@ -37,11 +37,11 @@ class DiaryController extends Controller
                 foreach($profiles as $profile) {
                 $users = $profile->user()->get();
                     foreach($users as $user) {
-                        $diaries = $user->diaries()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+                        $public_diaries = $user->diaries()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
                     }
                 }
             } else {
-                $diaries = [];
+                $public_diaries = [];
             }
         }
         
@@ -57,15 +57,15 @@ class DiaryController extends Controller
                 foreach($profiles as $profile) {
                 $users = $profile->user()->get();
                     foreach($users as $user) {
-                        $diaries = $user->diaries()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+                        $public_diaries = $user->diaries()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
                     }
                 }
             } else {
-                $diaries = [];
+                $public_diaries = [];
             }
         }
         
-        return view('diaries.home_diary')->with(['diaries' => $diaries, 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2, 'country' => $country, 'region' => $region]);
+        return view('diaries.home_diary')->with(['public_diaries' => $public_diaries, 'my_diaries' => $diary->getAuthUserDiary(), 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2, 'country' => $country, 'region' => $region]);
     }
     
     public function index(Request $request, Diary $diary) 

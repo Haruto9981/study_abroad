@@ -19,12 +19,12 @@ class Diary extends Model
     }
     */
     
-    /*
-    public function getAuthUserDiary(int $limit_count = 5)
+    
+    public function getAuthUserDiary()
     {
-        return $this->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->get();
     }
-    */
+
     
     public function user()
     {

@@ -25,7 +25,7 @@ class ExpressionController extends Controller
         $country = $request->input('country');
         $region = $request->input('region');
         
-        $expressions = $expression->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+        $public_expressions = $expression->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
         
         if($country) {
             $profiles = $profile->where('country', $country)->get();
@@ -33,11 +33,11 @@ class ExpressionController extends Controller
                 foreach($profiles as $profile) {
                 $users = $profile->user()->get();
                     foreach($users as $user) {
-                        $expressions = $user->expressions()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+                        $public_expressions = $user->expressions()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
                     }
                 }
             } else {
-                $expressions = [];
+                $public_expressions = [];
             }
         }
         
@@ -53,15 +53,15 @@ class ExpressionController extends Controller
                 foreach($profiles as $profile) {
                 $users = $profile->user()->get();
                     foreach($users as $user) {
-                        $expressions = $user->expressions()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
+                        $public_expressions = $user->expressions()->where('is_private', 'public')->orderBy('updated_at', 'DESC')->Paginate(5);
                     }
                 }
             } else {
-                $expressions = [];
+                $public_expressions = [];
             }
         }
         
-        return view('expressions.home_expression')->with(['expressions' => $expressions, 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2, 'country' => $country, 'region' => $region]);
+        return view('expressions.home_expression')->with(['public_expressions' => $public_expressions, 'my_expressions' => $expression->getAuthUserExpression(), 'user' => $user, 'diff1' => $diff1, 'diff2' => $diff2, 'country' => $country, 'region' => $region]);
     }
     
     
