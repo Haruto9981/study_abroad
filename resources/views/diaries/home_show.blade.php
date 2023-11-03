@@ -2,7 +2,7 @@
     <body>
         <div class="container px-64 pb-10 mx-auto">
             <br>
-            <h1  class="text-4xl">Diary</h1>
+            <h1  class="text-4xl font-medium">Diary</h1>
             <div class="w-full mb-10 lg:mb-0" >
                 <div class="flex flex-wrap my-8 border border-black rounded-3xl">
                     <div class="p-6 flex flex-col items-start  w-full">

@@ -8,7 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExpressionLikeController;
 use App\Http\Controllers\FollowUserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\MyRecordController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\SearchController;
 
@@ -70,11 +70,8 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
     Route::get('/profile/{user}/map', 'map')->name('profile.map');
 });
 
-Route::controller(ScheduleController::class)->middleware('auth')->group(function() {
-    Route::get('/calendar', 'show')->name('calendar');
-    Route::post('/schedule-add', 'scheduleAdd')->name('schedule-add');
-    Route::post('/schedule-get', 'scheduleGet')->name('schedule-get');
-    Route::delete('/schedule-delete/{id}', 'scheduleDelete')->name('schedule-delete');
+Route::controller(MyRecordController::class)->middleware('auth')->group(function() {
+    Route::get('/record', 'show')->name('record');
 });
 
 require __DIR__.'/auth.php';

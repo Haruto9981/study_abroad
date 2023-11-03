@@ -89,3 +89,36 @@ body {
 #target {
   width: 345px;
 }
+
+table.calendar_tbl {
+  min-width: 600px;
+  margin: 20px auto 0;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+table.calendar_tbl tr th {
+  text-align: center;
+  border: 1px solid #000;
+}
+
+table.calendar_tbl tr td {
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid #000;
+  height: 3em;
+  width: 3em;
+}
+
+
+
+table.calendar_tbl tr:first-child th:first-child {
+  color: red;
+}
+
+table.calendar_tbl tr:first-child th:last-child {
+  color: blue;
+}
+
+
+

@@ -2,7 +2,7 @@
     <body>
         <div class="container px-64 pb-10 mx-auto">
             <br>
-            <h1  class="text-4xl">Diary</h1>
+            <h1  class="text-4xl font-medium">Diary</h1>
                 <div class="flex justify-end mt-4">
                     <div>
                         <a href="/diaries/{{$diary->id}}/edit">

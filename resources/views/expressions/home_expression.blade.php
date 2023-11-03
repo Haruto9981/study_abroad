@@ -1,7 +1,7 @@
 <x-app-layout>
      <body>
           <br>
-          <h1  class="text-4xl pl-24">Posts</h1>
+          <h1  class="text-4xl pl-24 font-medium">Posts</h1>
            <div class="my-10">
                 <form class="inline-block pl-24" method="GET" action="{{ route('home_expression') }}">
                     @csrf
@@ -33,7 +33,7 @@
           </div>
           <div class="container px-5 pb-10 mx-auto flex">
             <div class="lg:w-1/2 w-full mb-10 lg:mb-0" >
-                @foreach ($expressions as $expression)
+                @foreach ($public_expressions as $expression)
                     <div class="flex flex-wrap my-16 border border-black rounded-3xl">
                       <div class="p-6 flex flex-col items-start  w-full">
                           <div class="flex border-b border-black pb-4  w-full">
@@ -89,39 +89,225 @@
                       </div>
                     </div>
                 @endforeach
-                @if($expressions != false)
+                @if($public_expressions != false)
                     <div class='paginate'>
-                        {{ $expressions->links() }}
+                        {{ $public_expressions->links() }}
                     </div>
                 @endif
             </div>
             <div class="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12">
-                <a  href="/calendar">
-                    <h1 class="text-3xl text-center">{{$user->name}}'s Calendar</h1>
-                </a>
-                <br>
-                <div class="text-4xl text-center">
-                    @if ($diff2->invert === 0)
-                    <h2><span class="text-red-500 font-bold">{{ $diff2->format('%a') + 1 }}days</span> to the start of your SA!</h2>
-                    @elseif ($diff1->invert === 1)
-                    <h2 class="text-red-500 font-bold">Your SA is already over!</h2>
-                    @else
-                    <h2><span class="text-red-500 font-bold">{{ $diff1->format('%a') + 1 }}days</span> left to the end of your SA!</h2>
-                    @endif
+            <a  href="/record">
+                <h1 class="font-medium text-3xl text-center">Expression Calendar Records</h1>
+            </a>
+            <br>
+            <div class="calendar_area">
+                <div class="flex justify-between calendar_header">
+                    <p class="font-black text-3xl text-orange-500" id="year_month_label"></p>
+                    <div>
+                        <button class="mx-2 rounded text-white font-bold  bg-orange-300 hover:bg-orange-400 px-2 py-1" id="prev_month_btn" onClick="prev_month()">Last Month</button>
+                        <button class="mx-2 rounded text-white font-bold  bg-orange-300 hover:bg-orange-400 px-2 py-1" id="now_btn" onClick="now_month()">Now</button>
+                        <button class="mx-2 rounded text-white font-bold  bg-orange-300 hover:bg-orange-400 px-2 py-1" id="next_month_btn" onClick="next_month()">Next Month</button>
+                    </div>
                 </div>
-                <br>
-                <div id='calendar'></div>
-                <br>
+                <div id="calendar_body"></div>
+                <p class="flex justify-end font-black text-2xl text-lime-500" id="count_expression_written_label"></p>
             </div>
+            <br>
+            <div class="text-4xl text-center">
+                <!-- 留学開始日が現在よりも未来である場合 -->
+                @if ($diff2->invert === 0)
+                    <h2><span class="text-red-500 font-bold">{{ $diff2->format('%a') + 1 }} days</span> to the start of your SA!</h2>
+                    
+                <!-- 留学終了日が現在よりも過去である場合 -->
+                @elseif ($diff1->invert === 1)
+                    <h2 class="text-red-500 font-bold">Your SA is already over!</h2>
+                    
+                <!-- 上記以外 -->
+                @else
+                    <h2><span class="text-red-500 font-bold">{{ $diff1->format('%a') + 1 }} days</span> left to the end of your SA!</h2>
+                @endif
+            </div>
+           </div>
           </div>
-          <script>
-            function deleteDiary(id) {
-                'use strict'
-        
-                if (confirm('Do you really want to delete it?')) {
-                    document.getElementById(`form_${id}`).submit();
-                }
+        <script>
+            const expressions = @json($my_expressions);
+            
+            let array = [];
+            for(i=0; i < expressions.length; i++) {
+
+                let expression_updated_at = new Date(expressions[i].updated_at);
+                
+                function formatExpressionDate() {
+                        let y = expression_updated_at.getFullYear();
+                        let month = expression_updated_at.getMonth() + 1;
+                        let m = ('00' + month).slice(-2);
+                        let d = ('00' + expression_updated_at.getDate()).slice(-2);
+                        return (y + '-' + m + '-' + d);
+                    }
+                
+                var formated_expression_updated_at = formatExpressionDate();
+                
+                array.push(formated_expression_updated_at);
             }
+            
+            let expression_date = array.join();
+            
+            const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    
+            var today = new Date();
+            var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
+        
+            window.onload = function () {
+                showCalendar(showDate);
+            };
+        
+            function showCalendar(date) {
+        
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                
+                switch(month) {
+                    case 1: 
+                        var showDateStr = "January" + " " + year;
+                        break;
+                    case 2: 
+                        var showDateStr = "February" + " " + year;
+                        break;
+                    case 3:
+                        var showDateStr = "March" + " " + year;
+                        break;
+                    case 4: 
+                        var showDateStr = "April" + " " + year;
+                        break;
+                    case 5: 
+                        var showDateStr = "May" + " " + year;
+                        break;
+                    case 6: 
+                        var showDateStr = "June" + " " + year;
+                        break;
+                    case 7: 
+                        var showDateStr = "July" + " " + year;
+                        break;
+                    case 8: 
+                        var showDateStr = "August" + " " + year;
+                        break;
+                    case 9:
+                        var showDateStr = "September" + " " + year;
+                        break;
+                    case 10: 
+                        var showDateStr = "October" + " " + year;
+                        break;
+                    case 11: 
+                        var showDateStr = "November" + " " + year;
+                        break;
+                    case 12: 
+                        var showDateStr = "December" + " " + year;
+                        break;
+                }
+                
+            
+                document.querySelector('#year_month_label').innerHTML = showDateStr;
+            
+                var calendarTable = createCalendarTable(year, month);
+                document.querySelector('#calendar_body').innerHTML = calendarTable;
+            }
+            
+            function createCalendarTable(year, month) {
+
+                var _html = '';
+                _html += '<table class="calendar_tbl">';
+                
+                _html += '<tr>';
+                for (var i = 0; i < week.length; i++) {
+                  _html += "<th>" + week[i] + "</th>";
+                }
+                _html += '</tr>';
+                
+                var startDayOfWeek = new Date(year, month - 1, 1).getDay();
+                
+                var countDay = 0;
+                
+                var countMonthExpression = 0;
+                
+                var monthOfEndDay = new Date(year, month, 0).getDate()
+        
+                for (var i = 0; i < 6; i++) {
+                  _html += '<tr>';
+                
+                  for (var j = 0; j < week.length; j++) {
+                    if (i == 0 && j == startDayOfWeek) {
+                      // 日付+1していく
+                      countDay++;
+                      
+                      function formatDate() {
+                        var y = year;
+                        var m = ('00' + month).slice(-2);
+                        var d = ('00' + countDay).slice(-2); 
+                        return (y + '-' + m + '-' + d);
+                      }
+                      
+                      var calendar_date = formatDate();
+                     
+                        if(~expression_date.indexOf(calendar_date)) {
+                             countMonthExpression++;
+                            _html += '<td class="with_date" style="background-color: #99ff33; font-weight: bold">' + countDay + '</td>';
+                        } else {
+                            _html += '<td class="with_date">' + countDay + '</td>';
+                        }
+                    }
+                    // 日付が0以外で、日付が末日より小さい場合
+                    else if (countDay != 0 && countDay < monthOfEndDay) {
+                      // 日付+1
+                      countDay++;
+        
+                      function formatDate() {
+                        var y = year;
+                        var m = ('00' + month).slice(-2);
+                        var d = ('00' + countDay).slice(-2); 
+                        return (y + '-' + m + '-' + d);
+                      }
+                      
+                      var calendar_date = formatDate();
+                     
+                        if(~expression_date.indexOf(calendar_date)) {
+                             countMonthExpression++;
+                            _html += '<td class="with_date" style="background-color: #99ff33; font-weight: bold">' + countDay + '</td>';
+                        } else {
+                            _html += '<td class="with_date">' + countDay + '</td>';
+                        }
+                    }   
+                    else {
+                      _html += '<td class="no_date"></td>';
+                    }
+                  }
+                  _html += '</tr>';
+                }
+                _html += '</table>';
+                
+                document.querySelector('#count_expression_written_label').innerHTML = "Expression Records: " + countMonthExpression + "/" + monthOfEndDay + " Days";
+                return _html;
+            }
+          
+          function prev_month() {
+            // 表示用の日付の月-1を設定
+            showDate.setMonth(showDate.getMonth() - 1);
+            // カレンダーの表示（引数には表示用の日付を設定）
+            showCalendar(showDate);
+          }
+    
+          function now_month() {
+            // 表示用の日付に今日の日付を設定
+            showDate = new Date();
+            // カレンダーの表示（引数には表示用の日付を設定）
+            showCalendar(showDate);
+          }
+    
+          function next_month() {
+            // 表示用の日付の月+1を設定
+            showDate.setMonth(showDate.getMonth() + 1);
+            // カレンダーの表示（引数には表示用の日付を設定）
+            showCalendar(showDate);
+          }
         </script>
     </body>
 </x-app-layout>

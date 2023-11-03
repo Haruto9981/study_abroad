@@ -1,7 +1,7 @@
 <x-app-layout>
     <body>
         <div class="mx-96 my-20 border border-black py-10 rounded-3xl">
-            <h1 class="text-4xl ml-10 my-4">Profile</h1>
+            <h1 class="text-4xl ml-10 my-4 font-medium">Profile</h1>
             <div class="flex justify-center">
                 <img alt="Profile image"  src="{{ $user->profile->profile_image_url }}" class="w-32 h-32 rounded-full  object-cover object-center">
             </div>

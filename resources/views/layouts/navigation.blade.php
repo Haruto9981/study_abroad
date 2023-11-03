@@ -28,9 +28,9 @@
                         <i class="fa-solid fa-users pr-1"></i>
                         {{ __('Follow') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-                        <i class="fa-regular fa-calendar pr-1"></i>
-                        {{ __('Calendar') }}
+                    <x-nav-link :href="route('record')" :active="request()->routeIs('record')">
+                        <i class="fa-solid fa-chart-bar pr-1"></i>
+                        {{ __('Record') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -101,9 +101,9 @@
                 <i class="fa-solid fa-users pr-1"></i>
                 {{ __('Follow') }}
             </x-responsive-nav-link>
-             <x-responsive-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
-                <i class="fa-regular fa-calendar pr-1"></i>
-                {{ __('Calendar') }}
+             <x-responsive-nav-link :href="route('record')" :active="request()->routeIs('record')">
+               <i class="fa-solid fa-chart-bar pr-1"></i>
+                {{ __('Record') }}
             </x-responsive-nav-link>
         </div>
 

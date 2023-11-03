@@ -1,7 +1,7 @@
 <x-app-layout>
     <body>
         <br>
-        <h1  class="text-4xl pl-24">Following</h1>
+        <h1  class="text-4xl pl-24 font-medium">Following</h1>
         <div class="flex">
             <div class="pl-24 w-52 pt-4">
                 <div class="mt-4 p-4 bg-orange-400 text-white font-bold rounded-3xl">
