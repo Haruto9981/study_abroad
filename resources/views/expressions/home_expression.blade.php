@@ -102,15 +102,15 @@
             <br>
             <div class="calendar_area">
                 <div class="flex justify-between calendar_header">
-                    <p class="font-black text-3xl text-orange-500" id="year_month_label"></p>
+                    <p class="font-black text-3xl text-yellow-400" id="year_month_label"></p>
                     <div>
-                        <button class="mx-2 rounded text-white font-bold  bg-orange-300 hover:bg-orange-400 px-2 py-1" id="prev_month_btn" onClick="prev_month()">Last Month</button>
-                        <button class="mx-2 rounded text-white font-bold  bg-orange-300 hover:bg-orange-400 px-2 py-1" id="now_btn" onClick="now_month()">Now</button>
-                        <button class="mx-2 rounded text-white font-bold  bg-orange-300 hover:bg-orange-400 px-2 py-1" id="next_month_btn" onClick="next_month()">Next Month</button>
+                        <button class="mx-2 rounded text-white font-bold  bg-yellow-300 hover:bg-yellow-400 px-2 py-1" id="prev_month_btn" onClick="prev_month()">Last Month</button>
+                        <button class="mx-2 rounded text-white font-bold  bg-yellow-300 hover:bg-yellow-400 px-2 py-1" id="now_btn" onClick="now_month()">Now</button>
+                        <button class="mx-2 rounded text-white font-bold  bg-yellow-300 hover:bg-yellow-400 px-2 py-1" id="next_month_btn" onClick="next_month()">Next Month</button>
                     </div>
                 </div>
                 <div id="calendar_body"></div>
-                <p class="flex justify-end font-black text-2xl text-lime-500" id="count_expression_written_label"></p>
+                <p class="flex justify-end font-black text-2xl text-yellow-400" id="count_expression_written_label"></p>
             </div>
             <br>
             <div class="text-4xl text-center">
@@ -135,19 +135,19 @@
             let array = [];
             for(i=0; i < expressions.length; i++) {
 
-                let expression_updated_at = new Date(expressions[i].updated_at);
+                let expression_created_at = new Date(expressions[i].created_at);
                 
                 function formatExpressionDate() {
-                        let y = expression_updated_at.getFullYear();
-                        let month = expression_updated_at.getMonth() + 1;
+                        let y = expression_created_at.getFullYear();
+                        let month = expression_created_at.getMonth() + 1;
                         let m = ('00' + month).slice(-2);
-                        let d = ('00' + expression_updated_at.getDate()).slice(-2);
+                        let d = ('00' + expression_created_at.getDate()).slice(-2);
                         return (y + '-' + m + '-' + d);
                     }
                 
-                var formated_expression_updated_at = formatExpressionDate();
+                var formated_expression_created_at = formatExpressionDate();
                 
-                array.push(formated_expression_updated_at);
+                array.push(formated_expression_created_at);
             }
             
             let expression_date = array.join();
@@ -250,7 +250,7 @@
                      
                         if(~expression_date.indexOf(calendar_date)) {
                              countMonthExpression++;
-                            _html += '<td class="with_date" style="background-color: #99ff33; font-weight: bold">' + countDay + '</td>';
+                            _html += '<td class="with_date" style="background-color:  #ffffbc; font-weight: bold">' + countDay + '</td>';
                         } else {
                             _html += '<td class="with_date">' + countDay + '</td>';
                         }
@@ -271,7 +271,7 @@
                      
                         if(~expression_date.indexOf(calendar_date)) {
                              countMonthExpression++;
-                            _html += '<td class="with_date" style="background-color: #99ff33; font-weight: bold">' + countDay + '</td>';
+                            _html += '<td class="with_date" style="background-color:  #ffffbc; font-weight: bold">' + countDay + '</td>';
                         } else {
                             _html += '<td class="with_date">' + countDay + '</td>';
                         }
