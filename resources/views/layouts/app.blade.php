@@ -19,8 +19,20 @@
         <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904294/favicon-32x32_jhsn7u.png">
         <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904334/favicon-16x16_g15wzf.png">
         <link rel="mask-icon" href="https://res.cloudinary.com/dkkvbt5jl/image/upload/v1696904413/safari-pinned-tab_ja75ta.svg">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
+        
+        <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous"></script>
+          <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+         
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+ 
+ 
         
         <script> 
             function countWords(words) { 
