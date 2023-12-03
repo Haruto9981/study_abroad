@@ -156,6 +156,8 @@
 
                 let diary_created_at = new Date(diaries[i].created_at);
                 
+                console.log(diary_created_at);
+                
                 function formatDiaryDate() {
                         let y = diary_created_at.getFullYear();
                         let month = diary_created_at.getMonth() + 1;

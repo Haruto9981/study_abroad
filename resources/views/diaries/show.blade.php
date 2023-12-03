@@ -6,7 +6,7 @@
                 <div class="flex justify-end mt-4">
                     <div>
                         <a href="/diaries/{{$diary->id}}/edit">
-                            <button id="expressions-button" class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400  px-4 py-2">Edit</button>
+                            <button class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400  px-4 py-2">Edit</button>
                         </a>
                     </div>
                     

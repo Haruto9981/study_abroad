@@ -5,23 +5,36 @@
             <div class="flex justify-center">
                 <img alt="Profile image"  src="{{ $user->profile->profile_image_url }}" class="w-32 h-32 rounded-full  object-cover object-center">
             </div>
-            @if($user->id !== Auth::user()->id)
-                @if($user->followers()->where('user_id', Auth::user()->id)->exists())
-                    <div class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 ml-10 rounded flex justify-center px-6 py-2 w-28">
-                        <form action="{{route('unfollowing', $user->id)}}" method="POST">
-                            @csrf
-                            <input type="submit" value="Unfollow">
-                        </form>
-                    </div>
-                @else
-                    <div class="rounded-lg text-white font-bold bg-orange-400 hover:bg-orange-300 ml-10 rounded flex justify-center px-6 py-2 w-28">
-                        <form action="{{route('following', $user->id)}}" method="POST">
-                            @csrf
-                            <input type="submit" value="Follow">
-                        </form>
+            <div class="flex justify-between">
+                <div>
+                    @if($user->id !== Auth::user()->id)
+                        @if($user->followers()->where('user_id', Auth::user()->id)->exists())
+                            <div class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 ml-10 rounded px-6 py-2">
+                                <form action="{{route('unfollowing', $user->id)}}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="Unfollow">
+                                </form>
+                            </div>
+                        @else
+                            <div class="rounded-lg text-white font-bold bg-orange-400 hover:bg-orange-300 ml-10 rounded px-6 py-2">
+                                <form action="{{route('following', $user->id)}}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="Follow">
+                                </form>
+                            </div>
+                        @endif
+                    @endif
+                </div>
+                @if($user->id !== Auth::user()->id)
+                    <div class="mr-10">
+                        <a href="{{ route('start.chat', ['user' => $user]) }}">
+                            <button class="rounded-lg text-white font-bold bg-orange-300 hover:bg-orange-400 px-4 py-2">Message</button>
+                        </a>    
                     </div>
                 @endif
-            @endif
+            </div>
+            
+            
             <div class="border border-black mx-10 my-6 p-4 text-2xl">
                 <p class="py-2">Name: {{ $user->name}}</p>
                 <p class="py-2">Email: {{ $user->email}}<p>
