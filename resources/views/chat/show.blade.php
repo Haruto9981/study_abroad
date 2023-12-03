@@ -88,10 +88,11 @@
                 elementInputMessage.value = "";
             }
         
-           window.addEventListener("DOMContentLoaded", () => {
+            window.addEventListener("DOMContentLoaded", () => {
                 const currentUserId = {{ Auth::user()->id }};
                 
                 console.log(currentUserId);
+                console.log(window.Echo.connector.pusher.connection);
                 
                 window.Echo.private('chat').listen('MessageSent', (e) => {
                     let strMessage = e.message.content;
