@@ -20,27 +20,29 @@
                 <br>
                 <br>
                 @foreach($messages as $message)
-                    @if($message->user->id == Auth::user()->id)
-                        <!-- 送信者のメッセージ（右側に表示） -->
-                        <div class="mb-16">
-                            <div class="flex justify-end">
-                                <p class="rounded-lg bg-orange-400 text-white font-bold px-4 py-4 max-w-3xl mr-4">{{ $message->content }}</p>
+                　　@if($message->conversation_id == $conversation->id)
+                        @if($message->user->id == Auth::user()->id)
+                            <!-- 送信者のメッセージ（右側に表示） -->
+                            <div class="mb-16">
+                                <div class="flex justify-end">
+                                    <p class="rounded-lg bg-orange-400 text-white font-bold px-4 py-4 max-w-3xl mr-4">{{ $message->content }}</p>
+                                </div>
+                                <div class="flex justify-end mt-2 mr-4">
+                                    <p class="text-gray-500">{{ $message->created_at->format('m-d H:i') }}</p>
+                                </div>
                             </div>
-                            <div class="flex justify-end mt-2 mr-4">
-                                <p class="text-gray-500">{{ $message->created_at->format('m-d H:i') }}</p>
+                        @else
+                            <!-- 受信者のメッセージ（左側に表示） -->
+                            <div class="mb-16">
+                                <div class="flex">
+                                    <img alt="chat" src="{{ $message->user->profile->profile_image_url }}" class="mx-2 w-14 h-14 rounded-full">
+                                    <p class="rounded-lg bg-blue-400 text-white font-bold px-4 py-4 max-w-3xl mr-4">{{ $message->content }}</p>
+                                </div>
+                                <div class="flex ml-20 mt-2 mr-4">
+                                    <p class="text-gray-500"> {{ $message->created_at->format('m-d H:i') }}</p>
+                                </div>
                             </div>
-                        </div>
-                    @else
-                        <!-- 受信者のメッセージ（左側に表示） -->
-                        <div class="mb-16">
-                            <div class="flex">
-                                <img alt="chat" src="{{ $message->user->profile->profile_image_url }}" class="mx-2 w-14 h-14 rounded-full">
-                                <p class="rounded-lg bg-blue-400 text-white font-bold px-4 py-4 max-w-3xl mr-4">{{ $message->content }}</p>
-                            </div>
-                            <div class="flex ml-20 mt-2 mr-4">
-                                <p class="text-gray-500"> {{ $message->created_at->format('m-d H:i') }}</p>
-                            </div>
-                        </div>
+                        @endif
                     @endif
                 @endforeach
             </div>
@@ -90,78 +92,84 @@
         
             window.addEventListener("DOMContentLoaded", () => {
                 const currentUserId = {{ Auth::user()->id }};
+                const currentConversationId = {{ $conversation->id }}; 
                 
                 console.log(currentUserId);
                 console.log(window.Echo.connector.pusher.connection);
                 
                 window.Echo.private('chat').listen('MessageSent', (e) => {
-                    let strMessage = e.message.content;
-                    let createdAt = new Date(e.message.created_at);
-                    
-                    console.log(strMessage);
-                    console.log(createdAt);
-            
-                    var month = createdAt.getMonth() + 1;
-                    var day = ('0' + createdAt.getDate()).slice(-2);
-                    var hour = createdAt.getHours();
-                    var minute = ('0' + createdAt.getMinutes()).slice(-2);
-            
-                    strCreatedAt = `${month}-${day} ${hour}:${minute}`;
-                    
-                    console.log(strCreatedAt);
-            
-                    let elementDiv = document.createElement("div");
-                    let elementMessage = document.createElement("p");
-                    let elementCreatedAt = document.createElement("p");
-                    let elementProfileImage = document.createElement("img");
-                    elementMessage.textContent = strMessage;
-                    elementCreatedAt.textContent = strCreatedAt;
-                    elementDiv.append(elementMessage);
-                    elementDiv.append(elementCreatedAt);
-            
-                    if (e.message.user_id == currentUserId) {
-                        // 送信者のメッセージ（右側に表示）
-                        console.log(e.message.user_id);
-                        elementDiv.classList.add("flex", "flex-col", "items-end", "mb-16");
-                        elementMessage.classList.add("rounded-lg", "bg-orange-400", "text-white", "font-bold", "px-4", "py-4", "max-w-3xl", "mr-4");
-                        elementCreatedAt.classList.add("text-gray-500", "mt-2", "mr-4");
-                    
-                    } else {
-                        // 受信者のメッセージ（左側に表示）
-                        console.log(e.message.user_id);
-                        elementDiv.classList.add("mb-16");
-                        let elementInnerDiv = document.createElement("div");
-                        let elementImageDiv = document.createElement("div");
-                        let elementTextDiv = document.createElement("div");
+                　　const messageConversationId = e.message.conversation_id;
+                　　
+                　　if (messageConversationId === currentConversationId) {
+                        let strMessage = e.message.content;
+                        let createdAt = new Date(e.message.created_at);
                         
-                        elementInnerDiv.classList.add("flex");
-                        elementImageDiv.classList.add("flex", "ml-20", "mt-2", "mr-4");
-                        elementTextDiv.classList.add("flex", "flex-col", "items-start");
-                    
-                        elementProfileImage.src = "{{ isset($message) ? $message->user->profile->profile_image_url : '' }}";
-                        elementProfileImage.alt = "chat";
-                        elementProfileImage.classList.add("mx-2", "w-14", "h-14", "rounded-full");
-                    
+                        console.log(strMessage);
+                        console.log(createdAt);
+                
+                        var month = createdAt.getMonth() + 1;
+                        var day = ('0' + createdAt.getDate()).slice(-2);
+                        var hour = createdAt.getHours();
+                        var minute = ('0' + createdAt.getMinutes()).slice(-2);
+                
+                        strCreatedAt = `${month}-${day} ${hour}:${minute}`;
+                        
+                        console.log(strCreatedAt);
+                
+                        let elementDiv = document.createElement("div");
+                        let elementMessage = document.createElement("p");
+                        let elementCreatedAt = document.createElement("p");
+                        let elementProfileImage = document.createElement("img");
                         elementMessage.textContent = strMessage;
                         elementCreatedAt.textContent = strCreatedAt;
-                    
-                        elementTextDiv.append(elementMessage);
-                        elementTextDiv.append(elementCreatedAt);
+                        elementDiv.append(elementMessage);
+                        elementDiv.append(elementCreatedAt);
+                
+                        if (e.message.user_id == currentUserId) {
+                            // 送信者のメッセージ（右側に表示）
+                            console.log(e.message.user_id);
+                            elementDiv.classList.add("flex", "flex-col", "items-end", "mb-16");
+                            elementMessage.classList.add("rounded-lg", "bg-orange-400", "text-white", "font-bold", "px-4", "py-4", "max-w-3xl", "mr-4");
+                            elementCreatedAt.classList.add("text-gray-500", "mt-2", "mr-4");
                         
-                        elementInnerDiv.append(elementProfileImage);
-                        elementInnerDiv.append(elementTextDiv);
+                        } else {
+                            // 受信者のメッセージ（左側に表示）
+                            console.log(e.message.user_id);
+                            elementDiv.classList.add("mb-16");
+                            let elementInnerDiv = document.createElement("div");
+                            let elementImageDiv = document.createElement("div");
+                            let elementTextDiv = document.createElement("div");
+                            
+                            elementInnerDiv.classList.add("flex");
+                            elementImageDiv.classList.add("flex", "ml-20", "mt-2", "mr-4");
+                            elementTextDiv.classList.add("flex", "flex-col", "items-start");
                         
-                        elementDiv.append(elementInnerDiv);
-                        elementDiv.append(elementImageDiv);
-                    
-                        elementMessage.classList.add("rounded-lg", "bg-blue-400", "text-white", "font-bold", "px-4", "py-4", "max-w-3xl", "mr-4");
-                        elementCreatedAt.classList.add("text-gray-500", "mt-2");
+                            elementProfileImage.src = "{{ isset($message) ? $message->user->profile->profile_image_url : '' }}";
+                            elementProfileImage.alt = "chat";
+                            elementProfileImage.classList.add("mx-2", "w-14", "h-14", "rounded-full");
+                        
+                            elementMessage.textContent = strMessage;
+                            elementCreatedAt.textContent = strCreatedAt;
+                        
+                            elementTextDiv.append(elementMessage);
+                            elementTextDiv.append(elementCreatedAt);
+                            
+                            elementInnerDiv.append(elementProfileImage);
+                            elementInnerDiv.append(elementTextDiv);
+                            
+                            elementDiv.append(elementInnerDiv);
+                            elementDiv.append(elementImageDiv);
+                        
+                            elementMessage.classList.add("rounded-lg", "bg-blue-400", "text-white", "font-bold", "px-4", "py-4", "max-w-3xl", "mr-4");
+                            elementCreatedAt.classList.add("text-gray-500", "mt-2");
+                        }
+                        
+                        elementListMessage.append(elementDiv);
+                        elementListMessage.scrollIntoView(false);
                     }
-                    
-                    elementListMessage.append(elementDiv);
-                    elementListMessage.scrollIntoView(false);
 
                 });
+                
             });
 
 
