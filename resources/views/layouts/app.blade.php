@@ -31,6 +31,22 @@
          
           <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
           <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+          
+          <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+          <script>
+        
+            // Enable pusher logging - don't include this in production
+            Pusher.logToConsole = true;
+        
+            var pusher = new Pusher('78ef609a0aadd11acb72', {
+              cluster: 'ap3'
+            });
+        
+            var channel = pusher.subscribe('my-channel');
+            channel.bind('my-event', function(data) {
+              alert(JSON.stringify(data));
+            });
+          </script>
  
  
         
@@ -54,7 +70,7 @@
         
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-white">
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyRecordController;
 use App\Http\Controllers\TranslationController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ChatController;
+use App\Events\MessageAdded;
+use Symfony\Component\EventDispatcher\Event;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +76,12 @@ Route::controller(ProfileController::class)->middleware('auth')->group(function 
 
 Route::controller(MyRecordController::class)->middleware('auth')->group(function() {
     Route::get('/record', 'show')->name('record');
+});
+
+Route::controller(ChatController::class)->middleware('auth')->group(function() {
+    Route::get('/start-chat/{user}', 'startOrShowChat')->name('start.chat');
+    Route::get('/chat/{conversation}', 'showChat')->name('chat.show');
+    Route::post('/chat/{conversation}', 'sendMessage')->name('sendMessage');
 });
 
 require __DIR__.'/auth.php';

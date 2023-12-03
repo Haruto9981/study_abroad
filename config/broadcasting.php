@@ -46,6 +46,11 @@ return [
                 // Guzzle client options: https://docs.guzzlephp.org/en/stable/request-options.html
             ],
         ],
+        
+        'options' => [
+          'cluster' => 'ap3',
+          'useTLS' => true
+        ],
 
         'ably' => [
             'driver' => 'ably',
