@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
   
-use App\Events\MessageSent; // for MessageSent::dispatch()
+use App\Events\MessageSent; 
 use App\Models\Conversation;
 use App\Models\User;
 use App\Models\Message;
@@ -14,14 +14,12 @@ class ChatController extends Controller
     
     public function startOrShowChat(Request $request, User $user, Message $message)
     {
-        // ログインユーザーと指定ユーザーの共通のConversationを取得
         $commonConversation = $this->getCommonConversation($user);
 
         if ($commonConversation) {
-            // 既存のConversationが存在する場合は表示
             return redirect()->route('chat.show', ['conversation' => $commonConversation->id])->with(['messages' => $message->getMessage()]);
         } else {
-            // 新しいConversationを作成して表示
+           
             $conversation = new Conversation();
             $conversation->save();
 
@@ -41,7 +39,6 @@ class ChatController extends Controller
     {
         $loggedInUser = auth()->user();
 
-        // ログインユーザーと指定ユーザーの共通のConversationを取得
         $commonConversations = $loggedInUser->conversations()->whereHas('users', function ($query) use ($user) {
             $query->where('users.id', $user->id);
         })->get();
@@ -51,7 +48,6 @@ class ChatController extends Controller
     
     public function __construct()
     {
-        // 認証されたユーザーだけが、このコントローラのページにアクセスすることができる。
         $this->middleware('auth');
     }
 
@@ -63,7 +59,7 @@ class ChatController extends Controller
         $message->content = $request->input('message');
         $message->save();
     
-        // メッセージが保存された後にBroadcastイベントを発火
+       
         broadcast(new MessageSent($message));
     
         return response()->json(['status' => 'Message Sent!', 'message' => $message]);
