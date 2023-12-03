@@ -22,7 +22,6 @@
                 @foreach($messages as $message)
                 　　@if($message->conversation_id == $conversation->id)
                         @if($message->user->id == Auth::user()->id)
-                            <!-- 送信者のメッセージ（右側に表示） -->
                             <div class="mb-16">
                                 <div class="flex justify-end">
                                     <p class="rounded-lg bg-orange-400 text-white font-bold px-4 py-4 max-w-3xl mr-4">{{ $message->content }}</p>
@@ -32,7 +31,6 @@
                                 </div>
                             </div>
                         @else
-                            <!-- 受信者のメッセージ（左側に表示） -->
                             <div class="mb-16">
                                 <div class="flex">
                                     <img alt="chat" src="{{ $message->user->profile->profile_image_url }}" class="mx-2 w-14 h-14 rounded-full">
@@ -48,9 +46,6 @@
             </div>
         </div>
 
-       
-        
-        
         <div class="fixed bottom-0 left-0 w-full bg-white p-4 shadow-md" id="chatFormContainer">
             <form method="post" onsubmit="onsubmit_Form(); return false;" id="chatForm">
                 @csrf
@@ -81,7 +76,6 @@
                     .post('', params)
                     .then(response => {
                         console.log(response);
-                        // メッセージが送信された後の処理を追加する場合はここに記述
                     })
                     .catch(error => {
                         console.log(error.response);
@@ -94,18 +88,12 @@
                 const currentUserId = {{ Auth::user()->id }};
                 const currentConversationId = {{ $conversation->id }}; 
                 
-                console.log(currentUserId);
-                console.log(window.Echo.connector.pusher.connection);
-                
                 window.Echo.private('chat').listen('MessageSent', (e) => {
                 　　const messageConversationId = e.message.conversation_id;
                 　　
                 　　if (messageConversationId === currentConversationId) {
                         let strMessage = e.message.content;
                         let createdAt = new Date(e.message.created_at);
-                        
-                        console.log(strMessage);
-                        console.log(createdAt);
                 
                         var month = createdAt.getMonth() + 1;
                         var day = ('0' + createdAt.getDate()).slice(-2);
@@ -113,9 +101,7 @@
                         var minute = ('0' + createdAt.getMinutes()).slice(-2);
                 
                         strCreatedAt = `${month}-${day} ${hour}:${minute}`;
-                        
-                        console.log(strCreatedAt);
-                
+                    
                         let elementDiv = document.createElement("div");
                         let elementMessage = document.createElement("p");
                         let elementCreatedAt = document.createElement("p");
@@ -126,14 +112,12 @@
                         elementDiv.append(elementCreatedAt);
                 
                         if (e.message.user_id == currentUserId) {
-                            // 送信者のメッセージ（右側に表示）
                             console.log(e.message.user_id);
                             elementDiv.classList.add("flex", "flex-col", "items-end", "mb-16");
                             elementMessage.classList.add("rounded-lg", "bg-orange-400", "text-white", "font-bold", "px-4", "py-4", "max-w-3xl", "mr-4");
                             elementCreatedAt.classList.add("text-gray-500", "mt-2", "mr-4");
                         
                         } else {
-                            // 受信者のメッセージ（左側に表示）
                             console.log(e.message.user_id);
                             elementDiv.classList.add("mb-16");
                             let elementInnerDiv = document.createElement("div");
@@ -167,12 +151,8 @@
                         elementListMessage.append(elementDiv);
                         elementListMessage.scrollIntoView(false);
                     }
-
                 });
-                
             });
-
-
         </script>
     </body>
 </x-app-layout>
