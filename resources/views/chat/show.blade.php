@@ -97,9 +97,9 @@
                     let createdAt = new Date(e.message.created_at);
             
                     var month = createdAt.getMonth() + 1;
-                    var day = createdAt.getDate();
+                    var day = ('0' + createdAt.getDate()).slice(-2);
                     var hour = createdAt.getHours();
-                    var minute = String(createdAt.getMinutes()).padStart(2, "0");
+                    var minute = ('0' + createdAt.getMinutes()).slice(-2);
             
                     strCreatedAt = `${month}-${day} ${hour}:${minute}`;
             
@@ -129,7 +129,7 @@
                         elementImageDiv.classList.add("flex", "ml-20", "mt-2", "mr-4");
                         elementTextDiv.classList.add("flex", "flex-col", "items-start");
                     
-                        elementProfileImage.src = "{{ $message->user->profile->profile_image_url }}";
+                        elementProfileImage.src = "{{ isset($message) ? $message->user->profile->profile_image_url : '' }}";
                         elementProfileImage.alt = "chat";
                         elementProfileImage.classList.add("mx-2", "w-14", "h-14", "rounded-full");
                     
