@@ -72,7 +72,6 @@
                 if (!strMessage.trim()) {
                     return;
                 }
-                 console.log(strMessage);
         
                 params = { 'message': strMessage };
         
@@ -92,9 +91,14 @@
            window.addEventListener("DOMContentLoaded", () => {
                 const currentUserId = {{ Auth::user()->id }};
                 
+                console.log(currentUserId);
+                
                 window.Echo.private('chat').listen('MessageSent', (e) => {
                     let strMessage = e.message.content;
                     let createdAt = new Date(e.message.created_at);
+                    
+                    console.log(strMessage);
+                    console.log(createdAt);
             
                     var month = createdAt.getMonth() + 1;
                     var day = ('0' + createdAt.getDate()).slice(-2);
@@ -102,6 +106,8 @@
                     var minute = ('0' + createdAt.getMinutes()).slice(-2);
             
                     strCreatedAt = `${month}-${day} ${hour}:${minute}`;
+                    
+                    console.log(strCreatedAt);
             
                     let elementDiv = document.createElement("div");
                     let elementMessage = document.createElement("p");
@@ -114,12 +120,14 @@
             
                     if (e.message.user_id == currentUserId) {
                         // 送信者のメッセージ（右側に表示）
+                        console.log(e.message.user_id);
                         elementDiv.classList.add("flex", "flex-col", "items-end", "mb-16");
                         elementMessage.classList.add("rounded-lg", "bg-orange-400", "text-white", "font-bold", "px-4", "py-4", "max-w-3xl", "mr-4");
                         elementCreatedAt.classList.add("text-gray-500", "mt-2", "mr-4");
                     
                     } else {
                         // 受信者のメッセージ（左側に表示）
+                        console.log(e.message.user_id);
                         elementDiv.classList.add("mb-16");
                         let elementInnerDiv = document.createElement("div");
                         let elementImageDiv = document.createElement("div");
